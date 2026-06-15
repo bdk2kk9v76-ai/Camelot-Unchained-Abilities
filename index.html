@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Updated viewport tag to handle standard scaling -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>Camelot Unchained Ability Database</title>
     <!-- Tailwind CSS via CDN for rapid styling -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,13 +34,23 @@
                 <!-- Search Input -->
                 <div class="flex-1">
                     <label for="search-input" class="block mb-2 text-sm font-medium text-gray-400">Search Abilities</label>
-                    <div class="relative">
+                    <div class="relative flex items-center">
+                        <!-- Search Icon -->
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                             </svg>
                         </div>
-                        <input type="text" id="search-input" placeholder="Search by name, type, or effect..." class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 outline-none transition-colors">
+                        
+                        <!-- Input field bumped to text-base (16px) to completely block iOS auto-zoom -->
+                        <input type="text" id="search-input" placeholder="Search by name, type, or effect..." class="bg-gray-800 border border-gray-700 text-white text-base sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-10 p-2.5 outline-none transition-colors">
+                        
+                        <!-- Clear Field X Button (Hidden by default via 'hidden') -->
+                        <button type="button" id="clear-search" class="hidden absolute inset-y-0 right-0 flex items-center pr-3 text-gray-500 hover:text-white transition-colors focus:outline-none" aria-label="Clear search">
+                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
 
@@ -55,5 +66,32 @@
 
     <!-- Link to the JavaScript file -->
     <script src="app.js"></script>
+    
+    <!-- Inline wire-up for the clear button functionality -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchInput = document.getElementById('search-input');
+            const clearBtn = document.getElementById('clear-search');
+
+            // Toggle X button visibility based on input value
+            searchInput.addEventListener('input', () => {
+                if (searchInput.value.trim().length > 0) {
+                    clearBtn.classList.remove('hidden');
+                } else {
+                    clearBtn.classList.add('hidden');
+                }
+            });
+
+            // Action when X button is clicked
+            clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                clearBtn.classList.add('hidden');
+                searchInput.focus();
+                
+                // Trigger an input event so your existing app.js logic filters layout immediately
+                searchInput.dispatchEvent(new Event('input'));
+            });
+        });
+    </script>
 </body>
 </html>

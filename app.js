@@ -5,16 +5,20 @@ let searchQuery = '';
 const elements = {
   classSelect: document.getElementById('class-select'),
   searchInput: document.getElementById('search-input'),
-  clearSearch: document.getElementById('clear-search'), // Added explicit hook for clear button
+  clearSearch: document.getElementById('clear-search'),
   accordionContainer: document.getElementById('accordion-container')
 };
 
-// 1. Fetch and initialize the data
+// 1. Fetch and initialize the data from your data.json file
 async function init() {
   try {
     const response = await fetch('data.json');
     if (!response.ok) throw new Error('Network response was not ok');
     database = await response.json();
+    
+    // Explicitly guarantee search elements are completely locked on boot
+    elements.searchInput.disabled = true;
+    elements.clearSearch.disabled = true;
     
     populateClassDropdown();
     setupEventListeners();
@@ -24,8 +28,9 @@ async function init() {
   }
 }
 
-// 2. Populate the Class Dropdown
+// 2. Populate the Class Dropdown dynamically using YOUR actual JSON structure
 function populateClassDropdown() {
+  // Pulls the "class" property values from your data.json items
   const classes = database.map(item => item.class).sort();
   
   classes.forEach(className => {
@@ -36,7 +41,7 @@ function populateClassDropdown() {
   });
 }
 
-// 3. Set up listeners for search, dropdown, and the clear button
+// 3. Set up listeners for search, dropdown state, and the clear field button
 function setupEventListeners() {
   
   // Class Dropdown Selection State Lifecycle
@@ -44,12 +49,12 @@ function setupEventListeners() {
     selectedClass = e.target.value;
     
     if (selectedClass) {
-      // Step A: Target element is valid, activate search inputs
+      // If a real class is picked, activate and change placeholder text
       elements.searchInput.disabled = false;
       elements.clearSearch.disabled = false;
       elements.searchInput.placeholder = "Search by name, type, or effect...";
     } else {
-      // Step B: Reset to structural root state if choice is blanked out
+      // If reset back to "Choose a Class...", scrub query states and disable elements
       searchQuery = '';
       elements.searchInput.value = '';
       elements.searchInput.disabled = true;
@@ -61,11 +66,11 @@ function setupEventListeners() {
     renderAbilities();
   });
 
-  // Dynamic Query Input Lifecycle
+  // Dynamic Search Input State Lifecycle
   elements.searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.toLowerCase().trim();
     
-    // Manage visual state of the 'X' button container
+    // Toggle visibility of the "X" button layout
     if (searchQuery.length > 0) {
       elements.clearSearch.classList.remove('hidden');
     } else {
@@ -75,20 +80,20 @@ function setupEventListeners() {
     renderAbilities();
   });
 
-  // Clear Field Action Lifecycle
+  // Clear Field Interaction Lifecycle
   elements.clearSearch.addEventListener('click', () => {
     searchQuery = '';
     elements.searchInput.value = '';
     elements.clearSearch.classList.add('hidden');
-    elements.searchInput.focus();
+    elements.searchInput.focus(); // Keep focus inside the box for speed typing
     
     renderAbilities();
   });
 }
 
-// 4. Render the accordion and ability cards
+// 4. Render the accordion structure and nested target capability lists
 function renderAbilities() {
-  elements.accordionContainer.innerHTML = ''; // Clear container
+  elements.accordionContainer.innerHTML = ''; // Wipe rendering buffer
 
   if (!selectedClass) {
     elements.accordionContainer.innerHTML = '<p class="text-center text-gray-500 italic mt-8">Please select a class to view abilities.</p>';
@@ -99,7 +104,7 @@ function renderAbilities() {
   if (!classData) return;
 
   classData.trees.forEach(tree => {
-    // Filter abilities based on search query
+    // Filter abilities based on query state inputs
     const filteredAbilities = Object.entries(tree.abilities).filter(([name, data]) => {
       if (!searchQuery) return true;
       const matchName = name.toLowerCase().includes(searchQuery);
@@ -108,10 +113,10 @@ function renderAbilities() {
       return matchName || matchType || matchSummary;
     });
 
-    // Skip rendering this tree if search filtered out all its abilities
+    // Skip rendering entirely if tree has zero search hits
     if (filteredAbilities.length === 0) return;
 
-    // Create Tree Accordion Header
+    // Create Tree Accordion Header Shell
     const treeEl = document.createElement('div');
     treeEl.className = 'border border-gray-700 rounded-lg overflow-hidden bg-gray-900 mb-4';
 
@@ -123,21 +128,21 @@ function renderAbilities() {
     `;
 
     const contentEl = document.createElement('div');
-    contentEl.className = 'p-4 flex flex-col gap-3 hidden'; // Hidden by default
+    contentEl.className = 'p-4 flex flex-col gap-3 hidden'; // Closed by default
 
-    // Toggle logic for accordion
+    // Accordion Toggle Core
     headerEl.addEventListener('click', () => {
       contentEl.classList.toggle('hidden');
       headerEl.querySelector('svg').classList.toggle('rotate-180');
     });
 
-    // Force open if user is actively searching
+    // Force disclosure expand panels automatically if a query filter exists
     if (searchQuery) {
       contentEl.classList.remove('hidden');
       headerEl.querySelector('svg').classList.add('rotate-180');
     }
 
-    // Populate Cards
+    // Populate inner matching Capability cards
     filteredAbilities.forEach(([name, data]) => {
       const card = document.createElement('div');
       card.className = 'bg-gray-800 border border-gray-700 p-4 rounded text-sm text-gray-300';
@@ -165,10 +170,11 @@ function renderAbilities() {
     elements.accordionContainer.appendChild(treeEl);
   });
 
+  // Display empty matching criteria card fallback
   if (elements.accordionContainer.innerHTML === '') {
     elements.accordionContainer.innerHTML = '<p class="text-center text-gray-500 italic mt-8">No abilities match your search.</p>';
   }
 }
 
-// Boot up
+// Initial Boot execution sequence
 init();

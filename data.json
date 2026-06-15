@@ -621,6 +621,83 @@
           "And Our Hero Falls!": {"level": 4, "type": "Debuff / Amplify", "cast_speed": "1.0s", "base_value": "+60% Damage Taken under 50% HP", "resource_delta": "None", "range": "60m", "summary": "Target takes vastly increased execute damage for 6s. 90.0s Cooldown. (Spell)"},
           "Die a Lonely Death": {"level": 5, "type": "Damage / CC Execute", "cast_speed": "2.0s", "base_value": "Delayed Shadow Damage (+100% if isolated)", "resource_delta": "None", "range": "60m", "summary": "Snares target by 70% and chunks them at the end of the duration. 120.0s Cooldown. (Spell)"}
         }
+      },
+      {
+        "name": "Mummery",
+        "abilities": {
+          "A Glimpse of Madness": {
+            "level": 0,
+            "type": "Spell",
+            "cast_speed": "0.2s",
+            "base_value": "Panic",
+            "resource_delta": "-75 Focus",
+            "range": "45m",
+            "summary": "Inflicts Panic. 4.0s Cooldown."
+          },
+          "Screaming Shot": {
+            "level": 0,
+            "type": "Damage",
+            "cast_speed": "0.6s",
+            "base_value": "1078 Base Damage",
+            "resource_delta": "None",
+            "range": "70m",
+            "summary": "Deals Mind damage."
+          },
+          "As the Willow in a Storm": {
+            "level": 1,
+            "type": "Spell",
+            "cast_speed": "3.0s",
+            "base_value": "+25% Block Value, +10% Parry Chance",
+            "resource_delta": "None",
+            "range": "Self",
+            "summary": "Increases your party's Block Value by 25% and grants +10% Parry Chance."
+          },
+          "The Darkest Hour": {
+            "level": 1,
+            "type": "Spell",
+            "cast_speed": "2.0s",
+            "base_value": "1225 Base Damage",
+            "resource_delta": "None",
+            "range": "60m",
+            "summary": "Deals Shadow damage around the target. Enemies hit are Silenced and Disarmed for 4/8 seconds. 60.0s Cooldown."
+          },
+          "Bean Sidhe's Wail": {
+            "level": 2,
+            "type": "Spell",
+            "cast_speed": "1.0s",
+            "base_value": "1114 Base Damage",
+            "resource_delta": "None",
+            "range": "25m Cone",
+            "summary": "Inflicts Fear and deals Mind damage to targets in a 25m cone. 75.0s Cooldown."
+          },
+          "Death by a Thousand Cuts": {
+            "level": 3,
+            "type": "Spell",
+            "cast_speed": "3.0s",
+            "base_value": "Up to max 24% Damage Taken Debuff",
+            "resource_delta": "None",
+            "range": "Self",
+            "summary": "Your party inflicts a stacking debuff for 5 seconds when dealing Direct damage. This debuff increases damage taken by 3% per stack, up to a max of 24%."
+          },
+          "Dark Allure": {
+            "level": 4,
+            "type": "Spell",
+            "cast_speed": "7.0s",
+            "base_value": "334 Base Damage per second",
+            "resource_delta": "None",
+            "range": "60m",
+            "summary": "Channels to Charm an enemy and deal Mind damage each second for up to 6 seconds. 60.0s Cooldown."
+          },
+          "A Cautionary Tale": {
+            "level": 5,
+            "type": "Damage / AoE DoT",
+            "cast_speed": "0.6s",
+            "base_value": "917 Base Damage + 2000 DoT",
+            "resource_delta": "-400 Focus",
+            "range": "60m (15m AoE Radius)",
+            "summary": "Deals Shadow damage and an additional 2000 Shadow damage over 10 seconds. For the duration the target's allies take 300 Shadow damage each second while within 15m of them. 20.0s Cooldown."
+          }
+        }
       }
     ]
   },

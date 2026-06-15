@@ -630,47 +630,255 @@
       {
         "name": "Class Abilities",
         "abilities": {
-          "Clear Mind": {"level": null, "type": "Utility", "cast_speed": "1.0s", "base_value": null, "resource_delta": "100 Panic", "range": "45m", "summary": "Reduces target's Panic by 350."},
-          "What Must Be Done": {"level": null, "type": "Utility", "cast_speed": "0.2s", "base_value": null, "resource_delta": null, "range": null, "summary": "Breaks all CC, and grants CC immunity for 10 seconds. 120.0s Cooldown."}
+          "Clear Mind": {
+            "level": null,
+            "type": "Spell (Friend)",
+            "cast_speed": "1.0s",
+            "base_value": null,
+            "resource_delta": "-100 Panic",
+            "range": "45m",
+            "summary": "Reduces target's Panic by 350."
+          },
+          "What Must Be Done": {
+            "level": null,
+            "type": "Utility",
+            "cast_speed": "0.2s",
+            "base_value": null,
+            "resource_delta": "None",
+            "range": "Self",
+            "summary": "Breaks all CC, and grants CC immunity for 10 seconds. 120.0s Cooldown."
+          }
         }
       },
       {
         "name": "Tend the Enemy",
         "abilities": {
-          "Comhlacht Mallacht": {"level": 0, "type": "Damage", "cast_speed": "2.0s", "base_value": "1500 Base Damage", "resource_delta": "100 Faith", "range": "60m", "summary": "Deals Spirit damage. If target is Linked, reduces healing received by 25% for 4 seconds."},
-          "Fuil Truaillithe": {"level": 0, "type": "Damage", "cast_speed": "2.0s", "base_value": "1219 Base Damage", "resource_delta": "75 Faith, +1 Judgment", "range": "45m", "summary": "Deals 4550 Shadow damage over 21 seconds."},
-          "Nasc Namhaid": {"level": 1, "type": "Utility", "cast_speed": "0.2s", "base_value": null, "resource_delta": "25 Faith", "range": "25m", "summary": "Links you to an enemy. Reduces their Strength and Attunement while linked. 3.0s Cooldown."},
-          "Reabadh": {"level": 1, "type": "Damage", "cast_speed": "13.0s", "base_value": "750 Base Damage", "resource_delta": "None", "range": "45m", "summary": "Channels for up to 12 seconds. Spends 150 Health and deals Shadow damage to your Enemy Link each second."},
-          "Anam Truaillithe": {"level": 2, "type": "Damage", "cast_speed": "0.2s", "base_value": "1219 Base Damage", "resource_delta": "175 Faith, +1 Judgment", "range": "45m", "summary": "Deals Spirit damage over 21 seconds."},
-          "Pairilis": {"level": 3, "type": "Damage / CC", "cast_speed": "0.2s", "base_value": "938 Base Damage", "resource_delta": "None", "range": "45m", "summary": "Deals Shadow damage and Disarms the target for 3/6 seconds. +50 damage if target is Linked to you. 20.0s Cooldown."},
-          "Atreoru": {"level": 4, "type": "Buff / Heal", "cast_speed": "1.0s", "base_value": null, "resource_delta": "-2 Judgment, +500 Faith", "range": "Friend", "summary": "For 10 seconds, each time your friendly link is dealt damage, 20% of that damage is prevented, and you are healed for the amount prevented. 2.0s Cooldown."},
-          "Nochtadh": {"level": 5, "type": "Damage / Heal", "cast_speed": "3.0s", "base_value": "1406 Base Damage / 759 Base Healing", "resource_delta": "-3 Judgment, +750 Faith", "range": "60m", "summary": "Deals Spirit damage plus additional damage equal to 40% of your missing Health. Heals you for 50% of the damage dealt."}
+          "Comhlacht Mallacht": {
+            "level": 0,
+            "type": "Spell",
+            "cast_speed": "2.0s",
+            "base_value": "1500 Base Damage",
+            "resource_delta": "-100 Faith, +1 Judgment",
+            "range": "60m",
+            "summary": "Deals Spirit damage. If target is Linked, reduces healing received by 25% for 4 seconds."
+          },
+          "Fuil Truaillithe": {
+            "level": 0,
+            "type": "Spell",
+            "cast_speed": "2.0s",
+            "base_value": "1219 Base Damage",
+            "resource_delta": "-75 Faith, +1 Judgment",
+            "range": "45m",
+            "summary": "Deals 4550 Shadow damage over 21 seconds."
+          },
+          "Nasc Namhaid": {
+            "level": 1,
+            "type": "Spell",
+            "cast_speed": "0.2s",
+            "base_value": null,
+            "resource_delta": "-25 Faith",
+            "range": "25m",
+            "summary": "Links you to an enemy. Reduces their Strength and Attunement while linked. 3.0s Cooldown."
+          },
+          "Reabadh": {
+            "level": 1,
+            "type": "Spell (Friend Link)",
+            "cast_speed": "13.0s",
+            "base_value": "750 Base Damage",
+            "resource_delta": "None",
+            "range": "45m",
+            "summary": "Channels for up to 12 seconds. Spends 150 Health and deals Shadow damage to your Enemy Link each second."
+          },
+          "Anam Truaillithe": {
+            "level": 2,
+            "type": "Spell",
+            "cast_speed": "0.2s",
+            "base_value": "1219 Base Damage",
+            "resource_delta": "-175 Faith, +1 Judgment",
+            "range": "45m",
+            "summary": "Deals Spirit damage over 21 seconds. 1.0s Cooldown."
+          },
+          "Pairilis": {
+            "level": 3,
+            "type": "Spell",
+            "cast_speed": "0.2s",
+            "base_value": "938 Base Damage",
+            "resource_delta": "None",
+            "range": "45m",
+            "summary": "Deals Shadow damage and Disarms the target for 3/6 seconds. +50 damage if target is Linked to you. 20.0s Cooldown."
+          },
+          "Atreoru": {
+            "level": 4,
+            "type": "Spell (Friend)",
+            "cast_speed": "1.0s",
+            "base_value": null,
+            "resource_delta": "-2 Judgment, +500 Faith",
+            "range": "Friend Link",
+            "summary": "For 10 seconds, each time your friendly link is dealt damage, 20% of that damage is prevented, and you are healed for the amount prevented. 2.0s Cooldown."
+          },
+          "Nochtadh": {
+            "level": 5,
+            "type": "Spell",
+            "cast_speed": "3.0s",
+            "base_value": "1406 Base Damage",
+            "resource_delta": "-3 Judgment, +750 Faith",
+            "range": "60m",
+            "summary": "Deals Spirit damage plus additional damage equal to 40% of your missing Health. Heals you for 50% of the damage dealt. (759 Base Healing)"
+          }
         }
       },
       {
         "name": "Tend the Spirit",
         "abilities": {
-          "Athghin": {"level": 0, "type": "Heal", "cast_speed": "2.0s", "base_value": "1519 Base Healing", "resource_delta": "-2 Judgment, +500 Faith", "range": "Self", "summary": "Heals you for 4500 Health over 6 seconds."},
-          "Comhroinn Fola": {"level": 0, "type": "Heal", "cast_speed": "2.0s", "base_value": "3645 Base Healing", "resource_delta": "-75 Faith, +1 Judgment", "range": "45m", "summary": "Spends 1000 Health and heals the target. +40% healing if the target is linked to you."},
-          "Nasc Cara": {"level": 1, "type": "Buff", "cast_speed": "0.2s", "base_value": null, "resource_delta": "-25 Faith", "range": "25m", "summary": "Links you to an ally. Grants them increased Physical and Magic Armor Rating while linked. 3.0s Cooldown."},
-          "Tonnadoir": {"level": 1, "type": "Heal", "cast_speed": "13.0s", "base_value": "810 Base Healing", "resource_delta": "None", "range": "45m", "summary": "Channels for up to 12 seconds. Spends 150 Health and Heals your Friendly Link each second."},
-          "Comhroinn Cinniuint": {"level": 2, "type": "Heal", "cast_speed": "0.2s", "base_value": null, "resource_delta": "-200 Faith, +1 Judgment", "range": "45m", "summary": "Heals your Friendly Link over time. 8.0s Cooldown."},
-          "Atreisiu": {"level": 3, "type": "Buff", "cast_speed": "0.2s", "base_value": null, "resource_delta": "-2 Judgment, +500 Faith", "range": "Friend", "summary": "Reduces damage taken by your Friendly Link by 10% for 12 seconds. Double effectiveness while Friendly Link is below 50% Health. 2.0s Cooldown."},
-          "Balla Eiliminte": {"level": 4, "type": "Buff", "cast_speed": "0.2s", "base_value": null, "resource_delta": "None", "range": "Friend", "summary": "Grants you immunity to Fire and Lightning damage and your Friendly Link +30% Fire and Lightning Resistance for 6 seconds. 120.0s Cooldown."},
-          "Comhinannu": {"level": 5, "type": "Heal / Cleanse", "cast_speed": "0.2s", "base_value": null, "resource_delta": "None", "range": "Friend", "summary": "Removes all Debuffs from your Friendly Link and Heals them for 40% of your missing Health. Heals you both for 2400 Health over 12 seconds. 90.0s Cooldown."}
+          "Athghin": {
+            "level": 0,
+            "type": "Spell",
+            "cast_speed": "2.0s",
+            "base_value": "1519 Base Healing",
+            "resource_delta": "-2 Judgment, +500 Faith",
+            "range": "Self",
+            "summary": "Heals you for 4500 Health over 6 seconds."
+          },
+          "Comhroinn Fola": {
+            "level": 0,
+            "type": "Spell",
+            "cast_speed": "2.0s",
+            "base_value": "3645 Base Healing",
+            "resource_delta": "-75 Faith, +1 Judgment",
+            "range": "45m",
+            "summary": "Spends 1000 Health and heals the target. +40% healing if the target is linked to you. (1000 Base Damage)"
+          },
+          "Nasc Cara": {
+            "level": 1,
+            "type": "Spell (Friend)",
+            "cast_speed": "0.2s",
+            "base_value": null,
+            "resource_delta": "-25 Faith",
+            "range": "25m",
+            "summary": "Links you to an ally. Grants them increased Physical and Magic Armor Rating while linked. 3.0s Cooldown."
+          },
+          "Tonnadoir": {
+            "level": 1,
+            "type": "Spell",
+            "cast_speed": "13.0s",
+            "base_value": "810 Base Healing",
+            "resource_delta": "None",
+            "range": "45m",
+            "summary": "Channels for up to 12 seconds. Spends 150 Health and Heals your Friendly Link each second. (150 Base Damage)"
+          },
+          "Comhroinn Cinniuint": {
+            "level": 2,
+            "type": "Spell",
+            "cast_speed": "0.2s",
+            "base_value": null,
+            "resource_delta": "-200 Faith, +1 Judgment",
+            "range": "45m",
+            "summary": "Heals your Friendly Link over time. 8.0s Cooldown."
+          },
+          "Atreisiú": {
+            "level": 3,
+            "type": "Spell (Friend)",
+            "cast_speed": "0.2s",
+            "base_value": null,
+            "resource_delta": "-2 Judgment, +500 Faith",
+            "range": "Friend Link",
+            "summary": "Reduces damage taken by your Friendly Link by 10% for 12 seconds. Double effectiveness while Friendly Link is below 50% Health. 2.0s Cooldown."
+          },
+          "Balla Eiliminte": {
+            "level": 4,
+            "type": "Spell (Friend)",
+            "cast_speed": "0.2s",
+            "base_value": null,
+            "resource_delta": "None",
+            "range": "Friend Link",
+            "summary": "Grants you immunity to Fire and Lighting damage and your Friendly Link +30% Fire and Lightning Resistance for 6 seconds. 120.0s Cooldown."
+          },
+          "Comhinannu": {
+            "level": 5,
+            "type": "Spell (Friend)",
+            "cast_speed": "0.2s",
+            "base_value": null,
+            "resource_delta": "None",
+            "range": "Friend Link",
+            "summary": "Removes all Debuffs from your Friendly Link and Heals them for 40% of your missing Health. Heals you both for 2400 Health over 12 seconds. 90.0s Cooldown."
+          }
         }
       },
       {
         "name": "Tend the Body",
         "abilities": {
-          "Athchoirigh": {"level": 0, "type": "Resurrection", "cast_speed": "9.0s", "base_value": null, "resource_delta": "-225 Faith", "range": "25m", "summary": "Resurrects target ally with 25% max Health and Res Sickness."},
-          "Saol Deontas": {"level": 0, "type": "Heal", "cast_speed": "1.0s", "base_value": "2430 Base Healing", "resource_delta": "-100 Faith, +1 Judgment", "range": "60m", "summary": "Heal an ally for 1900 Health."},
-          "Leigheas": {"level": 1, "type": "Cleanse", "cast_speed": "2.0s", "base_value": null, "resource_delta": "-75 Faith, +1 Judgment", "range": "45m", "summary": "Removes 1 Debuff from target ally."},
-          "Uacht Danu": {"level": 1, "type": "Heal", "cast_speed": "0.2s", "base_value": "2936 Base Healing", "resource_delta": "-1 Judgment, +250 Faith", "range": "45m", "summary": "Heals the target. 4.0s Cooldown."},
-          "Ciorcal na Beatha": {"level": 2, "type": "Heal", "cast_speed": "2.0s", "base_value": "1215 Base Healing", "resource_delta": "-2 Judgment, +500 Faith", "range": "90m", "summary": "Heals party for 2400 over 12 seconds."},
-          "Slainte": {"level": 3, "type": "Heal", "cast_speed": "0.2s", "base_value": "911 Base Healing", "resource_delta": "-100 Faith, +1 Judgment", "range": "45m", "summary": "Heals an ally for 1800 Health over 12 seconds. +50% healing if the target is Linked to you. 1.0s Cooldown."},
-          "Airde Friotaiocht": {"level": 4, "type": "Buff", "cast_speed": "2.0s", "base_value": null, "resource_delta": "-250 Faith, +1 Judgment", "range": "45m", "summary": "Grants an ally +60 Physical and Magical Armor Rating for 10 seconds."},
-          "Seastan Deiridh": {"level": 5, "type": "Buff", "cast_speed": "0.2s", "base_value": null, "resource_delta": "None", "range": "Party", "summary": "Reduces damage taken by party by 50% for 8 seconds. 120.0s Cooldown."}
+          "Athchoirigh": {
+            "level": 0,
+            "type": "Resurrection",
+            "cast_speed": "9.0s",
+            "base_value": null,
+            "resource_delta": "-225 Faith",
+            "range": "25m",
+            "summary": "Resurrects target ally with 25% max Health and Res Sickness."
+          },
+          "Saol Deontas": {
+            "level": 0,
+            "type": "Spell",
+            "cast_speed": "1.0s",
+            "base_value": "2430 Base Healing",
+            "resource_delta": "-100 Faith, +1 Judgment",
+            "range": "60m",
+            "summary": "Heal an ally for 1900 Health."
+          },
+          "Leigheas": {
+            "level": 1,
+            "type": "Spell",
+            "cast_speed": "2.0s",
+            "base_value": null,
+            "resource_delta": "-75 Faith, +1 Judgment",
+            "range": "45m",
+            "summary": "Removes 1 Debuff from target ally."
+          },
+          "Uacht Danu": {
+            "level": 1,
+            "type": "Heal",
+            "cast_speed": "0.2s",
+            "base_value": "2936 Base Healing",
+            "resource_delta": "-1 Judgment, +250 Faith",
+            "range": "45m",
+            "summary": "Heals the target. 4.0s Cooldown."
+          },
+          "Ciorcal na Beatha": {
+            "level": 2,
+            "type": "Heal",
+            "cast_speed": "2.0s",
+            "base_value": "1215 Base Healing",
+            "resource_delta": "-2 Judgment, +500 Faith",
+            "range": "90m",
+            "summary": "Heals party for 2400 over 12 seconds."
+          },
+          "Slainte": {
+            "level": 3,
+            "type": "Heal",
+            "cast_speed": "0.2s",
+            "base_value": "911 Base Healing",
+            "resource_delta": "-100 Faith, +1 Judgment",
+            "range": "45m",
+            "summary": "Heals an ally for 1800 Health over 12 seconds. +50% healing if the target is Linked to you. 1.0s Cooldown."
+          },
+          "Airde Friotaiocht": {
+            "level": 4,
+            "type": "Buff",
+            "cast_speed": "2.0s",
+            "base_value": null,
+            "resource_delta": "-250 Faith, +1 Judgment",
+            "range": "45m",
+            "summary": "Grants an ally +60 Physical and Magical Armor Rating for 10 seconds."
+          },
+          "Seastan Deiridh": {
+            "level": 5,
+            "type": "Buff",
+            "cast_speed": "0.2s",
+            "base_value": null,
+            "resource_delta": "None",
+            "range": "Party",
+            "summary": "Reduces damage taken by party by 50% for 8 seconds. 120.0s Cooldown."
+          }
         }
       }
     ]

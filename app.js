@@ -16,21 +16,16 @@ async function init() {
     if (!response.ok) throw new Error('Network response was not ok');
     database = await response.json();
     
-    // Explicitly guarantee search elements are completely locked on boot
-    elements.searchInput.disabled = true;
-    elements.clearSearch.disabled = true;
-    
     populateClassDropdown();
     setupEventListeners();
   } catch (error) {
     console.error('Failed to load data:', error);
-    elements.accordionContainer.innerHTML = `<p class="text-red-500">Error loading database. Check console.</p>`;
+    elements.accordionContainer.innerHTML = `<p class="text-red-500 text-center mt-8">Error loading database. Check console.</p>`;
   }
 }
 
-// 2. Populate the Class Dropdown dynamically using YOUR actual JSON structure
+// 2. Populate the Class Dropdown dynamically using your original JSON structure
 function populateClassDropdown() {
-  // Pulls the "class" property values from your data.json items
   const classes = database.map(item => item.class).sort();
   
   classes.forEach(className => {
@@ -49,12 +44,12 @@ function setupEventListeners() {
     selectedClass = e.target.value;
     
     if (selectedClass) {
-      // If a real class is picked, activate and change placeholder text
+      // Activate fields when a real class is chosen
       elements.searchInput.disabled = false;
       elements.clearSearch.disabled = false;
       elements.searchInput.placeholder = "Search by name, type, or effect...";
     } else {
-      // If reset back to "Choose a Class...", scrub query states and disable elements
+      // Complete reset if switched back to "Choose a Class..."
       searchQuery = '';
       elements.searchInput.value = '';
       elements.searchInput.disabled = true;
@@ -70,7 +65,7 @@ function setupEventListeners() {
   elements.searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.toLowerCase().trim();
     
-    // Toggle visibility of the "X" button layout
+    // Toggle layout visibility of the "X" button
     if (searchQuery.length > 0) {
       elements.clearSearch.classList.remove('hidden');
     } else {
@@ -85,7 +80,7 @@ function setupEventListeners() {
     searchQuery = '';
     elements.searchInput.value = '';
     elements.clearSearch.classList.add('hidden');
-    elements.searchInput.focus(); // Keep focus inside the box for speed typing
+    elements.searchInput.focus(); // Retain visual focus in field
     
     renderAbilities();
   });
@@ -93,7 +88,7 @@ function setupEventListeners() {
 
 // 4. Render the accordion structure and nested target capability lists
 function renderAbilities() {
-  elements.accordionContainer.innerHTML = ''; // Wipe rendering buffer
+  elements.accordionContainer.innerHTML = ''; // Clear container buffer
 
   if (!selectedClass) {
     elements.accordionContainer.innerHTML = '<p class="text-center text-gray-500 italic mt-8">Please select a class to view abilities.</p>';
@@ -104,7 +99,7 @@ function renderAbilities() {
   if (!classData) return;
 
   classData.trees.forEach(tree => {
-    // Filter abilities based on query state inputs
+    // Filter abilities based on query inputs
     const filteredAbilities = Object.entries(tree.abilities).filter(([name, data]) => {
       if (!searchQuery) return true;
       const matchName = name.toLowerCase().includes(searchQuery);

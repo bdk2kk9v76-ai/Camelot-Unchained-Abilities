@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camelot Unchained Ability Database</title>
+    <!-- Tailwind CSS via CDN for rapid styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-200 min-h-screen font-sans">
+    
+    <div class="max-w-4xl mx-auto px-4 py-8">
+        
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-extrabold text-white tracking-tight">Camelot Unchained</h1>
+            <p class="text-gray-400 mt-2">Class Ability Database</p>
+        </header>
+
+        <!-- Controls Section -->
+        <div class="bg-gray-900 border border-gray-800 p-4 rounded-xl shadow-lg mb-8">
+            <div class="flex flex-col sm:flex-row gap-4">
+                
+                <!-- Class Selection Dropdown -->
+                <div class="flex-1">
+                    <label for="class-select" class="block mb-2 text-sm font-medium text-gray-400">Select Class</label>
+                    <select id="class-select" class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 outline-none transition-colors">
+                        <option value="">Choose a Class...</option>
+                        <!-- Options injected by app.js -->
+                    </select>
+                </div>
+
+                <!-- Search Input -->
+                <div class="flex-1">
+                    <label for="search-input" class="block mb-2 text-sm font-medium text-gray-400">Search Abilities</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                            </svg>
+                        </div>
+                        <input type="text" id="search-input" placeholder="Search by name, type, or effect..." class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 outline-none transition-colors">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Accordion Container for Trees and Abilities -->
+        <div id="accordion-container" class="w-full flex flex-col gap-4">
+            <p class="text-center text-gray-500 italic mt-8">Please select a class to view abilities.</p>
+        </div>
+
+    </div>
+
+    <!-- Link to the JavaScript file -->
+    <script src="app.js"></script>
+</body>
+</html>

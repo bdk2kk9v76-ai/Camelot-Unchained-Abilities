@@ -5,6 +5,7 @@ let searchQuery = '';
 const elements = {
   classSelect: document.getElementById('class-select'),
   searchInput: document.getElementById('search-input'),
+  clearSearch: document.getElementById('clear-search'), // Added explicit hook for clear button
   accordionContainer: document.getElementById('accordion-container')
 };
 
@@ -35,15 +36,52 @@ function populateClassDropdown() {
   });
 }
 
-// 3. Set up listeners for search and dropdown
+// 3. Set up listeners for search, dropdown, and the clear button
 function setupEventListeners() {
+  
+  // Class Dropdown Selection State Lifecycle
   elements.classSelect.addEventListener('change', (e) => {
     selectedClass = e.target.value;
+    
+    if (selectedClass) {
+      // Step A: Target element is valid, activate search inputs
+      elements.searchInput.disabled = false;
+      elements.clearSearch.disabled = false;
+      elements.searchInput.placeholder = "Search by name, type, or effect...";
+    } else {
+      // Step B: Reset to structural root state if choice is blanked out
+      searchQuery = '';
+      elements.searchInput.value = '';
+      elements.searchInput.disabled = true;
+      elements.clearSearch.disabled = true;
+      elements.clearSearch.classList.add('hidden');
+      elements.searchInput.placeholder = "Select a class first...";
+    }
+    
     renderAbilities();
   });
 
+  // Dynamic Query Input Lifecycle
   elements.searchInput.addEventListener('input', (e) => {
-    searchQuery = e.target.value.toLowerCase();
+    searchQuery = e.target.value.toLowerCase().trim();
+    
+    // Manage visual state of the 'X' button container
+    if (searchQuery.length > 0) {
+      elements.clearSearch.classList.remove('hidden');
+    } else {
+      elements.clearSearch.classList.add('hidden');
+    }
+    
+    renderAbilities();
+  });
+
+  // Clear Field Action Lifecycle
+  elements.clearSearch.addEventListener('click', () => {
+    searchQuery = '';
+    elements.searchInput.value = '';
+    elements.clearSearch.classList.add('hidden');
+    elements.searchInput.focus();
+    
     renderAbilities();
   });
 }
@@ -53,7 +91,7 @@ function renderAbilities() {
   elements.accordionContainer.innerHTML = ''; // Clear container
 
   if (!selectedClass) {
-    elements.accordionContainer.innerHTML = '<p class="text-gray-500 italic">Please select a class to view abilities.</p>';
+    elements.accordionContainer.innerHTML = '<p class="text-center text-gray-500 italic mt-8">Please select a class to view abilities.</p>';
     return;
   }
 
@@ -128,7 +166,7 @@ function renderAbilities() {
   });
 
   if (elements.accordionContainer.innerHTML === '') {
-    elements.accordionContainer.innerHTML = '<p class="text-gray-500 italic">No abilities match your search.</p>';
+    elements.accordionContainer.innerHTML = '<p class="text-center text-gray-500 italic mt-8">No abilities match your search.</p>';
   }
 }
 

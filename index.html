@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
     <title>Camelot Unchained Ability Database</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <style data-purpose="custom-fonts-and-theme">
@@ -192,7 +192,7 @@
     </style>
 </head>
 <body class="antialiased flex flex-col h-screen">
-    <header class="top-bar grid grid-cols-[1fr_auto_1fr] items-center px-4 py-3 shrink-0 z-10 shadow-lg gap-2">
+    <header class="top-bar grid grid-cols-[1fr_auto_1fr] items-center px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 shrink-0 z-10 shadow-lg gap-2">
         <div class="flex items-center justify-start min-w-0">
             <button aria-label="Menu" class="text-[#cba86a] p-1 shrink-0" type="button">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
@@ -224,7 +224,7 @@
         </div>
     </main>
 
-    <nav class="bottom-nav grid grid-cols-4 shrink-0 pb-safe">
+    <nav class="bottom-nav grid grid-cols-4 shrink-0 pb-[max(0.75rem,env(safe-area-inset-bottom))]">
         <a class="nav-item flex flex-col items-center justify-center py-3 text-xs text-[#8c734b] hover:text-[#cba86a] transition-colors relative" href="#">
             <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
             Classes

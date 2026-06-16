@@ -16,6 +16,7 @@
             --bg-dark: #121214;
             --bg-panel: #1e1e24;
             --text-muted: #a0a0a5;
+            --top-bar-height: 3.5rem;
         }
 
         body {
@@ -25,10 +26,10 @@
             background-image: radial-gradient(circle at center, #1e1e24 0%, #121214 100%);
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
+            min-height: 100dvh;
             height: 100dvh;
-            overflow: hidden;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, .font-cinzel {
@@ -38,18 +39,24 @@
     <style data-purpose="component-styles">
         .top-bar {
             border-bottom: 1px solid var(--gold-dark);
-            background: linear-gradient(to bottom, #2a2a30, #1e1e24);
+            background-color: #1e1e24;
+            background-image: linear-gradient(to bottom, #2a2a30, #1e1e24);
+            position: sticky;
+            top: 0;
+            z-index: 20;
         }
 
         .accordion-btn {
-            background: linear-gradient(to right, var(--tree-header-from, #453828), var(--tree-header-to, #2d261e));
+            background-color: var(--tree-header-to, #2d261e);
+            background-image: linear-gradient(to right, var(--tree-header-from, #453828), var(--tree-header-to, #2d261e));
             border: 1px solid var(--tree-accent-muted, var(--gold-dark));
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.45);
+            transition: background-color 0.3s ease, background-image 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .accordion-btn.active {
-            background: linear-gradient(to right, var(--tree-active-from, var(--crimson-dark)), var(--tree-active-to, #2a0b12));
+            background-color: var(--tree-active-to, #2a0b12);
+            background-image: linear-gradient(to right, var(--tree-active-from, var(--crimson-dark)), var(--tree-active-to, #2a0b12));
             border-color: var(--tree-accent, var(--gold-primary));
         }
 
@@ -170,29 +177,31 @@
         }
     </style>
 </head>
-<body class="antialiased flex flex-col h-[100dvh]">
-    <header class="top-bar flex items-center justify-center px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 shrink-0 z-10 shadow-lg">
+<body class="antialiased">
+    <header class="top-bar flex items-center justify-center px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 shrink-0 shadow-lg">
         <button id="home-logo" type="button" aria-label="Home" class="focus:outline-none cursor-pointer transition-transform hover:scale-105">
             <img src="./assets/cu_title_03_fixed.png" alt="Camelot Unchained" class="h-8 sm:h-10 w-auto max-w-[min(100%,16rem)] object-contain pointer-events-none"/>
         </button>
     </header>
 
-    <main class="flex-1 overflow-y-auto px-2 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] space-y-4">
-        <div id="search-bar-container" class="hidden px-1">
-            <div class="max-w-3xl mx-auto flex flex-col sm:flex-row gap-4">
-                <select id="class-select" aria-label="Select class" class="w-full sm:w-auto sm:min-w-[11rem] border border-[#8c734b] rounded px-3 py-2 text-sm text-[#cba86a] bg-[#1e1e24] cursor-pointer focus:outline-none focus:border-[#cba86a]">
-                    <option value="">Classes</option>
-                </select>
-                <div class="relative flex-1 min-w-0">
-                    <input type="text" id="search-input" disabled placeholder="Search..." class="border border-[#8c734b] rounded px-3 py-2 pl-9 text-sm text-[#e0e0e0] bg-[#1e1e24] w-full focus:outline-none focus:border-[#cba86a] placeholder:text-[#8c734b]"/>
-                    <svg class="w-4 h-4 text-[#8c734b] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
-                    <button type="button" id="clear-search" disabled class="hidden absolute inset-y-0 right-0 flex items-center pr-3 text-[#8c734b] hover:text-[#cba86a] transition-colors" aria-label="Clear search input">
-                        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
-                    </button>
+    <main class="px-4 sm:px-6 lg:px-8 pb-[max(1rem,env(safe-area-inset-bottom))]">
+        <div class="max-w-5xl mx-auto w-full space-y-4">
+            <div id="search-bar-container" class="hidden">
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <select id="class-select" aria-label="Select class" class="w-full sm:w-auto sm:min-w-[11rem] border border-[#8c734b] rounded px-3 py-2 text-sm text-[#cba86a] bg-[#1e1e24] cursor-pointer focus:outline-none focus:border-[#cba86a]">
+                        <option value="">Classes</option>
+                    </select>
+                    <div class="relative flex-1 min-w-0">
+                        <input type="text" id="search-input" disabled placeholder="Search..." class="border border-[#8c734b] rounded px-3 py-2 pl-9 text-sm text-[#e0e0e0] bg-[#1e1e24] w-full focus:outline-none focus:border-[#cba86a] placeholder:text-[#8c734b]"/>
+                        <svg class="w-4 h-4 text-[#8c734b] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                        <button type="button" id="clear-search" disabled class="hidden absolute inset-y-0 right-0 flex items-center pr-3 text-[#8c734b] hover:text-[#cba86a] transition-colors" aria-label="Clear search input">
+                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="accordion-container" class="space-y-4">
+            <div id="accordion-container" class="space-y-4 pb-4">
+            </div>
         </div>
     </main>
 

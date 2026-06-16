@@ -558,9 +558,10 @@ const UI = {
   },
 
   accordionItem({ treeName, cardsHtml, expanded, palette }) {
+    const stickyClasses = 'sticky top-[var(--top-bar-height)] z-10';
     const btnClasses = expanded
-      ? 'accordion-btn active w-full flex justify-between items-center px-4 py-3 rounded-t-sm'
-      : 'accordion-btn w-full flex justify-between items-center px-4 py-3 rounded-sm';
+      ? `accordion-btn active ${stickyClasses} w-full flex justify-between items-center px-4 py-3 rounded-t-sm`
+      : `accordion-btn ${stickyClasses} w-full flex justify-between items-center px-4 py-3 rounded-sm`;
     const contentStyle = expanded ? 'max-height: 1000px;' : 'max-height: 0;';
 
     return `
@@ -692,12 +693,28 @@ async function init() {
     if (elements.searchInput) elements.searchInput.disabled = true;
     if (elements.clearSearch) elements.clearSearch.disabled = true;
 
+    setupTopBarHeightSync();
     populateClassDropdown();
     setupEventListeners();
     renderAbilities();
   } catch (error) {
     console.error('Database Initialization Fault:', error);
     elements.accordionContainer.innerHTML = UI.errorState();
+  }
+}
+
+function syncTopBarHeight() {
+  const topBar = document.querySelector('.top-bar');
+  if (!topBar) return;
+  document.documentElement.style.setProperty('--top-bar-height', `${topBar.offsetHeight}px`);
+}
+
+function setupTopBarHeightSync() {
+  syncTopBarHeight();
+  window.addEventListener('resize', syncTopBarHeight);
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(syncTopBarHeight);
   }
 }
 
@@ -810,6 +827,7 @@ function renderAbilities() {
   elements.accordionContainer.innerHTML = accordionHtml.join('');
   setupAccordionListeners(elements.accordionContainer);
   initializeExpandedAccordions(elements.accordionContainer);
+  syncTopBarHeight();
 }
 
 init();

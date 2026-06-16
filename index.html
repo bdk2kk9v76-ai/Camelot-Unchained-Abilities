@@ -29,7 +29,6 @@
             min-height: 100dvh;
             height: 100dvh;
             overflow-y: auto;
-            overflow-x: hidden;
         }
 
         h1, h2, h3, .font-cinzel {
@@ -41,9 +40,6 @@
             border-bottom: 1px solid var(--gold-dark);
             background-color: #1e1e24;
             background-image: linear-gradient(to bottom, #2a2a30, #1e1e24);
-            position: sticky;
-            top: 0;
-            z-index: 20;
         }
 
         .accordion-btn {
@@ -178,7 +174,7 @@
     </style>
 </head>
 <body class="antialiased">
-    <header class="top-bar flex items-center justify-center px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 shrink-0 shadow-lg">
+    <header class="top-bar sticky top-0 z-20 w-full flex items-center justify-center px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 shrink-0 shadow-lg">
         <button id="home-logo" type="button" aria-label="Home" class="focus:outline-none cursor-pointer transition-transform hover:scale-105">
             <img src="./assets/cu_title_03_fixed.png" alt="Camelot Unchained" class="h-8 sm:h-10 w-auto max-w-[min(100%,16rem)] object-contain pointer-events-none"/>
         </button>

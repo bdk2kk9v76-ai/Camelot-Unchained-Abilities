@@ -23,12 +23,21 @@
             font-family: 'Lora', serif;
             background-color: var(--bg-dark);
             color: #e0e0e0;
-            background-image: radial-gradient(circle at center, #1e1e24 0%, #121214 100%);
             margin: 0;
             padding: 0;
             min-height: 100dvh;
             height: 100dvh;
             overflow-y: auto;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at center, #1e1e24 0%, #121214 100%);
+            pointer-events: none;
         }
 
         h1, h2, h3, .font-cinzel {

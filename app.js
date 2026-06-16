@@ -388,7 +388,7 @@ function getAccordionPalette(treeName, className) {
   return getTreePalette(treeName);
 }
 
-function setSearchBarVisible(visible) {
+function setContextualToolbarVisible(visible) {
   elements.searchBarContainer.classList.toggle('hidden', !visible);
 }
 
@@ -404,7 +404,7 @@ function selectClass(className) {
   elements.searchInput.disabled = false;
   elements.clearSearch.disabled = false;
   elements.searchInput.placeholder = 'Search...';
-  setSearchBarVisible(true);
+  setContextualToolbarVisible(true);
   renderAbilities();
 }
 
@@ -417,7 +417,7 @@ function resetClassSelection() {
   elements.clearSearch.disabled = true;
   elements.clearSearch.classList.add('hidden');
   elements.searchInput.placeholder = 'Search...';
-  setSearchBarVisible(false);
+  setContextualToolbarVisible(false);
   renderAbilities();
 }
 

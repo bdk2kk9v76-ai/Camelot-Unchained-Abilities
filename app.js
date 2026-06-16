@@ -3,44 +3,670 @@ let selectedClass = '';
 let searchQuery = '';
 
 const elements = {
+  homeLogo: document.getElementById('home-logo'),
   classSelect: document.getElementById('class-select'),
+  searchBarContainer: document.getElementById('search-bar-container'),
   searchInput: document.getElementById('search-input'),
   clearSearch: document.getElementById('clear-search'),
   accordionContainer: document.getElementById('accordion-container')
 };
 
-// 1. Fetch JSON file using explicit relative notation safe for GitHub Pages
+const DEFAULT_TREE_PALETTE = {
+  accent: '#cba86a',
+  accentMuted: '#8c734b',
+  headerFrom: '#453828',
+  headerTo: '#2d261e',
+  activeFrom: '#4a151f',
+  activeTo: '#2a0b12',
+  contentBg: '#1a1a1f',
+  cardHeaderFrom: '#4a151f',
+  borderFrom: '#cba86a',
+  borderMid: '#8c734b',
+  borderTo: '#4a3c26',
+  iconFrom: '#3a2b1f',
+  iconTo: '#1a140f'
+};
+
+const FACTION_PALETTES = {
+  'Tuatha Dé Danann': {
+    accent: '#6aab7a',
+    accentMuted: '#4a7356',
+    headerFrom: '#284532',
+    headerTo: '#1a2d22',
+    activeFrom: '#154a2a',
+    activeTo: '#0b2a16',
+    contentBg: '#141a16',
+    cardHeaderFrom: '#154a2a',
+    borderFrom: '#6aab7a',
+    borderMid: '#4a7356',
+    borderTo: '#264a32',
+    iconFrom: '#1f3a28',
+    iconTo: '#0f1a14'
+  }
+};
+
+const CLASS_PALETTES = {
+  'Blessed Crow': {
+    accent: '#c46a6a',
+    accentMuted: '#8c4b4b',
+    headerFrom: '#452828',
+    headerTo: '#2d1e1e',
+    activeFrom: '#4a1515',
+    activeTo: '#2a0b0b',
+    contentBg: '#1a1416',
+    cardHeaderFrom: '#4a1515',
+    borderFrom: '#c46a6a',
+    borderMid: '#8c4b4b',
+    borderTo: '#4a2626',
+    iconFrom: '#3a1f1f',
+    iconTo: '#1a0f0f'
+  },
+  'Dark Fool': {
+    accent: '#a86aab',
+    accentMuted: '#73567a',
+    headerFrom: '#3d2845',
+    headerTo: '#261a2d',
+    activeFrom: '#3a154a',
+    activeTo: '#220b2a',
+    contentBg: '#18141a',
+    cardHeaderFrom: '#3a154a',
+    borderFrom: '#a86aab',
+    borderMid: '#73567a',
+    borderTo: '#3d2f4a',
+    iconFrom: '#2a1f3a',
+    iconTo: '#140f1a'
+  },
+  'Empath': {
+    accent: '#6aabc4',
+    accentMuted: '#4b738c',
+    headerFrom: '#284045',
+    headerTo: '#1a282d',
+    activeFrom: '#154a4a',
+    activeTo: '#0b2a2a',
+    contentBg: '#141a1a',
+    cardHeaderFrom: '#154a4a',
+    borderFrom: '#6aabc4',
+    borderMid: '#4b738c',
+    borderTo: '#264a4a',
+    iconFrom: '#1f323a',
+    iconTo: '#0f1a1a'
+  },
+  'Fianna': {
+    accent: '#cba86a',
+    accentMuted: '#8c734b',
+    headerFrom: '#453828',
+    headerTo: '#2d261e',
+    activeFrom: '#4a151f',
+    activeTo: '#2a0b12',
+    contentBg: '#1a1a1f',
+    cardHeaderFrom: '#4a151f',
+    borderFrom: '#cba86a',
+    borderMid: '#8c734b',
+    borderTo: '#4a3c26',
+    iconFrom: '#3a2b1f',
+    iconTo: '#1a140f'
+  },
+  'Forest Stalker': {
+    accent: '#6a9a5a',
+    accentMuted: '#4a7040',
+    headerFrom: '#324528',
+    headerTo: '#222d1a',
+    activeFrom: '#254a15',
+    activeTo: '#142a0b',
+    contentBg: '#161a14',
+    cardHeaderFrom: '#254a15',
+    borderFrom: '#6a9a5a',
+    borderMid: '#4a7040',
+    borderTo: '#304a26',
+    iconFrom: '#25351f',
+    iconTo: '#121a0f'
+  }
+};
+
+function getFactionPalette(factionName) {
+  return FACTION_PALETTES[factionName] || DEFAULT_TREE_PALETTE;
+}
+
+function getClassPalette(className) {
+  return CLASS_PALETTES[className] || DEFAULT_TREE_PALETTE;
+}
+
+const CLASS_ABILITY_TREE = 'Class Abilities';
+
+const TREE_PALETTES = {
+  'Dominance': {
+    accent: '#b05858',
+    accentMuted: '#7a4040',
+    headerFrom: '#3a2020',
+    headerTo: '#251616',
+    activeFrom: '#3a1212',
+    activeTo: '#1f0808',
+    contentBg: '#181214',
+    cardHeaderFrom: '#3a1212',
+    borderFrom: '#b05858',
+    borderMid: '#7a4040',
+    borderTo: '#422828',
+    iconFrom: '#321818',
+    iconTo: '#180c0c'
+  },
+  'Ritual': {
+    accent: '#8b7ab8',
+    accentMuted: '#5e5280',
+    headerFrom: '#2e2640',
+    headerTo: '#1c1830',
+    activeFrom: '#2a1845',
+    activeTo: '#160c28',
+    contentBg: '#141218',
+    cardHeaderFrom: '#2a1845',
+    borderFrom: '#8b7ab8',
+    borderMid: '#5e5280',
+    borderTo: '#383050',
+    iconFrom: '#221c32',
+    iconTo: '#100e18'
+  },
+  'Nourishment': {
+    accent: '#6b9478',
+    accentMuted: '#496552',
+    headerFrom: '#243830',
+    headerTo: '#182820',
+    activeFrom: '#1a4530',
+    activeTo: '#0c2818',
+    contentBg: '#121816',
+    cardHeaderFrom: '#1a4530',
+    borderFrom: '#6b9478',
+    borderMid: '#496552',
+    borderTo: '#2e4838',
+    iconFrom: '#1a2e22',
+    iconTo: '#0c1610'
+  },
+  'Night Terrors': {
+    accent: '#6878a8',
+    accentMuted: '#485878',
+    headerFrom: '#242838',
+    headerTo: '#181c28',
+    activeFrom: '#182040',
+    activeTo: '#0c1028',
+    contentBg: '#121418',
+    cardHeaderFrom: '#182040',
+    borderFrom: '#6878a8',
+    borderMid: '#485878',
+    borderTo: '#303848',
+    iconFrom: '#1a2030',
+    iconTo: '#0c1018'
+  },
+  'Dark Fables': {
+    accent: '#9a6a98',
+    accentMuted: '#684868',
+    headerFrom: '#382838',
+    headerTo: '#241824',
+    activeFrom: '#401840',
+    activeTo: '#240c24',
+    contentBg: '#161418',
+    cardHeaderFrom: '#401840',
+    borderFrom: '#9a6a98',
+    borderMid: '#684868',
+    borderTo: '#403040',
+    iconFrom: '#281828',
+    iconTo: '#140c14'
+  },
+  'Mummery': {
+    accent: '#a88458',
+    accentMuted: '#705838',
+    headerFrom: '#3a3020',
+    headerTo: '#282018',
+    activeFrom: '#452814',
+    activeTo: '#281808',
+    contentBg: '#181614',
+    cardHeaderFrom: '#452814',
+    borderFrom: '#a88458',
+    borderMid: '#705838',
+    borderTo: '#484028',
+    iconFrom: '#2a2218',
+    iconTo: '#141008'
+  },
+  'Tend the Enemy': {
+    accent: '#a85868',
+    accentMuted: '#703c48',
+    headerFrom: '#3a2028',
+    headerTo: '#281820',
+    activeFrom: '#451020',
+    activeTo: '#280810',
+    contentBg: '#181416',
+    cardHeaderFrom: '#451020',
+    borderFrom: '#a85868',
+    borderMid: '#703c48',
+    borderTo: '#482830',
+    iconFrom: '#2a1820',
+    iconTo: '#140c10'
+  },
+  'Tend the Spirit': {
+    accent: '#5898a8',
+    accentMuted: '#386878',
+    headerFrom: '#203038',
+    headerTo: '#182028',
+    activeFrom: '#104048',
+    activeTo: '#082828',
+    contentBg: '#121818',
+    cardHeaderFrom: '#104048',
+    borderFrom: '#5898a8',
+    borderMid: '#386878',
+    borderTo: '#284848',
+    iconFrom: '#182830',
+    iconTo: '#0c1418'
+  },
+  'Tend the Body': {
+    accent: '#989058',
+    accentMuted: '#686040',
+    headerFrom: '#383020',
+    headerTo: '#282018',
+    activeFrom: '#403810',
+    activeTo: '#282008',
+    contentBg: '#181614',
+    cardHeaderFrom: '#403810',
+    borderFrom: '#989058',
+    borderMid: '#686040',
+    borderTo: '#484030',
+    iconFrom: '#2a2818',
+    iconTo: '#141008'
+  },
+  'Prowess': {
+    accent: '#788898',
+    accentMuted: '#505868',
+    headerFrom: '#282830',
+    headerTo: '#1c1c24',
+    activeFrom: '#203040',
+    activeTo: '#101820',
+    contentBg: '#141618',
+    cardHeaderFrom: '#203040',
+    borderFrom: '#788898',
+    borderMid: '#505868',
+    borderTo: '#383840',
+    iconFrom: '#1c2028',
+    iconTo: '#0e1014'
+  },
+  'Resilience': {
+    accent: '#508090',
+    accentMuted: '#385860',
+    headerFrom: '#243038',
+    headerTo: '#182028',
+    activeFrom: '#143040',
+    activeTo: '#0a1820',
+    contentBg: '#121618',
+    cardHeaderFrom: '#143040',
+    borderFrom: '#508090',
+    borderMid: '#385860',
+    borderTo: '#284038',
+    iconFrom: '#182428',
+    iconTo: '#0c1214'
+  },
+  'Form of Danu': {
+    accent: '#588868',
+    accentMuted: '#385848',
+    headerFrom: '#243028',
+    headerTo: '#182018',
+    activeFrom: '#184830',
+    activeTo: '#0c2818',
+    contentBg: '#121614',
+    cardHeaderFrom: '#184830',
+    borderFrom: '#588868',
+    borderMid: '#385848',
+    borderTo: '#304038',
+    iconFrom: '#182820',
+    iconTo: '#0c140c'
+  },
+  'Predation': {
+    accent: '#a89050',
+    accentMuted: '#706038',
+    headerFrom: '#383020',
+    headerTo: '#282018',
+    activeFrom: '#483010',
+    activeTo: '#281808',
+    contentBg: '#181614',
+    cardHeaderFrom: '#483010',
+    borderFrom: '#a89050',
+    borderMid: '#706038',
+    borderTo: '#484028',
+    iconFrom: '#2a2418',
+    iconTo: '#141008'
+  },
+  'Thorn and Fang': {
+    accent: '#709050',
+    accentMuted: '#486038',
+    headerFrom: '#283020',
+    headerTo: '#1c2018',
+    activeFrom: '#204010',
+    activeTo: '#102808',
+    contentBg: '#141612',
+    cardHeaderFrom: '#204010',
+    borderFrom: '#709050',
+    borderMid: '#486038',
+    borderTo: '#384028',
+    iconFrom: '#202818',
+    iconTo: '#101408'
+  },
+  'Stone Rain': {
+    accent: '#788090',
+    accentMuted: '#505860',
+    headerFrom: '#2c3038',
+    headerTo: '#1e2228',
+    activeFrom: '#283040',
+    activeTo: '#181820',
+    contentBg: '#141618',
+    cardHeaderFrom: '#283040',
+    borderFrom: '#788090',
+    borderMid: '#505860',
+    borderTo: '#383c42',
+    iconFrom: '#222830',
+    iconTo: '#101214'
+  }
+};
+
+const DEFAULT_SPECIALIZED_TREE_PALETTE = {
+  accent: '#807878',
+  accentMuted: '#585050',
+  headerFrom: '#302c2c',
+  headerTo: '#201c1c',
+  activeFrom: '#302020',
+  activeTo: '#1a1010',
+  contentBg: '#161414',
+  cardHeaderFrom: '#302020',
+  borderFrom: '#807878',
+  borderMid: '#585050',
+  borderTo: '#403838',
+  iconFrom: '#282020',
+  iconTo: '#141010'
+};
+
+function getTreePalette(treeName) {
+  return TREE_PALETTES[treeName] || DEFAULT_SPECIALIZED_TREE_PALETTE;
+}
+
+function getAccordionPalette(treeName, className) {
+  if (treeName === CLASS_ABILITY_TREE) {
+    return getClassPalette(className);
+  }
+  return getTreePalette(treeName);
+}
+
+function setSearchBarVisible(visible) {
+  elements.searchBarContainer.classList.toggle('hidden', !visible);
+}
+
+function selectClass(className) {
+  if (selectedClass !== className) {
+    searchQuery = '';
+    elements.searchInput.value = '';
+    elements.clearSearch.classList.add('hidden');
+  }
+
+  selectedClass = className;
+  elements.classSelect.value = className;
+  elements.searchInput.disabled = false;
+  elements.clearSearch.disabled = false;
+  elements.searchInput.placeholder = 'Search...';
+  setSearchBarVisible(true);
+  renderAbilities();
+}
+
+function resetClassSelection() {
+  selectedClass = '';
+  searchQuery = '';
+  elements.classSelect.value = '';
+  elements.searchInput.value = '';
+  elements.searchInput.disabled = true;
+  elements.clearSearch.disabled = true;
+  elements.clearSearch.classList.add('hidden');
+  elements.searchInput.placeholder = 'Search...';
+  setSearchBarVisible(false);
+  renderAbilities();
+}
+
+function paletteStyleVars(palette) {
+  return [
+    `--tree-accent:${palette.accent}`,
+    `--tree-accent-muted:${palette.accentMuted}`,
+    `--tree-header-from:${palette.headerFrom}`,
+    `--tree-header-to:${palette.headerTo}`,
+    `--tree-active-from:${palette.activeFrom}`,
+    `--tree-active-to:${palette.activeTo}`,
+    `--tree-content-bg:${palette.contentBg}`,
+    `--tree-card-header-from:${palette.cardHeaderFrom}`,
+    `--tree-border-from:${palette.borderFrom}`,
+    `--tree-border-mid:${palette.borderMid}`,
+    `--tree-border-to:${palette.borderTo}`,
+    `--tree-icon-from:${palette.iconFrom}`,
+    `--tree-icon-to:${palette.iconTo}`
+  ].join(';');
+}
+
+const ABILITY_ICON_SVGS = {
+  damage: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M14.5 3.5l6 6-9 9H8v-3.5L14.5 3.5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 21l4-4"/></svg>`,
+  heal: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`,
+  buff: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1M5.6 18.4l2.1-2.1m8.6-8.6l2.1-2.1"/><circle cx="12" cy="12" r="2.5" stroke-width="1.75"/></svg>`,
+  mitigation: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l8 4v6c0 5.25-3.4 9.74-8 11-4.6-1.26-8-5.75-8-11V6l8-4zm0 3.2L6 8.5V10c0 4.02 2.55 7.58 6 8.88 3.45-1.3 6-4.86 6-8.88V8.5l-6-3.3z"/></svg>`,
+  cc: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M8.5 10.5a2.5 2.5 0 115 0v1.5h1.5a2.5 2.5 0 110 5H13.5v1.5a2.5 2.5 0 11-5 0V17H7a2.5 2.5 0 110-5h1.5v-1.5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M10 20c1.2-1.5 2-3.2 2.2-5M14 20c-1.2-1.5-2-3.2-2.2-5"/></svg>`,
+  spell: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="2.5" stroke-width="1.75"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg>`,
+  fallback: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.7 21l2.3-7-6-4.6h7.6L12 2z"/></svg>`
+};
+
+const TYPE_ICON_RULES = [
+  { keywords: ['heal', 'healing'], icon: 'heal' },
+  { keywords: ['cc', 'snare', 'root'], icon: 'cc' },
+  { keywords: ['mitigation', 'armor'], icon: 'mitigation' },
+  { keywords: ['buff', 'utility'], icon: 'buff' },
+  { keywords: ['damage'], icon: 'damage' },
+  { keywords: ['spell'], icon: 'spell' }
+];
+
+function getAbilityIcon(type) {
+  const normalized = (type || '').toLowerCase();
+
+  for (const rule of TYPE_ICON_RULES) {
+    if (rule.keywords.some(keyword => normalized.includes(keyword))) {
+      return ABILITY_ICON_SVGS[rule.icon];
+    }
+  }
+
+  return ABILITY_ICON_SVGS.fallback;
+}
+
+const UI = {
+  icons: {
+    chevron: (expanded) => `<svg class="w-6 h-6 transform transition-transform duration-300 chevron${expanded ? ' rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>`,
+    clock: `<svg class="w-4 h-4 metadata-icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>`,
+    cost: `<svg class="w-4 h-4 metadata-icon-accent" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path clip-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>`
+  },
+
+  emptyState(message) {
+    return `<p class="text-center text-[#8c734b] italic mt-8 font-cinzel tracking-wide">${message}</p>`;
+  },
+
+  classSelectionGrid(factions) {
+    return factions.map(factionData => {
+      const factionPalette = getFactionPalette(factionData.faction);
+      const classNodes = [...(factionData.classes || [])].sort((a, b) => a.class.localeCompare(b.class));
+
+      const classCards = classNodes.map(classObj => {
+        const palette = getClassPalette(classObj.class);
+        const initial = classObj.class.charAt(0).toUpperCase();
+
+        return `
+        <button type="button" class="class-card flex items-center gap-3 w-full text-left px-4 py-4 rounded-sm" style="${paletteStyleVars(palette)}" data-class-name="${classObj.class}">
+          <div class="ability-icon w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-cinzel text-base">${initial}</div>
+          <span class="font-cinzel text-lg tracking-wide">${classObj.class}</span>
+        </button>`;
+      }).join('');
+
+      return `
+        <section class="faction-group mb-8 last:mb-0" style="${paletteStyleVars(factionPalette)}">
+          <h2 class="faction-title text-2xl font-cinzel font-bold tracking-wider pb-3 mb-4">${factionData.faction}</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            ${classCards}
+          </div>
+        </section>`;
+    }).join('');
+  },
+
+  errorState() {
+    return `
+      <div class="text-center p-6 border border-[#7b1f32] rounded-sm max-w-md mx-auto mt-8 bg-[#2a0b12]">
+        <p class="text-[#cba86a] font-cinzel font-semibold mb-1">Database Error Encountered</p>
+        <p class="text-xs text-[#a0a0a5]">Ensure data.json matches the nested structure and is uploaded correctly.</p>
+      </div>`;
+  },
+
+  formatMetadataValue(value, fallback) {
+    if (value === null || value === undefined || value === '') {
+      return fallback;
+    }
+    return value;
+  },
+
+  metadataCell(iconHtml, label, value, fallback = 'N/A') {
+    const displayValue = this.formatMetadataValue(value, fallback);
+
+    return `
+      <div class="flex items-center gap-2 min-w-0">
+        ${iconHtml}
+        <span class="truncate">${label}: <span class="text-white">${displayValue}</span></span>
+      </div>`;
+  },
+
+  abilityCard({ name, summary, castSpeed, resourceDelta, range, baseValue, type }) {
+    const metadataBlock = `
+      <div class="grid grid-cols-2 gap-x-3 gap-y-2 text-[13px] text-[#a0a0a5]">
+        ${this.metadataCell(this.icons.cost, 'Cost', resourceDelta, 'None')}
+        ${this.metadataCell(this.icons.cost, 'Value', baseValue, 'N/A')}
+        ${this.metadataCell(this.icons.clock, 'Cast', castSpeed, 'N/A')}
+        ${this.metadataCell(this.icons.clock, 'Range', range, 'N/A')}
+        ${this.metadataCell(this.icons.clock, 'Type', type, 'N/A')}
+      </div>`;
+
+    return `
+      <article class="ability-card p-0 m-1 relative">
+        <header class="card-header-bg flex items-center p-3">
+          <div class="ability-icon w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4">
+            ${getAbilityIcon(type)}
+          </div>
+          <h3 class="text-xl text-[#e0e0e0] font-cinzel">${name}</h3>
+        </header>
+        <div class="p-4 text-sm text-[#cccccc] leading-relaxed">
+          <p class="mb-3">${summary}</p>
+          ${metadataBlock}
+        </div>
+      </article>`;
+  },
+
+  accordionItem({ treeName, cardsHtml, expanded, palette }) {
+    const btnClasses = expanded
+      ? 'accordion-btn active w-full flex justify-between items-center px-4 py-3 rounded-t-sm'
+      : 'accordion-btn w-full flex justify-between items-center px-4 py-3 rounded-sm';
+    const contentStyle = expanded ? 'max-height: 1000px;' : 'max-height: 0;';
+
+    return `
+      <div class="accordion-item" style="${paletteStyleVars(palette)}">
+        <button type="button" aria-expanded="${expanded}" class="${btnClasses}">
+          <span class="text-xl tree-title font-cinzel font-bold tracking-wider text-shadow">${treeName}</span>
+          ${this.icons.chevron(expanded)}
+        </button>
+        <div class="accordion-content border-x border-b px-3 ${expanded ? 'py-4' : 'py-0'} grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4 rounded-b-sm" style="${contentStyle}">
+          ${cardsHtml}
+        </div>
+      </div>`;
+  }
+};
+
+function findClassData(className) {
+  for (const factionNode of database) {
+    const found = (factionNode.classes || []).find(c => c.class === className);
+    if (found) return found;
+  }
+  return null;
+}
+
+function abilityMatchesSearch(name, data, query) {
+  if (!query) return true;
+
+  const matchName = name.toLowerCase().includes(query);
+  const matchType = data.type ? data.type.toLowerCase().includes(query) : false;
+  const matchSummary = data.summary ? data.summary.toLowerCase().includes(query) : false;
+
+  return matchName || matchType || matchSummary;
+}
+
+function mapAbilityToCardView(name, data) {
+  return {
+    name,
+    summary: data.summary || 'No description provided.',
+    castSpeed: data.cast_speed || null,
+    resourceDelta: data.resource_delta || null,
+    range: data.range || null,
+    baseValue: data.base_value || null,
+    type: data.type || null
+  };
+}
+
+function setupClassCardListeners(container) {
+  container.querySelectorAll('[data-class-name]').forEach(card => {
+    card.addEventListener('click', () => {
+      selectClass(card.dataset.className);
+    });
+  });
+}
+
+function setupAccordionListeners(container) {
+  container.querySelectorAll('.accordion-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      this.classList.toggle('active');
+
+      const chevron = this.querySelector('.chevron');
+      if (this.classList.contains('active')) {
+        chevron.classList.add('rotate-180');
+        this.setAttribute('aria-expanded', 'true');
+      } else {
+        chevron.classList.remove('rotate-180');
+        this.setAttribute('aria-expanded', 'false');
+      }
+
+      const content = this.nextElementSibling;
+      if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+        content.style.maxHeight = '0px';
+        content.style.paddingTop = '0px';
+        content.style.paddingBottom = '0px';
+      } else {
+        content.style.paddingTop = '1rem';
+        content.style.paddingBottom = '1rem';
+        content.style.maxHeight = (content.scrollHeight + 24) + 'px';
+      }
+    });
+  });
+}
+
 async function init() {
   try {
     const response = await fetch('./data.json');
     if (!response.ok) throw new Error('Failed to retrieve file data payload.');
     database = await response.json();
-    
+
     if (elements.searchInput) elements.searchInput.disabled = true;
     if (elements.clearSearch) elements.clearSearch.disabled = true;
-    
+
     populateClassDropdown();
     setupEventListeners();
+    renderAbilities();
   } catch (error) {
     console.error('Database Initialization Fault:', error);
-    elements.accordionContainer.innerHTML = `
-      <div class="text-center p-6 bg-red-950/30 border border-red-900 rounded-lg max-w-md mx-auto mt-8">
-        <p class="text-red-400 font-semibold mb-1">Database Error Encountered</p>
-        <p class="text-xs text-red-500">Ensure data.json matches the new nested structure and is uploaded correctly.</p>
-      </div>`;
+    elements.accordionContainer.innerHTML = UI.errorState();
   }
 }
 
-// 2. Map Parent Factions out to Dropdown Optgroups with child Class options
 function populateClassDropdown() {
-  elements.classSelect.innerHTML = '<option value="">Choose a Class...</option>';
+  elements.classSelect.innerHTML = '<option value="">Classes</option>';
 
-  // Sort Factions Alphabetically
   database.sort((a, b) => a.faction.localeCompare(b.faction)).forEach(factionData => {
     const optGroup = document.createElement('optgroup');
     optGroup.label = factionData.faction;
 
-    // Isolate and sort child classes under the faction parent node
     const classNodes = factionData.classes || [];
     classNodes.sort((a, b) => a.class.localeCompare(b.class));
 
@@ -55,37 +681,26 @@ function populateClassDropdown() {
   });
 }
 
-// 3. Setup central lifecycle event listeners
 function setupEventListeners() {
-  
+  elements.homeLogo.addEventListener('click', resetClassSelection);
+
   elements.classSelect.addEventListener('change', (e) => {
-    selectedClass = e.target.value;
-    
-    if (selectedClass) {
-      elements.searchInput.disabled = false;
-      elements.clearSearch.disabled = false;
-      elements.searchInput.placeholder = "Search by name, type, or effect...";
+    if (e.target.value) {
+      selectClass(e.target.value);
     } else {
-      searchQuery = '';
-      elements.searchInput.value = '';
-      elements.searchInput.disabled = true;
-      elements.clearSearch.disabled = true;
-      elements.clearSearch.classList.add('hidden');
-      elements.searchInput.placeholder = "Select a class first...";
+      resetClassSelection();
     }
-    
-    renderAbilities();
   });
 
   elements.searchInput.addEventListener('input', (e) => {
     searchQuery = e.target.value.toLowerCase().trim();
-    
+
     if (searchQuery.length > 0) {
       elements.clearSearch.classList.remove('hidden');
     } else {
       elements.clearSearch.classList.add('hidden');
     }
-    
+
     renderAbilities();
   });
 
@@ -94,103 +709,71 @@ function setupEventListeners() {
     elements.searchInput.value = '';
     elements.clearSearch.classList.add('hidden');
     elements.searchInput.focus();
-    
+
     renderAbilities();
   });
 }
 
-// 4. Layered Extraction Render (Faction > Class > Tree > Ability > Metadata)
-// Maintains flat design without the visual border wrapper styling on ability elements
+function clearContainerPalette() {
+  elements.accordionContainer.removeAttribute('style');
+}
+
 function renderAbilities() {
-  elements.accordionContainer.innerHTML = ''; 
+  elements.accordionContainer.innerHTML = '';
 
   if (!selectedClass) {
-    elements.accordionContainer.innerHTML = '<p class="text-center text-gray-500 italic mt-8">Please select a class to view abilities.</p>';
+    clearContainerPalette();
+    const factions = [...database].sort((a, b) => a.faction.localeCompare(b.faction));
+    elements.accordionContainer.innerHTML = UI.classSelectionGrid(factions);
+    setupClassCardListeners(elements.accordionContainer);
     return;
   }
 
-  // Scan parent factions down to isolate target class node
-  let classData = null;
-  for (const factionNode of database) {
-    const found = factionNode.classes.find(c => c.class === selectedClass);
-    if (found) {
-      classData = found;
-      break;
-    }
-  }
-  
+  clearContainerPalette();
+
+  const classData = findClassData(selectedClass);
   if (!classData || !classData.trees) return;
 
-  classData.trees.forEach(tree => {
-    const filteredAbilities = Object.entries(tree.abilities || {}).filter(([name, data]) => {
-      if (!searchQuery) return true;
-      
-      const matchName = name.toLowerCase().includes(searchQuery);
-      const matchType = data.type ? data.type.toLowerCase().includes(searchQuery) : false;
-      const matchSummary = data.summary ? data.summary.toLowerCase().includes(searchQuery) : false;
-      
-      return matchName || matchType || matchSummary;
-    });
+  const accordionHtml = [];
+  let visibleTreeCount = 0;
+
+  classData.trees.forEach((tree, treeIndex) => {
+    const filteredAbilities = Object.entries(tree.abilities || {}).filter(([name, data]) =>
+      abilityMatchesSearch(name, data, searchQuery)
+    );
 
     if (filteredAbilities.length === 0) return;
 
-    // Outer Accordion element
-    const treeEl = document.createElement('div');
-    treeEl.className = 'border border-gray-700 rounded-lg overflow-hidden bg-gray-900 mb-4';
+    visibleTreeCount += 1;
+    const expanded = Boolean(searchQuery) || treeIndex === 0;
+    const palette = getAccordionPalette(tree.name, selectedClass);
 
-    const headerEl = document.createElement('button');
-    headerEl.className = 'w-full text-left px-4 py-3 bg-gray-800 hover:bg-gray-700 text-white font-bold flex justify-between items-center focus:outline-none';
-    headerEl.innerHTML = `
-      <span>${tree.name}</span>
-      <svg class="w-5 h-5 transition-transform duration-200 transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-    `;
+    const cardsHtml = filteredAbilities
+      .map(([name, data]) => UI.abilityCard(mapAbilityToCardView(name, data)))
+      .join('');
 
-    const contentEl = document.createElement('div');
-    contentEl.className = 'p-4 flex flex-col gap-3 hidden';
-
-    headerEl.addEventListener('click', () => {
-      contentEl.classList.toggle('hidden');
-      headerEl.querySelector('svg').classList.toggle('rotate-180');
-    });
-
-    if (searchQuery) {
-      contentEl.classList.remove('hidden');
-      headerEl.querySelector('svg').classList.add('rotate-180');
-    }
-
-    // Granular capability cards matching flat border aesthetic
-    filteredAbilities.forEach(([name, data]) => {
-      const card = document.createElement('div');
-      card.className = 'bg-gray-800 border border-gray-700 p-4 rounded text-sm text-gray-300';
-      
-      const levelBadge = (data.level !== null && data.level !== undefined) 
-        ? `<span class="bg-blue-900 text-blue-100 px-2 py-0.5 rounded text-xs font-bold mr-2">Lvl ${data.level}</span>` 
-        : '';
-      
-      card.innerHTML = `
-        <div class="flex justify-between items-start mb-2">
-          <h3 class="text-lg font-bold text-white">${levelBadge}${name}</h3>
-          <span class="bg-gray-700 text-gray-200 px-2 py-1 rounded text-xs">${data.type || 'Ability'}</span>
-        </div>
-        <p class="mb-3 text-gray-400 italic">${data.summary || 'No description provided.'}</p>
-        <div class="grid grid-cols-2 gap-2 text-xs">
-          <div><strong class="text-gray-500">Cast:</strong> ${data.cast_speed || 'N/A'}</div>
-          <div><strong class="text-gray-500">Range:</strong> ${data.range || 'N/A'}</div>
-          <div><strong class="text-gray-500">Base Value:</strong> <span class="text-red-400">${data.base_value || 'N/A'}</span></div>
-          <div><strong class="text-gray-500">Resource:</strong> <span class="text-green-400">${data.resource_delta || 'N/A'}</span></div>
-        </div>
-      `;
-      contentEl.appendChild(card);
-    });
-
-    treeEl.appendChild(headerEl);
-    treeEl.appendChild(contentEl);
-    elements.accordionContainer.appendChild(treeEl);
+    accordionHtml.push(UI.accordionItem({
+      treeName: tree.name,
+      cardsHtml,
+      expanded,
+      palette
+    }));
   });
 
-  if (elements.accordionContainer.innerHTML === '') {
-    elements.accordionContainer.innerHTML = '<p class="text-center text-gray-500 italic mt-8">No abilities match your search.</p>';
+  if (visibleTreeCount === 0) {
+    elements.accordionContainer.innerHTML = UI.emptyState('No abilities match your search.');
+    return;
   }
+
+  elements.accordionContainer.innerHTML = accordionHtml.join('');
+  setupAccordionListeners(elements.accordionContainer);
+
+  elements.accordionContainer.querySelectorAll('.accordion-btn.active').forEach(btn => {
+    const content = btn.nextElementSibling;
+    content.style.paddingTop = '1rem';
+    content.style.paddingBottom = '1rem';
+    content.style.maxHeight = (content.scrollHeight + 24) + 'px';
+  });
 }
 
 init();

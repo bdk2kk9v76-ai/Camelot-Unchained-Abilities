@@ -9,7 +9,6 @@
             "name": "Class Abilities",
             "abilities": {
               "Armor of Faith": {
-                "level": null,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -18,7 +17,6 @@
                 "summary": "Increases your Physical Armor by 70% for 8 seconds. 60.0s Cooldown."
               },
               "Rally": {
-                "level": null,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": "Strong Heal Over Time",
@@ -32,7 +30,6 @@
             "name": "Dominance",
             "abilities": {
               "Crushing Might": {
-                "level": 0,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "972 Base Damage",
@@ -41,7 +38,6 @@
                 "summary": "Deals Weapon damage."
               },
               "Overwhelm": {
-                "level": 0,
                 "type": "Damage / Debuff",
                 "cast_speed": "0.6s",
                 "base_value": "4730 Damage",
@@ -50,7 +46,6 @@
                 "summary": "Deals Shadow damage; target takes +50% damage from this ability for 6s."
               },
               "Strike of the Blessed": {
-                "level": 1,
                 "type": "Damage / Heal Over Time",
                 "cast_speed": "0.6s",
                 "base_value": "1944 Damage",
@@ -59,7 +54,6 @@
                 "summary": "Deals Spirit damage and heals self over time."
               },
               "Blessed Warrior": {
-                "level": 1,
                 "type": "Buff",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -68,7 +62,6 @@
                 "summary": "Increases Melee damage dealt and Parry Chance. (Spell)"
               },
               "Living Symbol": {
-                "level": 2,
                 "type": "Buff / Aura",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -77,7 +70,6 @@
                 "summary": "Creates an aura granting Physical/Magical armor and Panic Resistance to nearby allies. 15.0s Cooldown. (Spell)"
               },
               "Sacred Pride": {
-                "level": 3,
                 "type": "Damage / CC",
                 "cast_speed": "0.6s",
                 "base_value": "1080 Damage",
@@ -86,7 +78,6 @@
                 "summary": "Deals Weapon damage and Snares the target by 40% for 4/8s. 30.0s Cooldown."
               },
               "Scorn the Weak": {
-                "level": 4,
                 "type": "CC / Debuff",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -95,7 +86,6 @@
                 "summary": "Snares the target and reduces damage dealt by 30%. 30.0s Cooldown. (Spell)"
               },
               "Avatar of Bran": {
-                "level": 5,
                 "type": "Buff",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -109,7 +99,6 @@
             "name": "Ritual",
             "abilities": {
               "Summon Cauldron": {
-                "level": 0,
                 "type": "Spell (Ground)",
                 "cast_speed": "0.2s",
                 "base_value": "Max 4 Cauldrons total",
@@ -118,7 +107,6 @@
                 "summary": "Summons a Cauldron at the targeted location for 60 seconds. Maximum of 4 Cauldrons total from all abilities. 6.0s Cooldown."
               },
               "Nature's Rebuke": {
-                "level": 0,
                 "type": "Damage / CC",
                 "cast_speed": "0.6s",
                 "base_value": "864 Base Damage",
@@ -127,7 +115,6 @@
                 "summary": "Deals Weapon damage and Snares the target by 40% for 4/8 seconds."
               },
               "Dark Work": {
-                "level": 0,
                 "type": "Spell (AoE)",
                 "cast_speed": "1.0s",
                 "base_value": "720 Base Damage",
@@ -136,7 +123,6 @@
                 "summary": "Deals Shadow damage to enemies near each of your Cauldrons."
               },
               "Blood Offering": {
-                "level": 1,
                 "type": "Damage / Summon",
                 "cast_speed": "0.6s",
                 "base_value": "1836 Base Damage",
@@ -145,7 +131,6 @@
                 "summary": "Deals Weapon damage and summons a Cauldron at the target's location for 60 seconds. 10.0s Cooldown."
               },
               "Rite of Healing": {
-                "level": 1,
                 "type": "Spell (AoE)",
                 "cast_speed": "0.2s",
                 "base_value": "Periodic Heal",
@@ -154,7 +139,6 @@
                 "summary": "Periodically heals allies near each of your Cauldrons. 6.0s Cooldown."
               },
               "Call Down": {
-                "level": 2,
                 "type": "Spell (Ground AoE)",
                 "cast_speed": "1.0s",
                 "base_value": "1170 Base Damage",
@@ -163,7 +147,6 @@
                 "summary": "Summons a Cauldron for 60s and deals Spirit damage in the targeted area. 12.0s Cooldown."
               },
               "Rite of Sickness": {
-                "level": 3,
                 "type": "Spell (AoE)",
                 "cast_speed": "0.2s",
                 "base_value": "720 Base Damage",
@@ -172,7 +155,6 @@
                 "summary": "Deals Spirit damage to and Snares enemies near each of your Cauldrons. 4.0s Cooldown."
               },
               "Conduit of Power": {
-                "level": 4,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1339 Base Damage",
@@ -181,7 +163,6 @@
                 "summary": "Deals Spirit damage. Damage is increased by 50% for each nearby Cauldron."
               },
               "Rite of Ruin": {
-                "level": 5,
                 "type": "Spell (AoE)",
                 "cast_speed": "0.2s",
                 "base_value": "Damage Taken Debuff",
@@ -195,7 +176,6 @@
             "name": "Nourishment",
             "abilities": {
               "Nurture Life": {
-                "level": 0,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -204,7 +184,6 @@
                 "summary": "Heals the target over time. 2.0s Cooldown."
               },
               "Branwen's Tears": {
-                "level": 0,
                 "type": "Healing",
                 "cast_speed": "1.0s",
                 "base_value": "2813 Healing",
@@ -213,7 +192,6 @@
                 "summary": "Heals target. (Spell)"
               },
               "Cleansing Winds": {
-                "level": 1,
                 "type": "AoE Cleanse",
                 "cast_speed": "0.2s",
                 "base_value": "Removes 1 Debuff",
@@ -222,7 +200,6 @@
                 "summary": "Removes 1 Debuff from allies near you and near each Cauldron (can apply multiple times). 6.0s Cooldown. (Spell)"
               },
               "Rise from the Cauldron": {
-                "level": 1,
                 "type": "Spell",
                 "cast_speed": "9.0s",
                 "base_value": null,
@@ -231,7 +208,6 @@
                 "summary": "Resurrects target ally with 15% max Health and Res Sickness."
               },
               "Regrowth": {
-                "level": 2,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": "2250 Base Healing",
@@ -240,7 +216,6 @@
                 "summary": "Heals nearby allies. 2.0s Cooldown."
               },
               "Dedicated Pursuit": {
-                "level": 3,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -249,7 +224,6 @@
                 "summary": "Increases Movement Speed for 6 seconds. Becomes Dedicated Pursuit Follow-Up when used. 20.0s Cooldown."
               },
               "Bran's Aid": {
-                "level": 4,
                 "type": "Spell",
                 "cast_speed": "1.0s",
                 "base_value": "1500 Base Healing",
@@ -258,7 +232,6 @@
                 "summary": "Heals allies in an area around target ally and summons a Cauldron at the target's location for 60 seconds. 12.0s Cooldown."
               },
               "Bran's Gift": {
-                "level": 5,
                 "type": "Spell",
                 "cast_speed": "2.0s",
                 "base_value": null,
@@ -277,7 +250,6 @@
             "name": "Class Abilities",
             "abilities": {
               "Raise Morale": {
-                "level": null,
                 "type": "Buff",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -286,7 +258,6 @@
                 "summary": "Increases party morale and regeneration."
               },
               "Song of Travel": {
-                "level": null,
                 "type": "Buff",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -300,7 +271,6 @@
             "name": "Night Terrors",
             "abilities": {
               "A Sharpened Tongue": {
-                "level": 0,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "917 Damage (+50% vs Panicked)",
@@ -309,7 +279,6 @@
                 "summary": "Deals Weapon damage; hits significantly harder against Panicked targets."
               },
               "Cutting Whispers": {
-                "level": 0,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1376 Mind Damage",
@@ -318,7 +287,6 @@
                 "summary": "Deals Mind damage."
               },
               "In Darkest Dreams": {
-                "level": 1,
                 "type": "AoE Damage",
                 "cast_speed": "2.0s",
                 "base_value": "Mind Damage per second",
@@ -327,7 +295,6 @@
                 "summary": "Creates a cloud for 12s dealing Mind damage per second. 15.0s Cooldown. (Spell)"
               },
               "With Claws That Tear": {
-                "level": 1,
                 "type": "Group Buff",
                 "cast_speed": "3.0s",
                 "base_value": "+50 Panic on Hit",
@@ -336,7 +303,6 @@
                 "summary": "Party's Direct Damage also inflicts 50 Panic. (Spell)"
               },
               "Look Upon Oblivion": {
-                "level": 2,
                 "type": "Damage Over Time",
                 "cast_speed": "0.2s",
                 "base_value": "3000 Mind Damage over 12s",
@@ -345,7 +311,6 @@
                 "summary": "Deals high-value pressure damage over time. 60.0s Cooldown. (Spell)"
               },
               "A Grand Tragedy": {
-                "level": 3,
                 "type": "Group Buff",
                 "cast_speed": "3.0s",
                 "base_value": "+20% Damage vs Controlled",
@@ -354,7 +319,6 @@
                 "summary": "Party deals 20% increased damage vs targets under Control effects. (Spell)"
               },
               "That Stalk the Night": {
-                "level": 4,
                 "type": "Group Buff / Mitigation",
                 "cast_speed": "0.2s",
                 "base_value": "-40% Non-Melee Damage Taken",
@@ -363,7 +327,6 @@
                 "summary": "Increases party Movement Speed and decreases non-Melee damage taken by 40% for 6s. 60.0s Cooldown. (Spell)"
               },
               "The Cruelest Joke": {
-                "level": 5,
                 "type": "AoE CC / Damage",
                 "cast_speed": "2.0s",
                 "base_value": "1000 Shadow Damage over 5s",
@@ -377,7 +340,6 @@
             "name": "Dark Fables",
             "abilities": {
               "Dark Comedy": {
-                "level": 0,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "917 Shadow Damage (+50% conditional)",
@@ -386,7 +348,6 @@
                 "summary": "Deals Shadow damage; +50% vs Stunned, Rooted, or Feared targets."
               },
               "Dance Through Flames": {
-                "level": 0,
                 "type": "Group Buff",
                 "cast_speed": "3.0s",
                 "base_value": "+15 Elemental Resistance",
@@ -395,7 +356,6 @@
                 "summary": "Grants party flat Elemental Resistance bonus. (Spell)"
               },
               "The Tragic Betrayal": {
-                "level": 1,
                 "type": "Damage / CC",
                 "cast_speed": "1.0s",
                 "base_value": "1337 Mind Damage + Stun",
@@ -404,7 +364,6 @@
                 "summary": "Deals Mind damage and Stuns for 3/6s. 45.0s Cooldown. (Spell)"
               },
               "Tales of Woe": {
-                "level": 1,
                 "type": "Damage / DoT",
                 "cast_speed": "0.6s",
                 "base_value": "1032 Shadow Damage + 1200 over 12s",
@@ -413,7 +372,6 @@
                 "summary": "Deals impact Shadow damage plus a direct damage over time effect."
               },
               "Like Flitting Shadows": {
-                "level": 2,
                 "type": "Group Buff",
                 "cast_speed": "3.0s",
                 "base_value": "Negate Ranged Hits",
@@ -422,7 +380,6 @@
                 "summary": "Every 6s negates the next Ranged hit for each party member. (Spell)"
               },
               "A Sudden Fright": {
-                "level": 3,
                 "type": "Damage / CC",
                 "cast_speed": "0.2s",
                 "base_value": "1225 Shadow Damage + Fear",
@@ -431,7 +388,6 @@
                 "summary": "Deals fast Shadow damage and Fears for 2/5s. 30.0s Cooldown. (Spell)"
               },
               "And Our Hero Falls!": {
-                "level": 4,
                 "type": "Debuff / Amplify",
                 "cast_speed": "1.0s",
                 "base_value": "+60% Damage Taken under 50% HP",
@@ -440,7 +396,6 @@
                 "summary": "Target takes vastly increased execute damage for 6s. 90.0s Cooldown. (Spell)"
               },
               "Die a Lonely Death": {
-                "level": 5,
                 "type": "Damage / CC Execute",
                 "cast_speed": "2.0s",
                 "base_value": "Delayed Shadow Damage (+100% if isolated)",
@@ -454,7 +409,6 @@
             "name": "Mummery",
             "abilities": {
               "A Glimpse of Madness": {
-                "level": 0,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": "Panic",
@@ -463,7 +417,6 @@
                 "summary": "Inflicts Panic. 4.0s Cooldown."
               },
               "Screaming Shot": {
-                "level": 0,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1078 Base Damage",
@@ -472,7 +425,6 @@
                 "summary": "Deals Mind damage."
               },
               "As the Willow in a Storm": {
-                "level": 1,
                 "type": "Spell",
                 "cast_speed": "3.0s",
                 "base_value": "+25% Block Value, +10% Parry Chance",
@@ -481,7 +433,6 @@
                 "summary": "Increases your party's Block Value by 25% and grants +10% Parry Chance."
               },
               "The Darkest Hour": {
-                "level": 1,
                 "type": "Spell",
                 "cast_speed": "2.0s",
                 "base_value": "1225 Base Damage",
@@ -490,7 +441,6 @@
                 "summary": "Deals Shadow damage around the target. Enemies hit are Silenced and Disarmed for 4/8 seconds. 60.0s Cooldown."
               },
               "Bean Sidhe's Wail": {
-                "level": 2,
                 "type": "Spell",
                 "cast_speed": "1.0s",
                 "base_value": "1114 Base Damage",
@@ -499,7 +449,6 @@
                 "summary": "Inflicts Fear and deals Mind damage to targets in a 25m cone. 75.0s Cooldown."
               },
               "Death by a Thousand Cuts": {
-                "level": 3,
                 "type": "Spell",
                 "cast_speed": "3.0s",
                 "base_value": "Up to max 24% Damage Taken Debuff",
@@ -508,7 +457,6 @@
                 "summary": "Your party inflicts a stacking debuff for 5 seconds when dealing Direct damage. This debuff increases damage taken by 3% per stack, up to a max of 24%."
               },
               "Dark Allure": {
-                "level": 4,
                 "type": "Spell",
                 "cast_speed": "7.0s",
                 "base_value": "334 Base Damage per second",
@@ -517,7 +465,6 @@
                 "summary": "Channels to Charm an enemy and deal Mind damage each second for up to 6 seconds. 60.0s Cooldown."
               },
               "A Cautionary Tale": {
-                "level": 5,
                 "type": "Damage / AoE DoT",
                 "cast_speed": "0.6s",
                 "base_value": "917 Base Damage + 2000 DoT",
@@ -536,7 +483,6 @@
             "name": "Class Abilities",
             "abilities": {
               "Clear Mind": {
-                "level": null,
                 "type": "Spell (Friend)",
                 "cast_speed": "1.0s",
                 "base_value": null,
@@ -545,7 +491,6 @@
                 "summary": "Reduces target's Panic by 350."
               },
               "What Must Be Done": {
-                "level": null,
                 "type": "Utility",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -559,7 +504,6 @@
             "name": "Tend the Enemy",
             "abilities": {
               "Comhlacht Mallacht": {
-                "level": 0,
                 "type": "Spell",
                 "cast_speed": "2.0s",
                 "base_value": "1500 Base Damage",
@@ -568,7 +512,6 @@
                 "summary": "Deals Spirit damage. If target is Linked, reduces healing received by 25% for 4 seconds."
               },
               "Fuil Truaillithe": {
-                "level": 0,
                 "type": "Spell",
                 "cast_speed": "2.0s",
                 "base_value": "1219 Base Damage",
@@ -577,7 +520,6 @@
                 "summary": "Deals 4550 Shadow damage over 21 seconds."
               },
               "Nasc Namhaid": {
-                "level": 1,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -586,7 +528,6 @@
                 "summary": "Links you to an enemy. Reduces their Strength and Attunement while linked. 3.0s Cooldown."
               },
               "Reabadh": {
-                "level": 1,
                 "type": "Spell (Friend Link)",
                 "cast_speed": "13.0s",
                 "base_value": "750 Base Damage",
@@ -595,7 +536,6 @@
                 "summary": "Channels for up to 12 seconds. Spends 150 Health and deals Shadow damage to your Enemy Link each second."
               },
               "Anam Truaillithe": {
-                "level": 2,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": "1219 Base Damage",
@@ -604,7 +544,6 @@
                 "summary": "Deals Spirit damage over 21 seconds. 1.0s Cooldown."
               },
               "Pairilis": {
-                "level": 3,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": "938 Base Damage",
@@ -613,7 +552,6 @@
                 "summary": "Deals Shadow damage and Disarms the target for 3/6 seconds. +50 damage if target is Linked to you. 20.0s Cooldown."
               },
               "Atreoru": {
-                "level": 4,
                 "type": "Spell (Friend)",
                 "cast_speed": "1.0s",
                 "base_value": null,
@@ -622,7 +560,6 @@
                 "summary": "For 10 seconds, each time your friendly link is dealt damage, 20% of that damage is prevented, and you are healed for the amount prevented. 2.0s Cooldown."
               },
               "Nochtadh": {
-                "level": 5,
                 "type": "Spell",
                 "cast_speed": "3.0s",
                 "base_value": "1406 Base Damage",
@@ -636,7 +573,6 @@
             "name": "Tend the Spirit",
             "abilities": {
               "Athghin": {
-                "level": 0,
                 "type": "Spell",
                 "cast_speed": "2.0s",
                 "base_value": "1519 Base Healing",
@@ -645,7 +581,6 @@
                 "summary": "Heals you for 4500 Health over 6 seconds."
               },
               "Comhroinn Fola": {
-                "level": 0,
                 "type": "Spell",
                 "cast_speed": "2.0s",
                 "base_value": "3645 Base Healing",
@@ -654,7 +589,6 @@
                 "summary": "Spends 1000 Health and heals the target. +40% healing if the target is linked to you. (1000 Base Damage)"
               },
               "Nasc Cara": {
-                "level": 1,
                 "type": "Spell (Friend)",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -663,7 +597,6 @@
                 "summary": "Links you to an ally. Grants them increased Physical and Magic Armor Rating while linked. 3.0s Cooldown."
               },
               "Tonnadoir": {
-                "level": 1,
                 "type": "Spell",
                 "cast_speed": "13.0s",
                 "base_value": "810 Base Healing",
@@ -672,7 +605,6 @@
                 "summary": "Channels for up to 12 seconds. Spends 150 Health and Heals your Friendly Link each second. (150 Base Damage)"
               },
               "Comhroinn Cinniuint": {
-                "level": 2,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -681,7 +613,6 @@
                 "summary": "Heals your Friendly Link over time. 8.0s Cooldown."
               },
               "Atreisiú": {
-                "level": 3,
                 "type": "Spell (Friend)",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -690,7 +621,6 @@
                 "summary": "Reduces damage taken by your Friendly Link by 10% for 12 seconds. Double effectiveness while Friendly Link is below 50% Health. 2.0s Cooldown."
               },
               "Balla Eiliminte": {
-                "level": 4,
                 "type": "Spell (Friend)",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -699,7 +629,6 @@
                 "summary": "Grants you immunity to Fire and Lighting damage and your Friendly Link +30% Fire and Lightning Resistance for 6 seconds. 120.0s Cooldown."
               },
               "Comhinannu": {
-                "level": 5,
                 "type": "Spell (Friend)",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -713,7 +642,6 @@
             "name": "Tend the Body",
             "abilities": {
               "Athchoirigh": {
-                "level": 0,
                 "type": "Resurrection",
                 "cast_speed": "9.0s",
                 "base_value": null,
@@ -722,7 +650,6 @@
                 "summary": "Resurrects target ally with 25% max Health and Res Sickness."
               },
               "Saol Deontas": {
-                "level": 0,
                 "type": "Spell",
                 "cast_speed": "1.0s",
                 "base_value": "2430 Base Healing",
@@ -731,7 +658,6 @@
                 "summary": "Heal an ally for 1900 Health."
               },
               "Leigheas": {
-                "level": 1,
                 "type": "Spell",
                 "cast_speed": "2.0s",
                 "base_value": null,
@@ -740,7 +666,6 @@
                 "summary": "Removes 1 Debuff from target ally."
               },
               "Uacht Danu": {
-                "level": 1,
                 "type": "Heal",
                 "cast_speed": "0.2s",
                 "base_value": "2936 Base Healing",
@@ -749,7 +674,6 @@
                 "summary": "Heals the target. 4.0s Cooldown."
               },
               "Ciorcal na Beatha": {
-                "level": 2,
                 "type": "Heal",
                 "cast_speed": "2.0s",
                 "base_value": "1215 Base Healing",
@@ -758,7 +682,6 @@
                 "summary": "Heals party for 2400 over 12 seconds."
               },
               "Slainte": {
-                "level": 3,
                 "type": "Heal",
                 "cast_speed": "0.2s",
                 "base_value": "911 Base Healing",
@@ -767,7 +690,6 @@
                 "summary": "Heals an ally for 1800 Health over 12 seconds. +50% healing if the target is Linked to you. 1.0s Cooldown."
               },
               "Airde Friotaiocht": {
-                "level": 4,
                 "type": "Buff",
                 "cast_speed": "2.0s",
                 "base_value": null,
@@ -776,7 +698,6 @@
                 "summary": "Grants an ally +60 Physical and Magical Armor Rating for 10 seconds."
               },
               "Seastan Deiridh": {
-                "level": 5,
                 "type": "Buff",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -795,7 +716,6 @@
             "name": "Class Abilities",
             "abilities": {
               "Bash": {
-                "level": null,
                 "type": "Damage / CC",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -804,7 +724,6 @@
                 "summary": "Deals damage and stuns the target."
               },
               "Shield Wall": {
-                "level": null,
                 "type": "Mitigation",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -818,7 +737,6 @@
             "name": "Prowess",
             "abilities": {
               "Restore Vitae": {
-                "level": 0,
                 "type": "Heal Over Time",
                 "cast_speed": "0.2s",
                 "base_value": "1800 Healing over 18s",
@@ -827,7 +745,6 @@
                 "summary": "Heals you over time. 30.0s Cooldown. (Spell)"
               },
               "Rending Strike": {
-                "level": 0,
                 "type": "Damage / DoT",
                 "cast_speed": "0.6s",
                 "base_value": "479 Base Damage + 280 Slashing DoT",
@@ -836,7 +753,6 @@
                 "summary": "Deals Weapon damage and additional Slashing damage over 4s."
               },
               "Unstoppable River": {
-                "level": 1,
                 "type": "Utility / Damage",
                 "cast_speed": "0.8s",
                 "base_value": "1037 Damage",
@@ -845,7 +761,6 @@
                 "summary": "Removes all Control effects and charges the target; deals Weapon damage. 60.0s Cooldown."
               },
               "Rebuke Foe": {
-                "level": 1,
                 "type": "Damage / CC",
                 "cast_speed": "0.6s",
                 "base_value": "1596 Damage",
@@ -854,7 +769,6 @@
                 "summary": "Deals Weapon damage and Knocks Back the target. 18.0s Cooldown."
               },
               "Nature's Vengeance": {
-                "level": 2,
                 "type": "Damage (Execute)",
                 "cast_speed": "0.6s",
                 "base_value": "1436 Damage",
@@ -863,7 +777,6 @@
                 "summary": "Deals Weapon damage; increased equal to target's missing Health."
               },
               "Whirlwind": {
-                "level": 3,
                 "type": "AoE Damage / CC",
                 "cast_speed": "0.2s",
                 "base_value": "1915 Damage",
@@ -872,7 +785,6 @@
                 "summary": "Deals Weapon damage to nearby enemies; Knocks Back all except your target."
               },
               "Inescapable Vines": {
-                "level": 4,
                 "type": "CC / Utility",
                 "cast_speed": "0.2s",
                 "base_value": "Pull & Root",
@@ -881,7 +793,6 @@
                 "summary": "Pulls the target to you, then Roots them for 3/5s. 45.0s Cooldown. (Spell)"
               },
               "Natural Strength": {
-                "level": 5,
                 "type": "AoE Damage / CC",
                 "cast_speed": "1.0s",
                 "base_value": "2394 Damage",
@@ -895,7 +806,6 @@
             "name": "Resilience",
             "abilities": {
               "Forest Strike": {
-                "level": 0,
                 "type": "Damage / CC",
                 "cast_speed": "0.6s",
                 "base_value": "718 Damage",
@@ -904,7 +814,6 @@
                 "summary": "Deals Weapon damage and Snares."
               },
               "Oakenshield": {
-                "level": 0,
                 "type": "Mitigation",
                 "cast_speed": "0.2s",
                 "base_value": "+2000 Block Value",
@@ -913,7 +822,6 @@
                 "summary": "Increases Block Value of your next block within 5s by 2000. 12.0s Cooldown."
               },
               "Nature's Defense": {
-                "level": 1,
                 "type": "Buff / Mitigation",
                 "cast_speed": "0.2s",
                 "base_value": "385 Earth Damage on parry",
@@ -922,7 +830,6 @@
                 "summary": "Increases Parry Chance by 55% for 6s and deals Earth damage to attackers when you Parry. 60.0s Cooldown. (Spell)"
               },
               "Strike of Wolves": {
-                "level": 1,
                 "type": "Damage / Buff",
                 "cast_speed": "0.6s",
                 "base_value": "1357 Damage",
@@ -931,7 +838,6 @@
                 "summary": "Deals Weapon damage. Usable again within 6s for increased Armor Rating."
               },
               "Cry of the Forest": {
-                "level": 2,
                 "type": "Healing / Cleanse",
                 "cast_speed": "0.2s",
                 "base_value": "4746 Healing",
@@ -940,7 +846,6 @@
                 "summary": "Heals you, removes and grants immunity to Root/Snare for 6s. 90.0s Cooldown. (Spell)"
               },
               "Trust in the Forest": {
-                "level": 3,
                 "type": "Buff / Resource",
                 "cast_speed": "0.2s",
                 "base_value": "+10% Guts Threshold, +20% Guts Value",
@@ -949,7 +854,6 @@
                 "summary": "Grants Courage based on missing Health, and buffs defensive traits for 15s. 60.0s Cooldown. (Spell)"
               },
               "Nature's Cry": {
-                "level": 4,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1915 Damage",
@@ -958,7 +862,6 @@
                 "summary": "Deals Weapon damage."
               },
               "Roots of the Earth": {
-                "level": 5,
                 "type": "Utility / AoE CC",
                 "cast_speed": "0.8s",
                 "base_value": "1915 Damage",
@@ -972,7 +875,6 @@
             "name": "Form of Danu",
             "abilities": {
               "Stony Reprisal": {
-                "level": 0,
                 "type": "Mitigation / Damage",
                 "cast_speed": "0.2s",
                 "base_value": "Reflects 50% damage",
@@ -981,7 +883,6 @@
                 "summary": "Your next block within 5s reflects 50% damage as Earth Damage. 18.0s Cooldown."
               },
               "Earthen Strike": {
-                "level": 0,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "638 Earth Damage",
@@ -990,7 +891,6 @@
                 "summary": "Deals Earth damage."
               },
               "Forest of Thorns": {
-                "level": 1,
                 "type": "Buff / Mitigation",
                 "cast_speed": "0.2s",
                 "base_value": "Reflects 50% damage",
@@ -999,7 +899,6 @@
                 "summary": "Increases Guts by 30% and reflects 50% damage for 10s. 60.0s Cooldown. (Spell)"
               },
               "Earth's Gift": {
-                "level": 1,
                 "type": "Buff / Mitigation",
                 "cast_speed": "0.2s",
                 "base_value": "+5% Physical, +10% Magic DR",
@@ -1008,7 +907,6 @@
                 "summary": "Grants Damage Reduction and reflects Ranged damage for 10s. 15.0s Cooldown. (Spell)"
               },
               "Crushing Earth": {
-                "level": 2,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1756 Earth Damage",
@@ -1017,7 +915,6 @@
                 "summary": "Deals Earth damage; +25% Aftershock amount."
               },
               "Nature's Sundering": {
-                "level": 3,
                 "type": "Damage",
                 "cast_speed": "0.2s",
                 "base_value": "Equal to Aftershock",
@@ -1026,7 +923,6 @@
                 "summary": "Fractures the target, dealing damage equal to their Aftershock and removing it. 60.0s Cooldown. (Spell)"
               },
               "Cry of the Land": {
-                "level": 4,
                 "type": "Damage",
                 "cast_speed": "1.0s",
                 "base_value": "2554 Earth Damage",
@@ -1035,7 +931,6 @@
                 "summary": "Deals Earth damage; refunds Courage cost if it kills the target."
               },
               "Living Stone": {
-                "level": 5,
                 "type": "Damage / Buff",
                 "cast_speed": "0.2s",
                 "base_value": "1915 Earth Damage",
@@ -1054,7 +949,6 @@
             "name": "Class Abilities",
             "abilities": {
               "Mark Target": {
-                "level": null,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -1063,7 +957,6 @@
                 "summary": "Increases the target's damage taken and prevents Stealth or entering the Veil for 10 seconds. 45.0s Cooldown."
               },
               "Reposition": {
-                "level": null,
                 "type": "Ability",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -1077,7 +970,6 @@
             "name": "Predation",
             "abilities": {
               "Pick Off From Herd": {
-                "level": 0,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1016 Base Damage",
@@ -1086,7 +978,6 @@
                 "summary": "Deals Weapon damage. +100% damage if the target isn't near any of their allies."
               },
               "Arrow Shot": {
-                "level": 0,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1423 Base Damage",
@@ -1095,7 +986,6 @@
                 "summary": "Deals Weapon damage."
               },
               "Stealth": {
-                "level": null,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -1104,7 +994,6 @@
                 "summary": "You gain Stealth, making you invisible to enemies while outside their Detection Range. Becomes \"De-Stealth\" upon use. 12.0s Cooldown."
               },
               "Prey Sight": {
-                "level": 1,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -1113,7 +1002,6 @@
                 "summary": "Increases Stealth Detection Range by 25m and Critical Strike Chance by 8%."
               },
               "Scent Blood": {
-                "level": 1,
                 "type": "Damage / DoT",
                 "cast_speed": "0.6s",
                 "base_value": "762 Base Damage",
@@ -1122,7 +1010,6 @@
                 "summary": "Deals Weapon damage an additional 6000 Slashing damage over 60s. The target leaves behind a visible blood trail for the duration of the DoT. 90.0s Cooldown."
               },
               "Vital Focus": {
-                "level": 2,
                 "type": "Buff",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -1131,7 +1018,6 @@
                 "summary": "Grants your next Weaponskill 100% Critically Hit Chance. 2.0s Cooldown."
               },
               "Crippling Shot": {
-                "level": 3,
                 "type": "Damage / CC",
                 "cast_speed": "0.6s",
                 "base_value": "1143 Base Damage",
@@ -1140,7 +1026,6 @@
                 "summary": "Deals Weapon damage and Roots the target for 4/8 seconds. 45.0s Cooldown."
               },
               "Parting Shot": {
-                "level": 4,
                 "type": "Damage / CC / Mobility",
                 "cast_speed": "0.2s",
                 "base_value": "1271 Base Damage",
@@ -1149,7 +1034,6 @@
                 "summary": "Leaps backward and deals Weapon damage. Snares the target for 4/7 seconds. 45.0s Cooldown."
               },
               "Strike and Fade": {
-                "level": 5,
                 "type": "Damage / Utility",
                 "cast_speed": "2.0s",
                 "base_value": "1779 Base Damage",
@@ -1163,7 +1047,6 @@
             "name": "Thorn and Fang",
             "abilities": {
               "Needle Shot": {
-                "level": 0,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1194 Base Damage",
@@ -1172,7 +1055,6 @@
                 "summary": "Deals Poison damage."
               },
               "Poison Arrow": {
-                "level": 0,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "686 Base Damage",
@@ -1181,7 +1063,6 @@
                 "summary": "Deals Poison damage and an additional 750 Poison damage over 9 seconds."
               },
               "Distilled Poison": {
-                "level": 1,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -1190,7 +1071,6 @@
                 "summary": "Increases Periodic Poison damage by 15%."
               },
               "Spore Cloud": {
-                "level": 1,
                 "type": "AoE",
                 "cast_speed": "0.6s",
                 "base_value": null,
@@ -1199,7 +1079,6 @@
                 "summary": "Creates a cloud on impact that applies 1 Poison DoT stack every 2 seconds. Each stack deals 500 Poison damage over 5 seconds. Max 5 stacks. 12.0s Cooldown."
               },
               "Fall Back": {
-                "level": 2,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -1208,7 +1087,6 @@
                 "summary": "Grants Movement Speed and Disarms you for 8 seconds. 30.0s Cooldown."
               },
               "Opening Shot": {
-                "level": 3,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1016 Base Damage",
@@ -1217,7 +1095,6 @@
                 "summary": "Deals Weapon damage plus additional damage equal to 8% of target's current Health."
               },
               "Necrotic Toxin": {
-                "level": 4,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "2033 Base Damage",
@@ -1226,7 +1103,6 @@
                 "summary": "Deals Weapon damage. Deals additional Poison damage over time and reduces the target's healing received by 50% for 12 seconds."
               },
               "Death's Door": {
-                "level": 5,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1779 Base Damage",
@@ -1240,7 +1116,6 @@
             "name": "Stone Rain",
             "abilities": {
               "Cloaked in Earth": {
-                "level": 0,
                 "type": "Spell",
                 "cast_speed": "0.2s",
                 "base_value": null,
@@ -1249,7 +1124,6 @@
                 "summary": "Reduces the damage of the next 3 hits received by 50%. 60.0s Cooldown."
               },
               "Earthen Arrow": {
-                "level": 0,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1271 Base Damage",
@@ -1258,7 +1132,6 @@
                 "summary": "Deals Earth damage."
               },
               "Pounding Shot": {
-                "level": 1,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1321 Base Damage",
@@ -1267,7 +1140,6 @@
                 "summary": "Deals Weapon damage plus additional Weapon damage equal to 40% of Aftershock on the target."
               },
               "Sniper's Shot": {
-                "level": 1,
                 "type": "Damage",
                 "cast_speed": "2.0s",
                 "base_value": "2033 Base Damage",
@@ -1276,7 +1148,6 @@
                 "summary": "Deals Weapon damage. 100% Critical Hit Chance. 8.0s Cooldown."
               },
               "Spike Field": {
-                "level": 2,
                 "type": "Spell",
                 "cast_speed": "1.0s",
                 "base_value": null,
@@ -1285,7 +1156,6 @@
                 "summary": "Creates an area of spike ground around you for 15 seconds that Snares enemies by 50% and deals 100 Earth damage per second while in the area. 45.0s Cooldown."
               },
               "Claws of Earth": {
-                "level": 3,
                 "type": "Damage / Debuff",
                 "cast_speed": "0.6s",
                 "base_value": "1271 Base Damage",
@@ -1294,7 +1164,6 @@
                 "summary": "Deals Earth damage and debuffs the target for 12 seconds, causing Direct damage hits taken to deal added Earth damage. 45.0s Cooldown."
               },
               "Fist of Danu": {
-                "level": 4,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": "1143 Base Damage",
@@ -1303,7 +1172,6 @@
                 "summary": "Deals Earth damage and Knocks Back the target. 45.0s Cooldown."
               },
               "Spear of Lugh": {
-                "level": 5,
                 "type": "Damage",
                 "cast_speed": "0.6s",
                 "base_value": null,

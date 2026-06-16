@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fianna Class Ability Database</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style data-purpose="custom-fonts-and-theme">
+    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+    :root {
+      --gold-primary: #cba86a;
+      --gold-dark: #8c734b;
+      --crimson-dark: #4a151f;
+      --crimson-light: #7b1f32;
+      --bg-dark: #121214;
+      --bg-panel: #1e1e24;
+      --text-muted: #a0a0a5;
+    }
+
+    body {
+      font-family: 'Lora', serif;
+      background-color: var(--bg-dark);
+      color: #e0e0e0;
+      /* Subtle dark pattern background */
+      background-image: radial-gradient(circle at center, #1e1e24 0%, #121214 100%);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1, h2, h3, .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+  </style>
+<style data-purpose="component-styles">
+    /* Top Bar */
+    .top-bar {
+      border-bottom: 1px solid var(--gold-dark);
+      background: linear-gradient(to bottom, #2a2a30, #1e1e24);
+    }
+
+    /* Accordion Header */
+    .accordion-btn {
+      background: linear-gradient(to right, #453828, #2d261e);
+      border: 1px solid var(--gold-dark);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+      transition: all 0.3s ease;
+    }
+    
+    .accordion-btn.active {
+      background: linear-gradient(to right, var(--crimson-dark), #2a0b12);
+      border-color: var(--gold-primary);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
+
+    /* Card Styling */
+    .ability-card {
+      background-color: var(--bg-panel);
+      border: 2px solid transparent;
+      border-image: linear-gradient(to bottom right, var(--gold-primary), var(--gold-dark), #4a3c26) 1;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.6);
+      position: relative;
+    }
+    
+    .ability-card::before {
+      content: '';
+      position: absolute;
+      top: -4px; left: -4px; right: -4px; bottom: -4px;
+      border: 1px solid var(--gold-dark);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .card-header-bg {
+      background: linear-gradient(to right, var(--crimson-dark), transparent);
+      border-bottom: 1px solid var(--gold-dark);
+    }
+
+    .ability-icon {
+      background: linear-gradient(135deg, #3a2b1f, #1a140f);
+      border: 2px solid var(--gold-primary);
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+    }
+
+    /* Bottom Nav */
+    .bottom-nav {
+      background: #1a1a1f;
+      border-top: 1px solid var(--gold-dark);
+    }
+
+    .nav-item.active {
+      background: linear-gradient(to top, var(--crimson-dark), transparent);
+      color: var(--gold-primary);
+    }
+    
+    .nav-item.active::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--crimson-light);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold-dark);
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="antialiased flex flex-col h-screen">
+<!-- BEGIN: MainHeader -->
+<header class="top-bar flex items-center justify-between px-4 py-3 shrink-0 z-10 shadow-lg">
+<button aria-label="Menu" class="text-[#cba86a] p-1">
+<svg class="w-7 h-7" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<h1 class="text-xl text-center text-[#e0e0e0] flex-1 truncate px-2 font-cinzel tracking-wide text-shadow-sm">Fianna Class Ability Database</h1>
+<button class="flex items-center gap-1 border border-[#8c734b] rounded px-2 py-1 text-sm text-[#cba86a] bg-[#1e1e24]">
+      Classes
+      <svg class="w-4 h-4 fill-current" viewbox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"></path></svg>
+</button>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainContent -->
+<main class="flex-1 overflow-y-auto px-2 py-4 space-y-4">
+<!-- Accordion Item 1: Combat Arts (Expanded) -->
+<div class="accordion-item">
+<button aria-expanded="true" class="accordion-btn active w-full flex justify-between items-center px-4 py-3 rounded-t-sm">
+<span class="text-xl text-[#e0e0e0] font-cinzel tracking-wider text-shadow">Combat Arts</span>
+<svg class="w-6 h-6 text-[#cba86a] transform transition-transform duration-300 rotate-180 chevron" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="accordion-content bg-[#1a1a1f] border-x border-b border-[#8c734b] px-3 py-4 space-y-4 rounded-b-sm" style="max-height: 1000px;">
+<!-- Ability Card 1 -->
+<article class="ability-card p-0 m-1 relative">
+<header class="card-header-bg flex items-center p-3">
+<div class="ability-icon w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4 relative">
+<span class="text-[#cba86a] font-cinzel text-xl absolute left-2 top-2">F</span>
+<!-- SVG Silhouette Placeholder -->
+<svg class="w-8 h-8 text-black opacity-60 ml-2 mt-1" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C10.9 2 10 2.9 10 4C10 5.1 10.9 6 12 6C13.1 6 14 5.1 14 4C14 2.9 13.1 2 12 2ZM11 19.5L9.1 12H7L10 7C10.3 6.4 11.1 6 12 6C12.9 6 13.7 6.4 14 7L17 12H14.9L13 19.5L12 22L11 19.5Z"></path></svg>
+</div>
+<h3 class="text-xl text-[#e0e0e0] font-cinzel">Lion's Charge</h3>
+</header>
+<div class="p-4 text-sm text-[#cccccc] leading-relaxed">
+<p class="mb-3">Charge towards an enemy, dealing damage and stunning them.</p>
+<div class="flex flex-col gap-1 text-[13px] text-[#a0a0a5]">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-[#8c734b]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Cooldown: <span class="text-white">15s</span></span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-[#cba86a]" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+<span>Cost: <span class="text-white">20 Faith</span></span>
+</div>
+</div>
+</div>
+</article>
+<!-- Ability Card 2 -->
+<article class="ability-card p-0 m-1 relative">
+<header class="card-header-bg flex items-center p-3">
+<div class="ability-icon w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4 relative">
+<span class="text-[#cba86a] font-cinzel text-xl absolute left-2 top-2">F</span>
+<!-- SVG Shield Placeholder -->
+<svg class="w-7 h-7 text-black opacity-60 ml-2 mt-1" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" fill-rule="evenodd"></path></svg>
+</div>
+<h3 class="text-xl text-[#e0e0e0] font-cinzel">Shield Wall</h3>
+</header>
+<div class="p-4 text-sm text-[#cccccc] leading-relaxed">
+<p class="mb-3">Form a defensive shield, blocking incoming attacks.</p>
+<div class="flex flex-col gap-1 text-[13px] text-[#a0a0a5]">
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-[#8c734b]" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+<span>Cooldown: <span class="text-white">15s</span></span>
+</div>
+<div class="flex items-center gap-2">
+<svg class="w-4 h-4 text-[#cba86a]" fill="currentColor" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>
+<span>Cost: <span class="text-white">20 Faith</span></span>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+<!-- Accordion Item 2: Divine Blessings (Collapsed) -->
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-btn w-full flex justify-between items-center px-4 py-3 rounded-sm">
+<span class="text-xl text-[#cba86a] font-cinzel tracking-wider text-shadow">Divine Blessings</span>
+<svg class="w-6 h-6 text-[#8c734b] transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="accordion-content bg-[#1a1a1f] border-x border-b border-[#8c734b] px-3 py-0 space-y-4 rounded-b-sm" style="max-height: 0;">
+<!-- Ability Card Placeholder for Divine Blessings -->
+<article class="ability-card p-0 m-1 mt-4 relative">
+<header class="card-header-bg flex items-center p-3">
+<div class="ability-icon w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4 relative">
+<span class="text-[#cba86a] font-cinzel text-xl">F</span>
+</div>
+<h3 class="text-xl text-[#e0e0e0] font-cinzel">Faith's Resolve</h3>
+</header>
+<div class="p-4 text-sm text-[#cccccc] leading-relaxed">
+<p class="mb-3">Imbue your resolve, healing allies and bolstering defenses.</p>
+</div>
+</article>
+</div>
+</div>
+<!-- Accordion Item 3: Vengeance (Collapsed) -->
+<div class="accordion-item">
+<button aria-expanded="false" class="accordion-btn w-full flex justify-between items-center px-4 py-3 rounded-sm">
+<span class="text-xl text-[#cba86a] font-cinzel tracking-wider text-shadow">Vengeance</span>
+<svg class="w-6 h-6 text-[#8c734b] transform transition-transform duration-300 chevron" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<div class="accordion-content bg-[#1a1a1f] border-x border-b border-[#8c734b] px-3 py-0 space-y-4 rounded-b-sm" style="max-height: 0;">
+<!-- Content would go here -->
+</div>
+</div>
+</main>
+<!-- END: MainContent -->
+<!-- BEGIN: BottomNavigation -->
+<nav class="bottom-nav grid grid-cols-4 shrink-0 pb-safe">
+<a class="nav-item flex flex-col items-center justify-center py-3 text-xs text-[#8c734b] hover:text-[#cba86a] transition-colors relative" href="#">
+<svg class="w-6 h-6 mb-1" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+      Classes
+    </a>
+<a class="nav-item active flex flex-col items-center justify-center py-3 text-xs relative" href="#">
+<svg class="w-6 h-6 mb-1" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13h-13L12 6.5z"></path></svg>
+      Abilities
+    </a>
+<a class="nav-item flex flex-col items-center justify-center py-3 text-xs text-[#8c734b] hover:text-[#cba86a] transition-colors relative" href="#">
+<svg class="w-6 h-6 mb-1" fill="currentColor" viewbox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+      Builds
+    </a>
+<a class="nav-item flex flex-col items-center justify-center py-3 text-xs text-[#8c734b] hover:text-[#cba86a] transition-colors relative" href="#">
+<svg class="w-6 h-6 mb-1" fill="currentColor" viewbox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+      Profile
+    </a>
+</nav>
+<!-- END: BottomNavigation -->
+<script data-purpose="accordion-logic">
+    document.addEventListener('DOMContentLoaded', () => {
+      const accordionBtns = document.querySelectorAll('.accordion-btn');
+
+      accordionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Toggle active class on button
+          this.classList.toggle('active');
+          
+          // Toggle text color based on active state
+          const titleSpan = this.querySelector('span');
+          if (this.classList.contains('active')) {
+             titleSpan.classList.replace('text-[#cba86a]', 'text-[#e0e0e0]');
+          } else {
+             titleSpan.classList.replace('text-[#e0e0e0]', 'text-[#cba86a]');
+          }
+
+          // Toggle chevron rotation
+          const chevron = this.querySelector('.chevron');
+          if (this.classList.contains('active')) {
+            chevron.classList.add('rotate-180');
+            chevron.classList.replace('text-[#8c734b]', 'text-[#cba86a]');
+            this.setAttribute('aria-expanded', 'true');
+          } else {
+            chevron.classList.remove('rotate-180');
+            chevron.classList.replace('text-[#cba86a]', 'text-[#8c734b]');
+            this.setAttribute('aria-expanded', 'false');
+          }
+
+          // Handle content expansion/collapse
+          const content = this.nextElementSibling;
+          if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+            content.style.maxHeight = '0px';
+            content.style.paddingTop = '0px';
+            content.style.paddingBottom = '0px';
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+            content.style.paddingTop = '1rem'; // match py-4
+            content.style.paddingBottom = '1rem';
+          }
+        });
+      });
+    });
+  </script>
+</body></html>

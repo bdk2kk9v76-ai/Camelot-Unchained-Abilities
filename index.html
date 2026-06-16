@@ -1,57 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Camelot Unchained Ability Database</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style data-purpose="custom-fonts-and-theme">
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+        :root {
+            --gold-primary: #cba86a;
+            --gold-dark: #8c734b;
+            --crimson-dark: #4a151f;
+            --crimson-light: #7b1f32;
+            --bg-dark: #121214;
+            --bg-panel: #1e1e24;
+            --text-muted: #a0a0a5;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background-color: var(--bg-dark);
+            color: #e0e0e0;
+            background-image: radial-gradient(circle at center, #1e1e24 0%, #121214 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1, h2, h3, .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+    </style>
+    <style data-purpose="component-styles">
+        .top-bar {
+            border-bottom: 1px solid var(--gold-dark);
+            background: linear-gradient(to bottom, #2a2a30, #1e1e24);
+        }
+
+        .accordion-btn {
+            background: linear-gradient(to right, var(--tree-header-from, #453828), var(--tree-header-to, #2d261e));
+            border: 1px solid var(--tree-accent-muted, var(--gold-dark));
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .accordion-btn.active {
+            background: linear-gradient(to right, var(--tree-active-from, var(--crimson-dark)), var(--tree-active-to, #2a0b12));
+            border-color: var(--tree-accent, var(--gold-primary));
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+            background-color: var(--tree-content-bg, #1a1a1f);
+            border-color: var(--tree-accent-muted, var(--gold-dark));
+        }
+
+        .accordion-btn .tree-title {
+            color: var(--tree-accent, var(--gold-primary));
+            transition: color 0.3s ease;
+        }
+
+        .accordion-btn.active .tree-title {
+            color: #e0e0e0;
+        }
+
+        .accordion-btn .chevron {
+            color: var(--tree-accent-muted, var(--gold-dark));
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .accordion-btn.active .chevron {
+            color: var(--tree-accent, var(--gold-primary));
+        }
+
+        .ability-card {
+            background-color: var(--bg-panel);
+            border: 2px solid transparent;
+            border-image: linear-gradient(to bottom right, var(--tree-border-from, var(--gold-primary)), var(--tree-border-mid, var(--gold-dark)), var(--tree-border-to, #4a3c26)) 1;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .ability-card::before {
+            content: '';
+            position: absolute;
+            top: -4px; left: -4px; right: -4px; bottom: -4px;
+            border: 1px solid var(--tree-accent-muted, var(--gold-dark));
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .card-header-bg {
+            background: linear-gradient(to right, var(--tree-card-header-from, var(--crimson-dark)), transparent);
+            border-bottom: 1px solid var(--tree-accent-muted, var(--gold-dark));
+        }
+
+        .ability-icon {
+            background: linear-gradient(135deg, var(--tree-icon-from, #3a2b1f), var(--tree-icon-to, #1a140f));
+            border: 2px solid var(--tree-accent, var(--gold-primary));
+            box-shadow: inset 0 0 8px rgba(0,0,0,0.8);
+            color: var(--tree-accent, var(--gold-primary));
+        }
+
+        .tree-level {
+            color: var(--tree-accent-muted, var(--gold-dark));
+        }
+
+        .metadata-icon-muted {
+            color: var(--tree-accent-muted, var(--gold-dark));
+        }
+
+        .metadata-icon-accent {
+            color: var(--tree-accent, var(--gold-primary));
+        }
+
+        .class-card {
+            background: linear-gradient(to right, var(--tree-header-from, #453828), var(--tree-header-to, #2d261e));
+            border: 1px solid var(--tree-accent-muted, var(--gold-dark));
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.45), 0 4px 6px rgba(0,0,0,0.45);
+            color: var(--tree-accent, var(--gold-primary));
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .class-card:hover {
+            border-color: var(--tree-accent, var(--gold-primary));
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.55), 0 6px 10px rgba(0,0,0,0.55);
+            transform: translateY(-1px);
+        }
+
+        .class-card:focus-visible {
+            outline: 2px solid var(--tree-accent, var(--gold-primary));
+            outline-offset: 2px;
+        }
+
+        .faction-title {
+            color: var(--tree-accent, var(--gold-primary));
+            border-bottom: 1px solid var(--tree-accent-muted, var(--gold-dark));
+        }
+
+        .bottom-nav {
+            background: #1a1a1f;
+            border-top: 1px solid var(--gold-dark);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(to top, var(--crimson-dark), transparent);
+            color: var(--gold-primary);
+        }
+
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: var(--crimson-light);
+        }
+
+        #class-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23cba86a'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.35rem center;
+            background-size: 1rem;
+            padding-right: 1.75rem;
+            max-width: 9rem;
+        }
+
+        #search-input:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dark);
+            border-radius: 3px;
+        }
+    </style>
 </head>
-<body class="bg-gray-950 text-gray-200 min-h-screen font-sans antialiased">
-    
-    <div class="max-w-4xl mx-auto px-4 py-8">
-        
-        <header class="text-center mb-8">
-            <h1 class="text-3xl font-extrabold text-white tracking-tight sm:text-4xl">Camelot Unchained</h1>
-            <p class="text-gray-400 mt-2 text-sm sm:text-base tracking-wide">Class Ability Database</p>
-        </header>
+<body class="antialiased flex flex-col h-screen">
+    <header class="top-bar grid grid-cols-[1fr_auto_1fr] items-center px-4 py-3 shrink-0 z-10 shadow-lg gap-2">
+        <div class="flex items-center justify-start min-w-0">
+            <button aria-label="Menu" class="text-[#cba86a] p-1 shrink-0" type="button">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+            </button>
+        </div>
+        <div class="flex items-center justify-center px-2">
+            <button id="home-logo" type="button" aria-label="Home" class="focus:outline-none cursor-pointer transition-transform hover:scale-105">
+                <img src="./assets/cu_title_03_fixed.png" alt="Camelot Unchained" class="h-8 sm:h-10 w-auto max-w-[min(100%,16rem)] object-contain pointer-events-none"/>
+            </button>
+        </div>
+        <div class="flex items-center justify-end gap-2 min-w-0">
+            <select id="class-select" aria-label="Select class" class="flex items-center gap-1 border border-[#8c734b] rounded px-2 py-1 text-sm text-[#cba86a] bg-[#1e1e24] cursor-pointer focus:outline-none focus:border-[#cba86a]">
+                <option value="">Classes</option>
+            </select>
+        </div>
+    </header>
 
-        <div class="bg-gray-900 border border-gray-800 p-5 rounded-xl shadow-xl mb-8">
-            <div class="flex flex-col sm:flex-row gap-4">
-                
-                <div class="flex-1">
-                    <label for="class-select" class="block mb-2 text-xs font-semibold uppercase tracking-wider text-gray-400">Select Class</label>
-                    <select id="class-select" class="bg-gray-800 border border-gray-700 text-white text-sm rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 outline-none transition-all cursor-pointer">
-                        <option value="">Choose a Class...</option>
-                    </select>
-                </div>
-
-                <div class="flex-1">
-                    <label for="search-input" class="block mb-2 text-xs font-semibold uppercase tracking-wider text-gray-400">Search Abilities</label>
-                    <div class="relative flex items-center">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                            </svg>
-                        </div>
-                        
-                        <input type="text" id="search-input" disabled placeholder="Select a class first..." class="bg-gray-800 border border-gray-700 text-white text-base sm:text-sm rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-blue-600 block w-full pl-10 pr-10 p-2.5 outline-none transition-all disabled:opacity-40 disabled:cursor-not-allowed disabled:bg-gray-950/60">
-                        
-                        <button type="button" id="clear-search" disabled class="hidden absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-white transition-colors focus:outline-none disabled:opacity-0" aria-label="Clear search input">
-                            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-
+    <main class="flex-1 overflow-y-auto px-2 py-4 space-y-4">
+        <div id="search-bar-container" class="hidden px-1">
+            <div class="relative max-w-xl mx-auto">
+                <input type="text" id="search-input" disabled placeholder="Search..." class="border border-[#8c734b] rounded px-3 py-2 pl-9 text-sm text-[#e0e0e0] bg-[#1e1e24] w-full focus:outline-none focus:border-[#cba86a] placeholder:text-[#8c734b]"/>
+                <svg class="w-4 h-4 text-[#8c734b] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+                <button type="button" id="clear-search" disabled class="hidden absolute inset-y-0 right-0 flex items-center pr-3 text-[#8c734b] hover:text-[#cba86a] transition-colors" aria-label="Clear search input">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
             </div>
         </div>
-
-        <div id="accordion-container" class="w-full flex flex-col gap-1">
-            <p class="text-center text-gray-500 italic mt-8">Please select a class to view abilities.</p>
+        <div id="accordion-container" class="space-y-4">
         </div>
+    </main>
 
-    </div>
+    <nav class="bottom-nav grid grid-cols-4 shrink-0 pb-safe">
+        <a class="nav-item flex flex-col items-center justify-center py-3 text-xs text-[#8c734b] hover:text-[#cba86a] transition-colors relative" href="#">
+            <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            Classes
+        </a>
+        <a class="nav-item active flex flex-col items-center justify-center py-3 text-xs relative" href="#">
+            <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 4.5l6.5 13h-13L12 6.5z"></path></svg>
+            Abilities
+        </a>
+        <a class="nav-item flex flex-col items-center justify-center py-3 text-xs text-[#8c734b] hover:text-[#cba86a] transition-colors relative" href="#">
+            <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            Builds
+        </a>
+        <a class="nav-item flex flex-col items-center justify-center py-3 text-xs text-[#8c734b] hover:text-[#cba86a] transition-colors relative" href="#">
+            <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+            Profile
+        </a>
+    </nav>
 
     <script src="app.js"></script>
 </body>

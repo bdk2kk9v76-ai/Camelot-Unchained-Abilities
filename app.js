@@ -614,8 +614,52 @@ function setupClassCardListeners(container) {
   });
 }
 
+const ACCORDION_HEIGHT_BUFFER = 24;
+let accordionResizeObservers = [];
+
+function disconnectAccordionObservers() {
+  accordionResizeObservers.forEach(observer => observer.disconnect());
+  accordionResizeObservers = [];
+}
+
+function setExpandedAccordionHeight(content) {
+  content.style.paddingTop = '1rem';
+  content.style.paddingBottom = '1rem';
+  content.style.maxHeight = (content.scrollHeight + ACCORDION_HEIGHT_BUFFER) + 'px';
+}
+
+function attachAccordionResizeObserver(btn, content) {
+  const observer = new ResizeObserver(() => {
+    if (btn.classList.contains('active')) {
+      content.style.maxHeight = (content.scrollHeight + ACCORDION_HEIGHT_BUFFER) + 'px';
+    }
+  });
+
+  observer.observe(content);
+  accordionResizeObservers.push(observer);
+}
+
+function initializeExpandedAccordions(container) {
+  const expandActive = () => {
+    container.querySelectorAll('.accordion-btn.active').forEach(btn => {
+      setExpandedAccordionHeight(btn.nextElementSibling);
+    });
+  };
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(expandActive);
+  } else {
+    setTimeout(expandActive, 150);
+  }
+}
+
 function setupAccordionListeners(container) {
+  disconnectAccordionObservers();
+
   container.querySelectorAll('.accordion-btn').forEach(btn => {
+    const content = btn.nextElementSibling;
+    attachAccordionResizeObserver(btn, content);
+
     btn.addEventListener('click', function () {
       this.classList.toggle('active');
 
@@ -628,15 +672,12 @@ function setupAccordionListeners(container) {
         this.setAttribute('aria-expanded', 'false');
       }
 
-      const content = this.nextElementSibling;
       if (content.style.maxHeight && content.style.maxHeight !== '0px') {
         content.style.maxHeight = '0px';
         content.style.paddingTop = '0px';
         content.style.paddingBottom = '0px';
       } else {
-        content.style.paddingTop = '1rem';
-        content.style.paddingBottom = '1rem';
-        content.style.maxHeight = (content.scrollHeight + 24) + 'px';
+        setExpandedAccordionHeight(content);
       }
     });
   });
@@ -719,6 +760,7 @@ function clearContainerPalette() {
 }
 
 function renderAbilities() {
+  disconnectAccordionObservers();
   elements.accordionContainer.innerHTML = '';
 
   if (!selectedClass) {
@@ -767,13 +809,7 @@ function renderAbilities() {
 
   elements.accordionContainer.innerHTML = accordionHtml.join('');
   setupAccordionListeners(elements.accordionContainer);
-
-  elements.accordionContainer.querySelectorAll('.accordion-btn.active').forEach(btn => {
-    const content = btn.nextElementSibling;
-    content.style.paddingTop = '1rem';
-    content.style.paddingBottom = '1rem';
-    content.style.maxHeight = (content.scrollHeight + 24) + 'px';
-  });
+  initializeExpandedAccordions(elements.accordionContainer);
 }
 
 init();

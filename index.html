@@ -174,13 +174,13 @@
     </style>
 </head>
 <body class="antialiased">
-    <header class="top-bar sticky top-0 z-20 w-full flex items-center justify-center px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 shrink-0 shadow-lg">
+    <header class="top-bar fixed top-0 left-0 w-full z-50 flex items-center justify-center px-4 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3 shadow-lg">
         <button id="home-logo" type="button" aria-label="Home" class="focus:outline-none cursor-pointer transition-transform hover:scale-105">
             <img src="./assets/cu_title_03_fixed.png" alt="Camelot Unchained" class="h-8 sm:h-10 w-auto max-w-[min(100%,16rem)] object-contain pointer-events-none"/>
         </button>
     </header>
 
-    <main class="px-4 sm:px-6 lg:px-8 pb-[max(1rem,env(safe-area-inset-bottom))]">
+    <main class="px-4 sm:px-6 lg:px-8 pt-[var(--top-bar-height)] pb-[max(1rem,env(safe-area-inset-bottom))]">
         <div class="max-w-5xl mx-auto w-full space-y-4">
             <div id="search-bar-container" class="hidden pt-4">
                 <div class="flex flex-col sm:flex-row gap-4">

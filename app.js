@@ -691,26 +691,32 @@ const UI = {
     return value;
   },
 
-  metadataCell(label, value, fallback = 'N/A') {
-    const displayValue = this.formatMetadataValue(value, fallback);
+  metadataCell(label, displayValue, fallback = 'N/A') {
+    const value = this.formatMetadataValue(displayValue, fallback);
 
     return `
       <div class="flex flex-col mb-2">
         <span class="text-[10px] uppercase tracking-widest text-[#8c734b]/70 font-semibold mb-[2px]">${label}</span>
-        <span class="text-sm text-[#e0e0e0] leading-tight">${displayValue}</span>
+        <span class="text-sm text-[#e0e0e0] leading-tight">${value}</span>
       </div>`;
   },
 
-  abilityCard({ name, summary, castSpeed, resourceDelta, range, baseValue, type, generativeIcon }) {
+  abilityCard({ name, summary, castSpeed, resourceDelta, range, baseValue, type, generativeIcon, cooldown, parsedTypes, tags }) {
     const metadataBlock = `
-      <div class="flex flex-col gap-1 mt-4">
-        <div class="flex flex-col gap-2 border-b border-white/5 pb-2 mb-2">
-          ${this.metadataCell('Cost', resourceDelta, 'None')}
-          ${this.metadataCell('Value', baseValue, 'N/A')}
-        </div>
-        <div class="flex flex-wrap gap-x-6 gap-y-2">
-          ${this.metadataCell('Cast', castSpeed, 'N/A')}
-          ${this.metadataCell('Range', range, 'N/A')}
+      <div class="mt-auto flex flex-col">
+        <hr class="border-t border-white/10 my-3">
+        <div class="flex flex-col gap-1">
+          <div class="flex flex-col gap-2 border-b border-white/5 pb-2 mb-2">
+            ${this.metadataCell('Cost', resourceDelta, 'None')}
+            ${this.metadataCell('Value', baseValue, 'N/A')}
+          </div>
+          <div class="flex flex-wrap gap-x-6 gap-y-2 border-b border-white/5 pb-2 mb-2">
+            ${this.metadataCell('Cast', castSpeed, 'N/A')}
+            ${this.metadataCell('Cooldown', cooldown, 'None')}
+          </div>
+          <div class="flex flex-col">
+            ${this.metadataCell('Range', range, 'N/A')}
+          </div>
         </div>
       </div>`;
 
@@ -723,14 +729,16 @@ const UI = {
           <h3 class="text-xl text-[#e0e0e0] font-cinzel font-bold">${name}</h3>
         </header>
         <div class="p-4 text-sm text-[#cccccc] leading-relaxed flex flex-col flex-1">
-          <div class="mt-1 mb-3">
-            <span class="inline-block px-2 py-[2px] rounded text-[10px] uppercase tracking-wider font-bold bg-[#8c734b]/20 text-[#cba86a] border border-[#8c734b]/40">${type || 'Ability'}</span>
+          <div class="flex flex-wrap gap-2 mt-1 mb-3">
+            ${parsedTypes.map(t => `
+              <span class="inline-block px-2 py-[2px] rounded text-[10px] uppercase tracking-wider font-bold bg-[#8c734b]/20 text-[#cba86a] border border-[#8c734b]/40">${t}</span>
+            `).join('')}
+            ${(tags || []).map(tag => `
+              <span class="inline-block px-2 py-[2px] rounded text-[10px] uppercase tracking-wider font-bold bg-[#cba86a]/10 text-[#cba86a] border border-[#cba86a]/30">${tag}</span>
+            `).join('')}
           </div>
           <p class="mb-3">${summary}</p>
-          <div class="mt-auto flex flex-col">
-            <hr class="border-t border-white/10 my-3">
-            ${metadataBlock}
-          </div>
+          ${metadataBlock}
         </div>
       </article>`;
   },
@@ -880,15 +888,38 @@ function abilityMatchesSearch(name, data, query) {
 }
 
 function mapAbilityToCardView(name, data) {
+  let cleanSummary = data.summary || 'No description provided.';
+  let cooldown = null;
+  let tags = [];
+
+  const cooldownMatch = cleanSummary.match(/(\d+(?:\.\d+)?s)\s+Cooldown\.?\s*/i);
+  if (cooldownMatch) {
+    cooldown = cooldownMatch[1];
+    cleanSummary = cleanSummary.replace(/(\d+(?:\.\d+)?s)\s+Cooldown\.?\s*/i, '').trim();
+  }
+
+  const tagMatch = cleanSummary.match(/\(([^)]+)\)\s*$/);
+  if (tagMatch) {
+    tags = tagMatch[1].split(',').map(tag => tag.trim()).filter(Boolean);
+    cleanSummary = cleanSummary.replace(/\(([^)]+)\)\s*$/, '').trim();
+  }
+
+  const parsedTypes = data.type
+    ? data.type.replace(/[()]/g, '/').split('/').map(typePart => typePart.trim()).filter(Boolean)
+    : ['Ability'];
+
   return {
     name,
-    summary: data.summary || 'No description provided.',
+    summary: cleanSummary,
     castSpeed: data.cast_speed || null,
     resourceDelta: data.resource_delta || null,
     range: data.range || null,
     baseValue: data.base_value || null,
     type: data.type || null,
-    generativeIcon: data.generative_icon || null
+    generativeIcon: data.generative_icon || null,
+    cooldown,
+    tags,
+    parsedTypes
   };
 }
 

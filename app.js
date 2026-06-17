@@ -711,7 +711,6 @@ const UI = {
         <div class="flex flex-wrap gap-x-6 gap-y-2">
           ${this.metadataCell('Cast', castSpeed, 'N/A')}
           ${this.metadataCell('Range', range, 'N/A')}
-          ${this.metadataCell('Type', type, 'N/A')}
         </div>
       </div>`;
 
@@ -724,7 +723,11 @@ const UI = {
           <h3 class="text-xl text-[#e0e0e0] font-cinzel font-bold">${name}</h3>
         </header>
         <div class="p-4 text-sm text-[#cccccc] leading-relaxed">
+          <div class="mt-1 mb-3">
+            <span class="inline-block px-2 py-[2px] rounded text-[10px] uppercase tracking-wider font-bold bg-[#8c734b]/20 text-[#cba86a] border border-[#8c734b]/40">${type || 'Ability'}</span>
+          </div>
           <p class="mb-3">${summary}</p>
+          <hr class="border-t border-white/10 my-3">
           ${metadataBlock}
         </div>
       </article>`;

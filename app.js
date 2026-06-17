@@ -1252,7 +1252,7 @@ function renderAbilities() {
 
     visibleTreeCount += 1;
     const useClassTheme = tree.name === CLASS_ABILITY_TREE;
-    const expanded = Boolean(searchQuery) || (!useClassTheme && treeIndex === 0);
+    const expanded = Boolean(searchQuery) || Boolean(activeFilter) || (!useClassTheme && treeIndex === 0);
     const palette = getAccordionPalette(tree.name, selectedClass);
 
     const cardsHtml = filteredAbilities

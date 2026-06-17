@@ -613,9 +613,7 @@ function getAbilityIcon(type, generativeIcon) {
 
 const UI = {
   icons: {
-    chevron: (expanded) => `<svg class="w-6 h-6 transform transition-transform duration-300 chevron${expanded ? ' rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>`,
-    clock: `<svg class="w-4 h-4 metadata-icon-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>`,
-    cost: `<svg class="w-4 h-4 metadata-icon-accent" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path clip-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" fill-rule="evenodd"></path></svg>`
+    chevron: (expanded) => `<svg class="w-6 h-6 transform transition-transform duration-300 chevron${expanded ? ' rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>`
   },
 
   emptyState(message) {
@@ -693,24 +691,28 @@ const UI = {
     return value;
   },
 
-  metadataCell(iconHtml, label, value, fallback = 'N/A') {
+  metadataCell(label, value, fallback = 'N/A') {
     const displayValue = this.formatMetadataValue(value, fallback);
 
     return `
-      <div class="flex items-center gap-2 min-w-0">
-        ${iconHtml}
-        <span class="truncate">${label}: <span class="text-white">${displayValue}</span></span>
+      <div class="flex flex-col mb-2">
+        <span class="text-[10px] uppercase tracking-widest text-[#8c734b]/70 font-semibold mb-[2px]">${label}</span>
+        <span class="text-sm text-[#e0e0e0] leading-tight">${displayValue}</span>
       </div>`;
   },
 
   abilityCard({ name, summary, castSpeed, resourceDelta, range, baseValue, type, generativeIcon }) {
     const metadataBlock = `
-      <div class="grid grid-cols-2 gap-x-3 gap-y-2 text-[13px] text-[#a0a0a5]">
-        ${this.metadataCell(this.icons.cost, 'Cost', resourceDelta, 'None')}
-        ${this.metadataCell(this.icons.cost, 'Value', baseValue, 'N/A')}
-        ${this.metadataCell(this.icons.clock, 'Cast', castSpeed, 'N/A')}
-        ${this.metadataCell(this.icons.clock, 'Range', range, 'N/A')}
-        ${this.metadataCell(this.icons.clock, 'Type', type, 'N/A')}
+      <div class="flex flex-col gap-1 mt-4">
+        <div class="flex flex-col gap-2 border-b border-white/5 pb-2 mb-2">
+          ${this.metadataCell('Cost', resourceDelta, 'None')}
+          ${this.metadataCell('Value', baseValue, 'N/A')}
+        </div>
+        <div class="flex flex-wrap gap-x-6 gap-y-2">
+          ${this.metadataCell('Cast', castSpeed, 'N/A')}
+          ${this.metadataCell('Range', range, 'N/A')}
+          ${this.metadataCell('Type', type, 'N/A')}
+        </div>
       </div>`;
 
     return `
@@ -723,7 +725,6 @@ const UI = {
         </header>
         <div class="p-4 text-sm text-[#cccccc] leading-relaxed">
           <p class="mb-3">${summary}</p>
-          <hr class="ability-card-divider border-t opacity-40 my-3">
           ${metadataBlock}
         </div>
       </article>`;

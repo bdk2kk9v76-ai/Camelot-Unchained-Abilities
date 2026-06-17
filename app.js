@@ -851,7 +851,7 @@ function setupAccordionListeners(container) {
 
 async function init() {
   try {
-    const response = await fetch('./data.json');
+    const response = await fetch('./data.json?v=' + new Date().getTime());
     if (!response.ok) throw new Error('Failed to retrieve file data payload.');
     database = await response.json();
 

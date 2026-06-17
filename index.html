@@ -168,23 +168,18 @@
             border-bottom: 1px solid var(--tree-accent-muted, var(--gold-dark));
         }
 
-        #class-select {
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23cba86a'%3E%3Cpath fill-rule='evenodd' d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' clip-rule='evenodd'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.5rem center;
-            background-size: 1rem;
-            padding-right: 2rem;
-        }
-
-        #class-select:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
-        }
-
         #search-input:disabled {
             opacity: 0.45;
             cursor: not-allowed;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
         }
 
         ::-webkit-scrollbar {
@@ -208,12 +203,10 @@
 
     <main class="px-4 sm:px-6 lg:px-8 pt-[var(--top-bar-height)] pb-[max(1rem,env(safe-area-inset-bottom))]">
         <div class="max-w-5xl mx-auto w-full flex flex-col items-start">
-            <div id="active-class-hero" class="hidden mt-6 mb-6 w-full"></div>
+            <div id="class-nav-row" class="w-full flex overflow-x-auto gap-3 pb-2 mb-4 scrollbar-hide hidden mt-6"></div>
+            <div id="active-class-hero" class="hidden mb-6 w-full"></div>
             <div id="search-bar-container" class="hidden mb-6 w-full">
                 <div class="flex flex-col sm:flex-row gap-4">
-                    <select id="class-select" aria-label="Select class" class="w-full sm:w-auto sm:min-w-[11rem] border border-[#8c734b] ring-2 ring-transparent rounded px-3 py-2 text-sm text-[#cba86a] bg-[#1e1e24] cursor-pointer transition-all duration-200 ease-in-out hover:border-[#cba86a] focus:outline-none focus:border-[#cba86a] focus:ring-[#cba86a]/40">
-                        <option value="">Classes</option>
-                    </select>
                     <div class="group/search relative flex-1 min-w-0 rounded transition-all duration-200 ease-in-out focus-within:ring-2 focus-within:ring-[#cba86a]/35">
                         <input type="text" id="search-input" disabled placeholder="Search class abilities and metadata..." class="border border-[#8c734b] ring-2 ring-transparent rounded px-3 py-2 pl-9 text-sm text-[#e0e0e0] bg-[#1e1e24] w-full transition-all duration-200 ease-in-out focus:outline-none focus:border-[#cba86a] focus:ring-transparent placeholder:text-[#8c734b] disabled:opacity-45 disabled:cursor-not-allowed"/>
                         <svg class="w-4 h-4 text-[#8c734b] group-focus-within/search:text-[#cba86a] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none transition-colors duration-200 ease-in-out" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
@@ -226,6 +219,7 @@
                         <span class="export-ai-label">Copy for AI</span>
                     </button>
                 </div>
+                <div id="filter-container" class="flex flex-wrap gap-2 mt-4 hidden"></div>
             </div>
             <div id="accordion-container" class="w-full self-start space-y-4 pb-4">
             </div>

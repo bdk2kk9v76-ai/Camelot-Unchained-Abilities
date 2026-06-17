@@ -1,15 +1,17 @@
 let database = [];
 let selectedClass = '';
 let searchQuery = '';
+let activeFilter = '';
 
 const elements = {
   homeLogo: document.getElementById('home-logo'),
-  classSelect: document.getElementById('class-select'),
+  classNavRow: document.getElementById('class-nav-row'),
   activeClassHero: document.getElementById('active-class-hero'),
   searchBarContainer: document.getElementById('search-bar-container'),
   searchInput: document.getElementById('search-input'),
   clearSearch: document.getElementById('clear-search'),
   exportAiBtn: document.getElementById('export-ai-btn'),
+  filterContainer: document.getElementById('filter-container'),
   accordionContainer: document.getElementById('accordion-container')
 };
 
@@ -512,6 +514,49 @@ function hideActiveClassHero() {
   elements.activeClassHero.classList.add('hidden');
 }
 
+function navClassCard(className, meta, isActive) {
+  const themeColor = getClassThemeColor(meta);
+  const themeTint = getClassThemeTint(meta);
+
+  if (isActive) {
+    return `
+      <button type="button" data-class="${className}" class="class-nav-btn flex items-center gap-2 px-4 py-2 rounded transition-all duration-300 shrink-0 focus:outline-none text-white" style="border: 1px solid ${themeColor}; background-color: ${themeTint}; box-shadow: 0 0 12px ${themeColor}40;">
+        <img src="${meta.icon || ''}" alt="" class="w-6 h-6 rounded object-cover shrink-0 border" style="border-color: ${themeColor};" onerror="this.style.display='none'"/>
+        <span class="font-cinzel text-sm whitespace-nowrap tracking-wider font-bold" style="color: ${themeColor}; text-shadow: 0 0 8px ${themeColor}80;">${className}</span>
+      </button>`;
+  } else {
+    return `
+      <button type="button" data-class="${className}" class="class-nav-btn group flex items-center gap-2 px-4 py-2 rounded border border-[#8c734b]/30 bg-[#1e1e24]/80 text-[#a0a0a5] transition-all duration-300 shrink-0 focus:outline-none hover:text-white hover:border-[var(--hover-theme)] hover:bg-[var(--hover-tint)] hover:shadow-[0_0_12px_var(--hover-shadow)]" style="--hover-theme: ${themeColor}; --hover-tint: ${themeTint}; --hover-shadow: ${themeColor}40;">
+        <img src="${meta.icon || ''}" alt="" class="w-6 h-6 rounded object-cover shrink-0 border border-white/10 transition-colors duration-300 group-hover:border-[var(--hover-theme)]" onerror="this.style.display='none'"/>
+        <span class="font-cinzel text-sm whitespace-nowrap tracking-wider font-bold transition-colors duration-300 group-hover:text-[var(--hover-theme)]">${className}</span>
+      </button>`;
+  }
+}
+
+function renderClassNavRow(activeClassName) {
+  const row = elements.classNavRow;
+  if (!row) return;
+
+  if (!activeClassName) {
+    row.classList.add('hidden');
+    row.innerHTML = '';
+    return;
+  }
+
+  row.classList.remove('hidden');
+
+  const cards = [];
+  [...database].sort((a, b) => a.faction.localeCompare(b.faction)).forEach(factionData => {
+    const classNodes = [...(factionData.classes || [])].sort((a, b) => a.class.localeCompare(b.class));
+    classNodes.forEach(classObj => {
+      const meta = getClassMetadata(classObj.class);
+      cards.push(navClassCard(classObj.class, meta, classObj.class === activeClassName));
+    });
+  });
+
+  row.innerHTML = cards.join('');
+}
+
 function selectClass(className) {
   if (selectedClass !== className) {
     searchQuery = '';
@@ -520,7 +565,8 @@ function selectClass(className) {
   }
 
   selectedClass = className;
-  elements.classSelect.value = className;
+  activeFilter = '';
+  renderClassNavRow(className);
   elements.searchInput.disabled = false;
   elements.clearSearch.disabled = false;
   elements.searchInput.placeholder = 'Search class abilities and metadata...';
@@ -531,7 +577,8 @@ function selectClass(className) {
 function resetClassSelection() {
   selectedClass = '';
   searchQuery = '';
-  elements.classSelect.value = '';
+  activeFilter = '';
+  renderClassNavRow('');
   elements.searchInput.value = '';
   elements.searchInput.disabled = true;
   elements.clearSearch.disabled = true;
@@ -878,19 +925,78 @@ Do NOT invent game mechanics, global cooldowns, or math formulas. Base your logi
 }
 
 function abilityMatchesSearch(name, data, query) {
-  if (!query) return true;
+  const matchesText = !query
+    || name.toLowerCase().includes(query)
+    || (data.type && data.type.toLowerCase().includes(query))
+    || (data.summary && data.summary.toLowerCase().includes(query));
 
-  const matchName = name.toLowerCase().includes(query);
-  const matchType = data.type ? data.type.toLowerCase().includes(query) : false;
-  const matchSummary = data.summary ? data.summary.toLowerCase().includes(query) : false;
+  if (!matchesText) return false;
+  if (!activeFilter) return true;
 
-  return matchName || matchType || matchSummary;
+  const parsedTypes = parseAbilityTypes(data);
+  const tags = parseAbilityTagsFromSummary(data.summary);
+  return [...parsedTypes, ...tags].includes(activeFilter);
+}
+
+function parseAbilityTagsFromSummary(summary) {
+  let cleanSummary = summary || '';
+
+  const cooldownMatch = cleanSummary.match(/(\d+(?:\.\d+)?s)\s+Cooldown\.?\s*/i);
+  if (cooldownMatch) {
+    cleanSummary = cleanSummary.replace(/(\d+(?:\.\d+)?s)\s+Cooldown\.?\s*/i, '').trim();
+  }
+
+  const tagMatch = cleanSummary.match(/\(([^)]+)\)\s*$/);
+  if (!tagMatch) return [];
+
+  return tagMatch[1].split(',').map(tag => tag.trim()).filter(Boolean);
+}
+
+function parseAbilityTypes(data) {
+  return data.type
+    ? data.type.replace(/[()]/g, '/').split('/').map(typePart => typePart.trim()).filter(Boolean)
+    : ['Ability'];
+}
+
+function getAvailableFilters(classData) {
+  const filters = new Set();
+
+  (classData.trees || []).forEach(tree => {
+    Object.values(tree.abilities || {}).forEach(ability => {
+      parseAbilityTypes(ability).forEach(type => filters.add(type));
+      parseAbilityTagsFromSummary(ability.summary).forEach(tag => filters.add(tag));
+    });
+  });
+
+  return [...filters].sort((a, b) => a.localeCompare(b));
+}
+
+function renderFilters(classData) {
+  const container = elements.filterContainer;
+  if (!container) return;
+
+  const filters = classData ? getAvailableFilters(classData) : [];
+
+  if (!classData || filters.length === 0) {
+    container.classList.add('hidden');
+    container.innerHTML = '';
+    return;
+  }
+
+  container.classList.remove('hidden');
+  container.innerHTML = filters.map(filter => {
+    const isActive = filter === activeFilter;
+    const stateClasses = isActive
+      ? 'bg-[#cba86a] text-[#121214] border-[#cba86a] shadow-[0_0_8px_rgba(203,168,106,0.4)]'
+      : 'bg-[#1e1e24] text-[#a0a0a5] border-[#8c734b]/40 hover:border-[#cba86a]/60 hover:text-[#cba86a]';
+
+    return `<button type="button" data-filter="${filter}" class="filter-btn px-3 py-1 rounded text-[10px] uppercase tracking-wider font-bold transition-all duration-200 cursor-pointer border focus:outline-none ${stateClasses}">${filter}</button>`;
+  }).join('');
 }
 
 function mapAbilityToCardView(name, data) {
   let cleanSummary = data.summary || 'No description provided.';
   let cooldown = null;
-  let tags = [];
 
   const cooldownMatch = cleanSummary.match(/(\d+(?:\.\d+)?s)\s+Cooldown\.?\s*/i);
   if (cooldownMatch) {
@@ -898,15 +1004,12 @@ function mapAbilityToCardView(name, data) {
     cleanSummary = cleanSummary.replace(/(\d+(?:\.\d+)?s)\s+Cooldown\.?\s*/i, '').trim();
   }
 
-  const tagMatch = cleanSummary.match(/\(([^)]+)\)\s*$/);
-  if (tagMatch) {
-    tags = tagMatch[1].split(',').map(tag => tag.trim()).filter(Boolean);
+  const tags = parseAbilityTagsFromSummary(cleanSummary);
+  if (tags.length > 0) {
     cleanSummary = cleanSummary.replace(/\(([^)]+)\)\s*$/, '').trim();
   }
 
-  const parsedTypes = data.type
-    ? data.type.replace(/[()]/g, '/').split('/').map(typePart => typePart.trim()).filter(Boolean)
-    : ['Ability'];
+  const parsedTypes = parseAbilityTypes(data);
 
   return {
     name,
@@ -1010,7 +1113,6 @@ async function init() {
     if (elements.clearSearch) elements.clearSearch.disabled = true;
 
     setupTopBarHeightSync();
-    populateClassDropdown();
     setupEventListeners();
     renderAbilities();
   } catch (error) {
@@ -1034,35 +1136,21 @@ function setupTopBarHeightSync() {
   }
 }
 
-function populateClassDropdown() {
-  elements.classSelect.innerHTML = '<option value="">Classes</option>';
-
-  database.sort((a, b) => a.faction.localeCompare(b.faction)).forEach(factionData => {
-    const optGroup = document.createElement('optgroup');
-    optGroup.label = factionData.faction;
-
-    const classNodes = factionData.classes || [];
-    classNodes.sort((a, b) => a.class.localeCompare(b.class));
-
-    classNodes.forEach(classObj => {
-      const option = document.createElement('option');
-      option.value = classObj.class;
-      option.textContent = classObj.class;
-      optGroup.appendChild(option);
-    });
-
-    elements.classSelect.appendChild(optGroup);
-  });
-}
-
 function setupEventListeners() {
   elements.homeLogo.addEventListener('click', resetClassSelection);
 
-  elements.classSelect.addEventListener('change', (e) => {
-    if (e.target.value) {
-      selectClass(e.target.value);
-    } else {
-      resetClassSelection();
+  elements.classNavRow.addEventListener('click', (e) => {
+    const btn = e.target.closest('.class-nav-btn');
+    if (!btn) return;
+
+    const className = btn.dataset.class;
+    if (!className) return;
+
+    selectClass(className);
+
+    const activeBtn = elements.classNavRow.querySelector(`[data-class="${CSS.escape(className)}"]`);
+    if (activeBtn) {
+      activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
   });
 
@@ -1084,6 +1172,17 @@ function setupEventListeners() {
     elements.clearSearch.classList.add('hidden');
     elements.searchInput.focus();
 
+    renderAbilities();
+  });
+
+  elements.filterContainer.addEventListener('click', (e) => {
+    const btn = e.target.closest('.filter-btn');
+    if (!btn) return;
+
+    const filter = btn.dataset.filter;
+    if (!filter) return;
+
+    activeFilter = filter === activeFilter ? '' : filter;
     renderAbilities();
   });
 
@@ -1124,6 +1223,7 @@ function renderAbilities() {
   if (!selectedClass) {
     clearContainerPalette();
     hideActiveClassHero();
+    renderFilters(null);
     const factions = [...database].sort((a, b) => a.faction.localeCompare(b.faction));
     elements.accordionContainer.innerHTML = UI.classSelectionGrid(factions);
     setupClassCardListeners(elements.accordionContainer);
@@ -1135,6 +1235,8 @@ function renderAbilities() {
 
   const classData = findClassData(selectedClass);
   if (!classData || !classData.trees) return;
+
+  renderFilters(classData);
 
   const classMeta = getClassMetadata(selectedClass);
   const { themeColor } = getClassThemeStyles(classMeta);

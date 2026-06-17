@@ -643,7 +643,7 @@ const UI = {
         const heroPosition = getHeroPositionClass(meta);
 
         return `
-        <button type="button" class="class-card overflow-hidden flex flex-col w-full text-left rounded-lg" style="${classThemeInlineStyle(themeColor, themeTint)} --tree-accent: ${themeColor}; --tree-accent-muted: ${themeColor};" data-class-name="${classObj.class}">
+        <button type="button" class="class-card overflow-hidden flex flex-col w-full text-left rounded-lg transition-all duration-200 ease-in-out focus:outline-none" style="${classThemeInlineStyle(themeColor, themeTint)} --tree-accent: ${themeColor}; --tree-accent-muted: ${themeColor};" data-class-name="${classObj.class}">
           <div class="relative overflow-hidden rounded-t-lg">
             <img src="${meta.img}" class="w-full h-64 object-cover ${heroPosition}" alt="${classObj.class} banner" onerror="this.style.display='none'">
             <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#121214] to-transparent pointer-events-none"></div>
@@ -723,9 +723,10 @@ const UI = {
 
   accordionItem({ treeName, cardsHtml, expanded, useClassTheme, palette, themeColor }) {
     const stickyClasses = 'sticky top-[var(--top-bar-height)] z-10';
+    const interactiveClasses = 'transition-all duration-200 ease-in-out focus:outline-none';
     const btnClasses = expanded
-      ? `accordion-btn active ${stickyClasses} w-full flex justify-between items-center px-4 py-3 rounded-t-sm`
-      : `accordion-btn ${stickyClasses} w-full flex justify-between items-center px-4 py-3 rounded-sm`;
+      ? `accordion-btn active ${stickyClasses} ${interactiveClasses} w-full flex justify-between items-center px-4 py-3 rounded-t-sm`
+      : `accordion-btn ${stickyClasses} ${interactiveClasses} w-full flex justify-between items-center px-4 py-3 rounded-sm`;
     const contentStyle = expanded ? 'max-height: 1000px;' : 'max-height: 0;';
     const itemPalette = useClassTheme ? getClassAbilityPalette(themeColor) : palette;
 
@@ -791,45 +792,67 @@ function compileClassAbilitiesForExport(classData) {
   return sections.join('\n\n');
 }
 
-const EXPORT_AI_COPIED_ICON = '<svg class="w-4 h-4 export-ai-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
-let exportAiButtonDefaultHtml = '';
-
-function showExportAiCopiedFeedback() {
-  const btn = elements.exportAiBtn;
-  if (!btn) return;
-
-  if (!exportAiButtonDefaultHtml) {
-    exportAiButtonDefaultHtml = btn.innerHTML;
+async function copyTextToClipboard(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch (error) {
+      // Fall through to legacy copy for mobile and permission-denied cases.
+    }
   }
 
-  btn.innerHTML = `${EXPORT_AI_COPIED_ICON}<span class="export-ai-label">Copied!</span>`;
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.setAttribute('readonly', '');
+  textarea.style.position = 'fixed';
+  textarea.style.left = '-999999px';
+  textarea.style.top = '-999999px';
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
 
-  setTimeout(() => {
-    btn.innerHTML = exportAiButtonDefaultHtml;
-  }, 2000);
+  try {
+    const copied = document.execCommand('copy');
+    if (!copied) {
+      throw new Error('document.execCommand("copy") returned false');
+    }
+  } finally {
+    document.body.removeChild(textarea);
+  }
 }
 
-async function exportClassForAI() {
-  if (!selectedClass) return;
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.className = 'fixed bottom-6 right-1/2 translate-x-1/2 sm:translate-x-0 sm:right-6 bg-[#1e1e24] text-[#cba86a] border border-[#8c734b] px-4 py-2 rounded shadow-xl z-[100] opacity-0 transition-opacity duration-300 pointer-events-none font-cinzel tracking-wide';
+  toast.textContent = message;
+  document.body.appendChild(toast);
 
-  const classData = findClassData(selectedClass);
-  if (!classData || !classData.trees) return;
+  setTimeout(() => {
+    toast.classList.replace('opacity-0', 'opacity-100');
+  }, 10);
 
+  setTimeout(() => {
+    toast.classList.replace('opacity-100', 'opacity-0');
+  }, 2500);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 2800);
+}
+
+const EXPORT_AI_COPIED_ICON = '<svg class="w-4 h-4 export-ai-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+
+function buildClassExportPrompt(className, classData) {
   const abilityData = compileClassAbilitiesForExport(classData);
-  const prompt = `Act as an expert MMORPG theorycrafter. I am playing the ${selectedClass} class. Below is my complete list of abilities and their resource costs, cast times, and effects. 
+
+  return `Act as an expert MMORPG theorycrafter. I am playing the ${className} class. Below is my complete list of abilities and their resource costs, cast times, and effects. 
 Analyze these abilities and provide:
 1. A logical rotation or priority list for maximizing effectiveness.
 2. How to manage the specific resource generation/spending loop for this class.
 3. Synergies between abilities (e.g., applying a specific debuff before a high-damage execute).
 Do NOT invent game mechanics, global cooldowns, or math formulas. Base your logic strictly on the text provided.
 [INSERT ABILITY DATA HERE]`.replace('[INSERT ABILITY DATA HERE]', abilityData);
-
-  try {
-    await navigator.clipboard.writeText(prompt);
-    showExportAiCopiedFeedback();
-  } catch (error) {
-    console.error('Clipboard copy failed:', error);
-  }
 }
 
 function abilityMatchesSearch(name, data, query) {
@@ -1020,8 +1043,28 @@ function setupEventListeners() {
   });
 
   if (elements.exportAiBtn) {
-    exportAiButtonDefaultHtml = elements.exportAiBtn.innerHTML;
-    elements.exportAiBtn.addEventListener('click', exportClassForAI);
+    elements.exportAiBtn.addEventListener('click', async () => {
+      if (!selectedClass) return;
+
+      const btn = elements.exportAiBtn;
+      const originalHtml = btn.innerHTML;
+
+      const classData = findClassData(selectedClass);
+      if (!classData || !classData.trees) return;
+
+      const compiledText = buildClassExportPrompt(selectedClass, classData);
+
+      try {
+        await copyTextToClipboard(compiledText);
+        btn.innerHTML = `${EXPORT_AI_COPIED_ICON}<span class="export-ai-label">Copied!</span>`;
+        showToast('Class data copied to clipboard!');
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+        }, 2000);
+      } catch (error) {
+        console.error('Clipboard copy failed:', error);
+      }
+    });
   }
 }
 

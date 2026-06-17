@@ -9,6 +9,7 @@ const elements = {
   searchBarContainer: document.getElementById('search-bar-container'),
   searchInput: document.getElementById('search-input'),
   clearSearch: document.getElementById('clear-search'),
+  exportAiBtn: document.getElementById('export-ai-btn'),
   accordionContainer: document.getElementById('accordion-container')
 };
 
@@ -749,6 +750,88 @@ function findClassData(className) {
   return null;
 }
 
+function formatExportValue(value, fallback = 'N/A') {
+  if (value === null || value === undefined || value === '') {
+    return fallback;
+  }
+  return value;
+}
+
+function extractCooldownFromSummary(summary) {
+  if (!summary) return 'N/A';
+
+  const match = summary.match(/(\d+\.?\d*s)\s*Cooldown/i);
+  return match ? match[1] : 'N/A';
+}
+
+function formatAbilityForExport(name, data) {
+  return [
+    `Name: ${name}`,
+    `Type: ${formatExportValue(data.type)}`,
+    `Cost: ${formatExportValue(data.resource_delta, 'None')}`,
+    `Cast Speed: ${formatExportValue(data.cast_speed)}`,
+    `Cooldown: ${extractCooldownFromSummary(data.summary)}`,
+    `Summary: ${formatExportValue(data.summary, 'No description provided.')}`
+  ].join('\n');
+}
+
+function compileClassAbilitiesForExport(classData) {
+  const sections = [];
+
+  (classData.trees || []).forEach(tree => {
+    const abilities = Object.entries(tree.abilities || {}).map(([name, data]) =>
+      formatAbilityForExport(name, data)
+    );
+
+    if (abilities.length > 0) {
+      sections.push(`## ${tree.name}\n\n${abilities.join('\n\n')}`);
+    }
+  });
+
+  return sections.join('\n\n');
+}
+
+const EXPORT_AI_COPIED_ICON = '<svg class="w-4 h-4 export-ai-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>';
+let exportAiButtonDefaultHtml = '';
+
+function showExportAiCopiedFeedback() {
+  const btn = elements.exportAiBtn;
+  if (!btn) return;
+
+  if (!exportAiButtonDefaultHtml) {
+    exportAiButtonDefaultHtml = btn.innerHTML;
+  }
+
+  btn.innerHTML = `${EXPORT_AI_COPIED_ICON}<span class="export-ai-label">Copied!</span>`;
+
+  setTimeout(() => {
+    btn.innerHTML = exportAiButtonDefaultHtml;
+  }, 2000);
+}
+
+async function exportClassForAI() {
+  if (!selectedClass) return;
+
+  const classData = findClassData(selectedClass);
+  if (!classData || !classData.trees) return;
+
+  const abilityData = compileClassAbilitiesForExport(classData);
+  const prompt = `Act as an expert MMORPG theorycrafter. I am playing the ${selectedClass} class. Below is my complete list of abilities and their resource costs, cast times, and effects. 
+Analyze these abilities and provide:
+1. A logical rotation or priority list for maximizing effectiveness.
+2. How to manage the specific resource generation/spending loop for this class.
+3. Synergies between abilities (e.g., applying a specific debuff before a high-damage execute).
+Do NOT invent game mechanics, global cooldowns, or math formulas. Base your logic strictly on the text provided.
+[INSERT ABILITY DATA HERE]`.replace('[INSERT ABILITY DATA HERE]', abilityData);
+
+  try {
+    await navigator.clipboard.writeText(prompt);
+    showExportAiCopiedFeedback();
+  } catch (error) {
+    console.error('Clipboard copy failed:', error);
+  }
+}
+
 function abilityMatchesSearch(name, data, query) {
   if (!query) return true;
 
@@ -935,6 +1018,11 @@ function setupEventListeners() {
 
     renderAbilities();
   });
+
+  if (elements.exportAiBtn) {
+    exportAiButtonDefaultHtml = elements.exportAiBtn.innerHTML;
+    elements.exportAiBtn.addEventListener('click', exportClassForAI);
+  }
 }
 
 function clearContainerPalette() {

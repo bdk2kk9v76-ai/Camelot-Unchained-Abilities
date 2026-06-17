@@ -499,6 +499,11 @@ function renderActiveClassHero(className) {
 
   elements.activeClassHero.innerHTML = UI.activeClassHeroBanner(className, meta);
   elements.activeClassHero.classList.remove('hidden');
+
+  const closeBtn = document.getElementById('close-class-hero');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', resetClassSelection);
+  }
 }
 
 function hideActiveClassHero() {
@@ -625,6 +630,9 @@ const UI = {
       <div class="relative w-full h-64 rounded-lg overflow-hidden border shadow-lg" style="border-color: ${themeColor};">
         <img src="${meta.img}" alt="${className} banner" class="absolute inset-0 w-full h-full object-cover ${heroPosition}" onerror="this.style.display='none'"/>
         <div class="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-950/90 to-transparent pointer-events-none"></div>
+        <button type="button" id="close-class-hero" aria-label="Close class view" class="absolute top-4 right-4 z-20 p-2 text-[#a0a0a5] hover:text-[#cba86a] transition-colors focus:outline-none focus:ring-1 focus:ring-[#cba86a] rounded-sm bg-gray-950/40 hover:bg-gray-950/60 backdrop-blur-sm border border-[#8c734b]/30 hover:border-[#cba86a]/60">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
         <div class="relative h-full flex flex-col justify-end p-8 w-3/4 md:w-2/3">
           <h2 class="font-cinzel text-2xl sm:text-3xl font-bold mb-2" style="color: ${themeColor};">${className}</h2>
           <p class="text-sm text-[#d0d0d5] leading-relaxed">${meta.desc}</p>

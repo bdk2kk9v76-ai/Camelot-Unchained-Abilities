@@ -715,20 +715,22 @@ const UI = {
       </div>`;
 
     return `
-      <article class="ability-card p-0 m-1 relative overflow-hidden">
+      <article class="ability-card p-0 m-1 relative overflow-hidden flex flex-col h-full">
         <header class="card-header-bg flex items-center p-3">
           <div class="ability-icon hidden w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4">
             ${getAbilityIcon(type, generativeIcon)}
           </div>
           <h3 class="text-xl text-[#e0e0e0] font-cinzel font-bold">${name}</h3>
         </header>
-        <div class="p-4 text-sm text-[#cccccc] leading-relaxed">
+        <div class="p-4 text-sm text-[#cccccc] leading-relaxed flex flex-col flex-1">
           <div class="mt-1 mb-3">
             <span class="inline-block px-2 py-[2px] rounded text-[10px] uppercase tracking-wider font-bold bg-[#8c734b]/20 text-[#cba86a] border border-[#8c734b]/40">${type || 'Ability'}</span>
           </div>
           <p class="mb-3">${summary}</p>
-          <hr class="border-t border-white/10 my-3">
-          ${metadataBlock}
+          <div class="mt-auto flex flex-col">
+            <hr class="border-t border-white/10 my-3">
+            ${metadataBlock}
+          </div>
         </div>
       </article>`;
   },

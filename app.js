@@ -92,29 +92,16 @@ function getClassThemeTint(meta) {
   return `${getClassThemeColor(meta)}1a`;
 }
 
-function getClassThemeDeepTint(meta) {
-  return `${getClassThemeColor(meta)}0D`;
-}
-
 function getClassThemeStyles(meta) {
   const themeColor = getClassThemeColor(meta);
   return {
     themeColor,
-    themeTint: getClassThemeTint(meta),
-    themeDeepTint: getClassThemeDeepTint(meta)
+    themeTint: getClassThemeTint(meta)
   };
 }
 
 function classThemeInlineStyle(themeColor, themeTint) {
   return `border-color: ${themeColor}; background-color: ${themeTint}; background-image: none;`;
-}
-
-function classThemeBorderStyle(themeColor) {
-  return `border-color: ${themeColor}; background-image: none; border-image: none;`;
-}
-
-function classThemeHeaderStyle(themeColor, themeTint) {
-  return `border-color: ${themeColor}; background-color: ${themeTint}; background-image: none; border-bottom: 1px solid ${themeColor};`;
 }
 
 function getHeroPositionClass(meta) {
@@ -123,15 +110,6 @@ function getHeroPositionClass(meta) {
 
 function getActiveHeroPositionClass(meta) {
   return meta.active_hero_position || meta.hero_position || DEFAULT_CLASS_METADATA.active_hero_position;
-}
-
-function getClassAbbreviation(className) {
-  return className
-    .split(/\s+/)
-    .filter(Boolean)
-    .map(word => word.charAt(0))
-    .join('')
-    .toUpperCase();
 }
 
 const DEFAULT_TREE_PALETTE = {
@@ -576,6 +554,24 @@ function paletteStyleVars(palette) {
   ].join(';');
 }
 
+function getClassAbilityPalette(themeColor) {
+  return {
+    accent: themeColor,
+    accentMuted: themeColor,
+    headerFrom: `${themeColor}26`,
+    headerTo: '#121214',
+    activeFrom: `${themeColor}40`,
+    activeTo: '#0e0e10',
+    contentBg: '#121214',
+    cardHeaderFrom: `${themeColor}33`,
+    borderFrom: themeColor,
+    borderMid: themeColor,
+    borderTo: '#2a2a2a',
+    iconFrom: '#121214',
+    iconTo: '#0e0e10'
+  };
+}
+
 const ABILITY_ICON_SVGS = {
   damage: `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M14.5 3.5l6 6-9 9H8v-3.5L14.5 3.5z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M3 21l4-4"/></svg>`,
   heal: `<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>`,
@@ -595,7 +591,9 @@ const TYPE_ICON_RULES = [
   { keywords: ['spell'], icon: 'spell' }
 ];
 
-function getAbilityIcon(type) {
+function getAbilityIcon(type, generativeIcon) {
+  if (generativeIcon) return generativeIcon;
+
   const normalized = (type || '').toLowerCase();
 
   for (const rule of TYPE_ICON_RULES) {
@@ -696,7 +694,7 @@ const UI = {
       </div>`;
   },
 
-  abilityCard({ name, summary, castSpeed, resourceDelta, range, baseValue, type, useClassTheme, themeColor, themeTint }) {
+  abilityCard({ name, summary, castSpeed, resourceDelta, range, baseValue, type, generativeIcon }) {
     const metadataBlock = `
       <div class="grid grid-cols-2 gap-x-3 gap-y-2 text-[13px] text-[#a0a0a5]">
         ${this.metadataCell(this.icons.cost, 'Cost', resourceDelta, 'None')}
@@ -706,63 +704,32 @@ const UI = {
         ${this.metadataCell(this.icons.clock, 'Type', type, 'N/A')}
       </div>`;
 
-    if (useClassTheme) {
-      return `
-      <div class="border rounded-md overflow-hidden" style="border-color: ${themeColor};">
-        <div class="flex items-center p-3 border-b" style="border-color: ${themeColor}; background-color: ${themeColor}1A;">
-          <div class="ability-icon w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-3 overflow-hidden p-1" style="border-color: ${themeColor}; color: ${themeColor};">
-            ${getAbilityIcon(type)}
-          </div>
-          <h3 class="text-xl text-[#e0e0e0] font-cinzel font-bold">${name}</h3>
-        </div>
-        <div class="ability-card-body p-4 text-sm text-[#cccccc] leading-relaxed">
-          <p class="mb-3">${summary}</p>
-          ${metadataBlock}
-        </div>
-      </div>`;
-    }
-
     return `
       <article class="ability-card p-0 m-1 relative overflow-hidden">
         <header class="card-header-bg flex items-center p-3">
-          <div class="ability-icon w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4">
-            ${getAbilityIcon(type)}
+          <div class="ability-icon hidden w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4">
+            ${getAbilityIcon(type, generativeIcon)}
           </div>
           <h3 class="text-xl text-[#e0e0e0] font-cinzel font-bold">${name}</h3>
         </header>
         <div class="p-4 text-sm text-[#cccccc] leading-relaxed">
           <p class="mb-3">${summary}</p>
+          <hr class="ability-card-divider border-t opacity-40 my-3">
           ${metadataBlock}
         </div>
       </article>`;
   },
 
-  accordionItem({ treeName, cardsHtml, expanded, useClassTheme, palette, themeColor, themeTint }) {
+  accordionItem({ treeName, cardsHtml, expanded, useClassTheme, palette, themeColor }) {
     const stickyClasses = 'sticky top-[var(--top-bar-height)] z-10';
     const btnClasses = expanded
       ? `accordion-btn active ${stickyClasses} w-full flex justify-between items-center px-4 py-3 rounded-t-sm`
       : `accordion-btn ${stickyClasses} w-full flex justify-between items-center px-4 py-3 rounded-sm`;
     const contentStyle = expanded ? 'max-height: 1000px;' : 'max-height: 0;';
-
-    if (useClassTheme) {
-      return `
-      <div class="accordion-item class-abilities-accordion mb-4 border rounded-md overflow-hidden" style="border-color: ${themeColor}; --tree-accent: ${themeColor}; --tree-accent-muted: ${themeColor};">
-        <button type="button" aria-expanded="${expanded}" class="accordion-btn class-abilities-accordion-header ${expanded ? 'active' : ''} w-full flex justify-between items-center p-3 border-b cursor-pointer text-left" style="border-color: ${themeColor}; background-color: ${themeColor}1A;">
-          <h3 class="text-lg font-cinzel font-bold tracking-widest uppercase" style="color: ${themeColor};">${treeName}</h3>
-          ${this.icons.chevron(expanded)}
-        </button>
-        <div class="accordion-content class-abilities-accordion-body overflow-hidden" style="${contentStyle} background-color: ${themeColor}05;">
-          <div class="p-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              ${cardsHtml}
-            </div>
-          </div>
-        </div>
-      </div>`;
-    }
+    const itemPalette = useClassTheme ? getClassAbilityPalette(themeColor) : palette;
 
     return `
-      <div class="accordion-item" style="${paletteStyleVars(palette)}">
+      <div class="accordion-item" style="${paletteStyleVars(itemPalette)}">
         <button type="button" aria-expanded="${expanded}" class="${btnClasses}">
           <span class="text-xl tree-title font-cinzel font-bold tracking-wider text-shadow">${treeName}</span>
           ${this.icons.chevron(expanded)}
@@ -800,7 +767,8 @@ function mapAbilityToCardView(name, data) {
     resourceDelta: data.resource_delta || null,
     range: data.range || null,
     baseValue: data.base_value || null,
-    type: data.type || null
+    type: data.type || null,
+    generativeIcon: data.generative_icon || null
   };
 }
 
@@ -993,7 +961,7 @@ function renderAbilities() {
   if (!classData || !classData.trees) return;
 
   const classMeta = getClassMetadata(selectedClass);
-  const { themeColor, themeTint } = getClassThemeStyles(classMeta);
+  const { themeColor } = getClassThemeStyles(classMeta);
   const accordionHtml = [];
   let visibleTreeCount = 0;
 
@@ -1005,17 +973,12 @@ function renderAbilities() {
     if (filteredAbilities.length === 0) return;
 
     visibleTreeCount += 1;
-    const expanded = Boolean(searchQuery) || treeIndex === 0;
     const useClassTheme = tree.name === CLASS_ABILITY_TREE;
+    const expanded = Boolean(searchQuery) || (!useClassTheme && treeIndex === 0);
     const palette = getAccordionPalette(tree.name, selectedClass);
 
     const cardsHtml = filteredAbilities
-      .map(([name, data]) => UI.abilityCard({
-        ...mapAbilityToCardView(name, data),
-        useClassTheme,
-        themeColor,
-        themeTint
-      }))
+      .map(([name, data]) => UI.abilityCard(mapAbilityToCardView(name, data)))
       .join('');
 
     accordionHtml.push(UI.accordionItem({
@@ -1024,8 +987,7 @@ function renderAbilities() {
       expanded,
       useClassTheme,
       palette,
-      themeColor,
-      themeTint
+      themeColor
     }));
   });
 

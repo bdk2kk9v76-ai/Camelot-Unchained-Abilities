@@ -5,11 +5,134 @@ let searchQuery = '';
 const elements = {
   homeLogo: document.getElementById('home-logo'),
   classSelect: document.getElementById('class-select'),
+  activeClassHero: document.getElementById('active-class-hero'),
   searchBarContainer: document.getElementById('search-bar-container'),
   searchInput: document.getElementById('search-input'),
   clearSearch: document.getElementById('clear-search'),
   accordionContainer: document.getElementById('accordion-container')
 };
+
+const DEFAULT_CLASS_METADATA = {
+  desc: 'A steadfast champion of the realm whose specialized ability trees define their role on the battlefield.',
+  img: './assets/class-placeholder.jpg',
+  icon: './assets/class-placeholder.jpg',
+  hero_position: 'object-top',
+  active_hero_position: 'object-top',
+  theme_color: '#8c734b'
+};
+
+const CLASS_METADATA = {
+  'Fianna': {
+    desc: 'Fianna are focused on single target damage, with higher health regeneration than their faction counterparts. They also punish enemies who attack them, dealing retaliatory damage.',
+    img: './assets/fianna-hero.png',
+    icon: './assets/fianna-icon.png',
+    hero_position: 'object-[50%_25%]',
+    active_hero_position: 'object-[50%_18%]',
+    theme_color: '#e08524'
+  },
+  'Red Cap': {
+    desc: 'Red Caps utilize strong poisons that apply Damage over Time to make enemies vulnerable. They move unpredictably with short cooldown speed boosts and shifts between the Veil.',
+    img: './assets/red-cap-hero.png',
+    icon: './assets/red-cap-icon.png',
+    hero_position: 'object-[50%_18%]',
+    active_hero_position: 'object-[50%_15%]',
+    theme_color: '#d42626'
+  },
+  'Forest Stalker': {
+    desc: 'Forest Stalker\'s Earth attacks allow for synergy with Earth Arcanists, delivering finishing attacks from range. They have Stealth abilities that prevent enemies from seeing them.',
+    img: './assets/forest-stalker-hero.png',
+    icon: './assets/forest-stalker-icon.png',
+    hero_position: 'object-[50%_35%]',
+    active_hero_position: 'object-[50%_27%]',
+    theme_color: '#2a8dd4'
+  },
+  'Druid': {
+    desc: 'Druids are capable of dealing extreme damage by spending large amounts of Mana at once. Poison damage and Void spells can cut down enemies, and they can resurrect fallen allies.',
+    img: './assets/druid-hero.png',
+    icon: './assets/druid-icon.png',
+    hero_position: 'object-[50%_25%]',
+    active_hero_position: 'object-[50%_22%]',
+    theme_color: '#3e9c4b'
+  },
+  'Empath': {
+    desc: 'Empaths can Link themself with an ally and enemy, empowering their abilities. Their DOT effects and ability to spend Health on powerful spells make them masters of engagements.',
+    img: './assets/empath-hero.png',
+    icon: './assets/empath-icon.png',
+    hero_position: 'object-[50%_25%]',
+    active_hero_position: 'object-[50%_20%]',
+    theme_color: '#9b4df0'
+  },
+  'Dark Fool': {
+    desc: 'Dark Fools leverage the most Panic, utilizing powerful Control effects that are more effective against weakened or Panicked opponents to deal additional Mind damage.',
+    img: './assets/dark-fool-hero.png',
+    icon: './assets/dark-fool-icon.png',
+    hero_position: 'object-[50%_28%]',
+    active_hero_position: 'object-[50%_20%]',
+    theme_color: '#d0db42'
+  },
+  'Blessed Crow': {
+    desc: 'Blessed Crows utilize magic Cauldrons to create areas of powerful buffs and healing that also damage their enemies. Fighting them on their own terms is usually a losing prospect.',
+    img: './assets/blessed-crow-hero.png',
+    icon: './assets/blessed-crow-icon.png',
+    hero_position: 'object-[50%_30%]',
+    active_hero_position: 'object-[50%_25%]',
+    theme_color: '#38c7b4'
+  }
+};
+
+function getClassMetadata(className) {
+  return CLASS_METADATA[className] || DEFAULT_CLASS_METADATA;
+}
+
+function getClassThemeColor(meta) {
+  return meta.theme_color || DEFAULT_CLASS_METADATA.theme_color;
+}
+
+function getClassThemeTint(meta) {
+  return `${getClassThemeColor(meta)}1a`;
+}
+
+function getClassThemeDeepTint(meta) {
+  return `${getClassThemeColor(meta)}0D`;
+}
+
+function getClassThemeStyles(meta) {
+  const themeColor = getClassThemeColor(meta);
+  return {
+    themeColor,
+    themeTint: getClassThemeTint(meta),
+    themeDeepTint: getClassThemeDeepTint(meta)
+  };
+}
+
+function classThemeInlineStyle(themeColor, themeTint) {
+  return `border-color: ${themeColor}; background-color: ${themeTint}; background-image: none;`;
+}
+
+function classThemeBorderStyle(themeColor) {
+  return `border-color: ${themeColor}; background-image: none; border-image: none;`;
+}
+
+function classThemeHeaderStyle(themeColor, themeTint) {
+  return `border-color: ${themeColor}; background-color: ${themeTint}; background-image: none; border-bottom: 1px solid ${themeColor};`;
+}
+
+function getHeroPositionClass(meta) {
+  return meta.hero_position || DEFAULT_CLASS_METADATA.hero_position;
+}
+
+function getActiveHeroPositionClass(meta) {
+  return meta.active_hero_position || meta.hero_position || DEFAULT_CLASS_METADATA.active_hero_position;
+}
+
+function getClassAbbreviation(className) {
+  return className
+    .split(/\s+/)
+    .filter(Boolean)
+    .map(word => word.charAt(0))
+    .join('')
+    .toUpperCase();
+}
 
 const DEFAULT_TREE_PALETTE = {
   accent: '#cba86a',
@@ -392,6 +515,19 @@ function setContextualToolbarVisible(visible) {
   elements.searchBarContainer.classList.toggle('hidden', !visible);
 }
 
+function renderActiveClassHero(className) {
+  const meta = getClassMetadata(className);
+
+  elements.activeClassHero.innerHTML = UI.activeClassHeroBanner(className, meta);
+  elements.activeClassHero.classList.remove('hidden');
+}
+
+function hideActiveClassHero() {
+  elements.activeClassHero.innerHTML = '';
+  elements.activeClassHero.removeAttribute('style');
+  elements.activeClassHero.classList.add('hidden');
+}
+
 function selectClass(className) {
   if (selectedClass !== className) {
     searchQuery = '';
@@ -403,7 +539,7 @@ function selectClass(className) {
   elements.classSelect.value = className;
   elements.searchInput.disabled = false;
   elements.clearSearch.disabled = false;
-  elements.searchInput.placeholder = 'Search...';
+  elements.searchInput.placeholder = 'Search class abilities and metadata...';
   setContextualToolbarVisible(true);
   renderAbilities();
 }
@@ -416,8 +552,9 @@ function resetClassSelection() {
   elements.searchInput.disabled = true;
   elements.clearSearch.disabled = true;
   elements.clearSearch.classList.add('hidden');
-  elements.searchInput.placeholder = 'Search...';
+  elements.searchInput.placeholder = 'Search class abilities and metadata...';
   setContextualToolbarVisible(false);
+  hideActiveClassHero();
   renderAbilities();
 }
 
@@ -481,25 +618,52 @@ const UI = {
     return `<p class="text-center text-[#8c734b] italic mt-8 font-cinzel tracking-wide">${message}</p>`;
   },
 
+  activeClassHeroBanner(className, meta) {
+    const themeColor = getClassThemeColor(meta);
+    const heroPosition = getActiveHeroPositionClass(meta);
+
+    return `
+      <div class="relative w-full h-64 rounded-lg overflow-hidden border shadow-lg" style="border-color: ${themeColor};">
+        <img src="${meta.img}" alt="${className} banner" class="absolute inset-0 w-full h-full object-cover ${heroPosition}" onerror="this.style.display='none'"/>
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-950/90 to-transparent pointer-events-none"></div>
+        <div class="relative h-full flex flex-col justify-end p-8 w-3/4 md:w-2/3">
+          <h2 class="font-cinzel text-2xl sm:text-3xl font-bold mb-2" style="color: ${themeColor};">${className}</h2>
+          <p class="text-sm text-[#d0d0d5] leading-relaxed">${meta.desc}</p>
+        </div>
+      </div>`;
+  },
+
   classSelectionGrid(factions) {
-    return factions.map(factionData => {
+    return factions.map((factionData, index) => {
       const factionPalette = getFactionPalette(factionData.faction);
       const classNodes = [...(factionData.classes || [])].sort((a, b) => a.class.localeCompare(b.class));
 
       const classCards = classNodes.map(classObj => {
-        const palette = getClassPalette(classObj.class);
-        const initial = classObj.class.charAt(0).toUpperCase();
+        const meta = getClassMetadata(classObj.class);
+        const { themeColor, themeTint } = getClassThemeStyles(meta);
+        const heroPosition = getHeroPositionClass(meta);
 
         return `
-        <button type="button" class="class-card flex items-center gap-3 w-full text-left px-4 py-4 rounded-sm" style="${paletteStyleVars(palette)}" data-class-name="${classObj.class}">
-          <div class="ability-icon w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-cinzel text-base">${initial}</div>
-          <span class="font-cinzel text-lg tracking-wide">${classObj.class}</span>
+        <button type="button" class="class-card overflow-hidden flex flex-col w-full text-left rounded-lg" style="${classThemeInlineStyle(themeColor, themeTint)} --tree-accent: ${themeColor}; --tree-accent-muted: ${themeColor};" data-class-name="${classObj.class}">
+          <div class="relative overflow-hidden rounded-t-lg">
+            <img src="${meta.img}" class="w-full h-64 object-cover ${heroPosition}" alt="${classObj.class} banner" onerror="this.style.display='none'">
+            <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#121214] to-transparent pointer-events-none"></div>
+          </div>
+          <div class="flex flex-row items-center gap-4 p-4">
+            <div class="ability-icon w-16 h-16 rounded-full flex items-center justify-center shrink-0 overflow-hidden p-1" style="border-color: ${themeColor}; background-color: ${themeColor}1A; background-image: none;">
+              <img src="${meta.icon}" class="w-full h-full object-contain" alt="${classObj.class} icon" onerror="this.style.display='none'">
+            </div>
+            <span class="font-cinzel text-2xl font-bold tracking-wide" style="color: ${themeColor};">${classObj.class}</span>
+          </div>
+          <div class="px-4 pb-4">
+            <p class="text-sm text-[#a0a0a5] leading-relaxed">${meta.desc}</p>
+          </div>
         </button>`;
       }).join('');
 
       return `
         <section class="faction-group mb-8 last:mb-0" style="${paletteStyleVars(factionPalette)}">
-          <h2 class="faction-title text-2xl font-cinzel font-bold tracking-wider pb-3 mb-4">${factionData.faction}</h2>
+          <h2 class="faction-title text-2xl font-cinzel font-bold tracking-wider pb-3 mb-4${index === 0 ? ' mt-6' : ''}">${factionData.faction}</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             ${classCards}
           </div>
@@ -532,7 +696,7 @@ const UI = {
       </div>`;
   },
 
-  abilityCard({ name, summary, castSpeed, resourceDelta, range, baseValue, type }) {
+  abilityCard({ name, summary, castSpeed, resourceDelta, range, baseValue, type, useClassTheme, themeColor, themeTint }) {
     const metadataBlock = `
       <div class="grid grid-cols-2 gap-x-3 gap-y-2 text-[13px] text-[#a0a0a5]">
         ${this.metadataCell(this.icons.cost, 'Cost', resourceDelta, 'None')}
@@ -542,13 +706,29 @@ const UI = {
         ${this.metadataCell(this.icons.clock, 'Type', type, 'N/A')}
       </div>`;
 
+    if (useClassTheme) {
+      return `
+      <div class="border rounded-md overflow-hidden" style="border-color: ${themeColor};">
+        <div class="flex items-center p-3 border-b" style="border-color: ${themeColor}; background-color: ${themeColor}1A;">
+          <div class="ability-icon w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-3 overflow-hidden p-1" style="border-color: ${themeColor}; color: ${themeColor};">
+            ${getAbilityIcon(type)}
+          </div>
+          <h3 class="text-xl text-[#e0e0e0] font-cinzel font-bold">${name}</h3>
+        </div>
+        <div class="ability-card-body p-4 text-sm text-[#cccccc] leading-relaxed">
+          <p class="mb-3">${summary}</p>
+          ${metadataBlock}
+        </div>
+      </div>`;
+    }
+
     return `
-      <article class="ability-card p-0 m-1 relative">
+      <article class="ability-card p-0 m-1 relative overflow-hidden">
         <header class="card-header-bg flex items-center p-3">
           <div class="ability-icon w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4">
             ${getAbilityIcon(type)}
           </div>
-          <h3 class="text-xl text-[#e0e0e0] font-cinzel">${name}</h3>
+          <h3 class="text-xl text-[#e0e0e0] font-cinzel font-bold">${name}</h3>
         </header>
         <div class="p-4 text-sm text-[#cccccc] leading-relaxed">
           <p class="mb-3">${summary}</p>
@@ -557,12 +737,29 @@ const UI = {
       </article>`;
   },
 
-  accordionItem({ treeName, cardsHtml, expanded, palette }) {
+  accordionItem({ treeName, cardsHtml, expanded, useClassTheme, palette, themeColor, themeTint }) {
     const stickyClasses = 'sticky top-[var(--top-bar-height)] z-10';
     const btnClasses = expanded
       ? `accordion-btn active ${stickyClasses} w-full flex justify-between items-center px-4 py-3 rounded-t-sm`
       : `accordion-btn ${stickyClasses} w-full flex justify-between items-center px-4 py-3 rounded-sm`;
     const contentStyle = expanded ? 'max-height: 1000px;' : 'max-height: 0;';
+
+    if (useClassTheme) {
+      return `
+      <div class="accordion-item class-abilities-accordion mb-4 border rounded-md overflow-hidden" style="border-color: ${themeColor}; --tree-accent: ${themeColor}; --tree-accent-muted: ${themeColor};">
+        <button type="button" aria-expanded="${expanded}" class="accordion-btn class-abilities-accordion-header ${expanded ? 'active' : ''} w-full flex justify-between items-center p-3 border-b cursor-pointer text-left" style="border-color: ${themeColor}; background-color: ${themeColor}1A;">
+          <h3 class="text-lg font-cinzel font-bold tracking-widest uppercase" style="color: ${themeColor};">${treeName}</h3>
+          ${this.icons.chevron(expanded)}
+        </button>
+        <div class="accordion-content class-abilities-accordion-body overflow-hidden" style="${contentStyle} background-color: ${themeColor}05;">
+          <div class="p-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              ${cardsHtml}
+            </div>
+          </div>
+        </div>
+      </div>`;
+    }
 
     return `
       <div class="accordion-item" style="${paletteStyleVars(palette)}">
@@ -782,6 +979,7 @@ function renderAbilities() {
 
   if (!selectedClass) {
     clearContainerPalette();
+    hideActiveClassHero();
     const factions = [...database].sort((a, b) => a.faction.localeCompare(b.faction));
     elements.accordionContainer.innerHTML = UI.classSelectionGrid(factions);
     setupClassCardListeners(elements.accordionContainer);
@@ -789,10 +987,13 @@ function renderAbilities() {
   }
 
   clearContainerPalette();
+  renderActiveClassHero(selectedClass);
 
   const classData = findClassData(selectedClass);
   if (!classData || !classData.trees) return;
 
+  const classMeta = getClassMetadata(selectedClass);
+  const { themeColor, themeTint } = getClassThemeStyles(classMeta);
   const accordionHtml = [];
   let visibleTreeCount = 0;
 
@@ -805,17 +1006,26 @@ function renderAbilities() {
 
     visibleTreeCount += 1;
     const expanded = Boolean(searchQuery) || treeIndex === 0;
+    const useClassTheme = tree.name === CLASS_ABILITY_TREE;
     const palette = getAccordionPalette(tree.name, selectedClass);
 
     const cardsHtml = filteredAbilities
-      .map(([name, data]) => UI.abilityCard(mapAbilityToCardView(name, data)))
+      .map(([name, data]) => UI.abilityCard({
+        ...mapAbilityToCardView(name, data),
+        useClassTheme,
+        themeColor,
+        themeTint
+      }))
       .join('');
 
     accordionHtml.push(UI.accordionItem({
       treeName: tree.name,
       cardsHtml,
       expanded,
-      palette
+      useClassTheme,
+      palette,
+      themeColor,
+      themeTint
     }));
   });
 

@@ -1,0 +1,37 @@
+﻿{
+  "Fianna": {
+    "desc": "Fianna are focused on single target damage, with higher health regeneration than their faction counterparts. They also punish enemies who attack them, dealing retaliatory damage.",
+    "hero": "./assets/fianna-hero.png",
+    "icon": "./assets/fianna-icon.png"
+  },
+  "Red Cap": {
+    "desc": "Red Caps utilize strong poisons that apply Damage over Time to make enemies vulnerable. They move unpredictably with short cooldown speed boosts and shifts between the Veil.",
+    "hero": "./assets/red-cap-hero.png",
+    "icon": "./assets/red-cap-icon.png"
+  },
+  "Forest Stalker": {
+    "desc": "Forest Stalker's Earth attacks allow for synergy with Earth Arcanists, delivering finishing attacks from range. They have Stealth abilities that prevent enemies from seeing them.",
+    "hero": "./assets/forest-stalker-hero.png",
+    "icon": "./assets/forest-stalker-icon.png"
+  },
+  "Druid": {
+    "desc": "Druids are capable of dealing extreme damage by spending large amounts of Mana at once. Poison damage and Void spells can cut down enemies, and they can resurrect fallen allies.",
+    "hero": "./assets/druid-hero.png",
+    "icon": "./assets/druid-icon.png"
+  },
+  "Empath": {
+    "desc": "Empaths can Link themself with an ally and enemy, empowering their abilities. Their DOT effects and ability to spend Health on powerful spells make them masters of engagements.",
+    "hero": "./assets/empath-hero.png",
+    "icon": "./assets/empath-icon.png"
+  },
+  "Dark Fool": {
+    "desc": "Dark Fools leverage the most Panic, utilizing powerful Control effects that are more effective against weakened or Panicked opponents to deal additional Mind damage.",
+    "hero": "./assets/dark-fool-hero.png",
+    "icon": "./assets/dark-fool-icon.png"
+  },
+  "Blessed Crow": {
+    "desc": "Blessed Crows utilize magic Cauldrons to create areas of powerful buffs and healing that also damage their enemies. Fighting them on their own terms is usually a losing prospect.",
+    "hero": "./assets/blessed-crow-hero.png",
+    "icon": "./assets/blessed-crow-icon.png"
+  }
+}

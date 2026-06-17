@@ -91,6 +91,28 @@
             color: var(--tree-accent, var(--gold-primary));
         }
 
+        .class-abilities-accordion {
+            display: block;
+        }
+
+        .class-abilities-accordion-header {
+            border-radius: 0;
+            box-shadow: none;
+            background-image: none;
+            border-left: none;
+            border-right: none;
+            border-top: none;
+        }
+
+        .class-abilities-accordion-header.active {
+            background-image: none;
+        }
+
+        .class-abilities-accordion-body {
+            border: none;
+            padding: 0;
+        }
+
         .ability-card {
             background-color: var(--bg-panel);
             border: 2px solid transparent;
@@ -113,6 +135,10 @@
             border-bottom: 1px solid var(--tree-accent-muted, var(--gold-dark));
         }
 
+        .ability-card-body {
+            background-color: var(--bg-panel, #1e1e24);
+        }
+
         .ability-icon {
             background: linear-gradient(135deg, var(--tree-icon-from, #3a2b1f), var(--tree-icon-to, #1a140f));
             border: 2px solid var(--tree-accent, var(--gold-primary));
@@ -133,11 +159,10 @@
         }
 
         .class-card {
-            background: linear-gradient(to right, var(--tree-header-from, #453828), var(--tree-header-to, #2d261e));
-            border: 1px solid var(--tree-accent-muted, var(--gold-dark));
+            border: 1px solid var(--gold-dark);
             box-shadow: inset 0 0 10px rgba(0,0,0,0.45), 0 4px 6px rgba(0,0,0,0.45);
-            color: var(--tree-accent, var(--gold-primary));
-            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+            color: var(--gold-primary);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
         }
 
         .class-card:hover {
@@ -190,14 +215,15 @@
     </header>
 
     <main class="px-4 sm:px-6 lg:px-8 pt-[var(--top-bar-height)] pb-[max(1rem,env(safe-area-inset-bottom))]">
-        <div class="max-w-5xl mx-auto w-full space-y-4">
-            <div id="search-bar-container" class="hidden pt-4">
+        <div class="max-w-5xl mx-auto w-full flex flex-col items-start">
+            <div id="active-class-hero" class="hidden mt-6 mb-6 w-full"></div>
+            <div id="search-bar-container" class="hidden mb-6 w-full">
                 <div class="flex flex-col sm:flex-row gap-4">
                     <select id="class-select" aria-label="Select class" class="w-full sm:w-auto sm:min-w-[11rem] border border-[#8c734b] rounded px-3 py-2 text-sm text-[#cba86a] bg-[#1e1e24] cursor-pointer focus:outline-none focus:border-[#cba86a]">
                         <option value="">Classes</option>
                     </select>
                     <div class="relative flex-1 min-w-0">
-                        <input type="text" id="search-input" disabled placeholder="Search..." class="border border-[#8c734b] rounded px-3 py-2 pl-9 text-sm text-[#e0e0e0] bg-[#1e1e24] w-full focus:outline-none focus:border-[#cba86a] placeholder:text-[#8c734b]"/>
+                        <input type="text" id="search-input" disabled placeholder="Search class abilities and metadata..." class="border border-[#8c734b] rounded px-3 py-2 pl-9 text-sm text-[#e0e0e0] bg-[#1e1e24] w-full focus:outline-none focus:border-[#cba86a] placeholder:text-[#8c734b]"/>
                         <svg class="w-4 h-4 text-[#8c734b] absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
                         <button type="button" id="clear-search" disabled class="hidden absolute inset-y-0 right-0 flex items-center pr-3 text-[#8c734b] hover:text-[#cba86a] transition-colors" aria-label="Clear search input">
                             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
@@ -205,7 +231,7 @@
                     </div>
                 </div>
             </div>
-            <div id="accordion-container" class="space-y-4 pb-4">
+            <div id="accordion-container" class="w-full self-start space-y-4 pb-4">
             </div>
         </div>
     </main>

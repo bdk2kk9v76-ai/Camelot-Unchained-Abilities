@@ -192,6 +192,121 @@
             background: var(--gold-dark);
             border-radius: 3px;
         }
+
+        .class-view-tab {
+            border: 1px solid var(--gold-dark);
+            background: linear-gradient(to bottom, #2a2a30, #1e1e24);
+            color: var(--text-muted);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .class-view-tab:hover {
+            border-color: var(--gold-primary);
+            color: #e0e0e0;
+        }
+
+        .class-view-tab.active {
+            border-color: var(--tab-accent, var(--gold-primary));
+            background: linear-gradient(to right, color-mix(in srgb, var(--tab-accent, var(--gold-primary)) 18%, #1e1e24), #1a1a1f);
+            color: var(--tab-accent, var(--gold-primary));
+            box-shadow: 0 0 12px color-mix(in srgb, var(--tab-accent, var(--gold-primary)) 25%, transparent);
+        }
+
+        .guide-panel {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--gold-dark);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.6);
+        }
+
+        .guide-section-title {
+            color: var(--guide-accent, var(--gold-primary));
+            border-bottom: 1px solid color-mix(in srgb, var(--guide-accent, var(--gold-primary)) 35%, transparent);
+        }
+
+        .guide-callout {
+            border-left: 3px solid var(--guide-accent, var(--gold-primary));
+            background: color-mix(in srgb, var(--guide-accent, var(--gold-primary)) 8%, #1a1a1f);
+            color: #c8c8cc;
+        }
+
+        .guide-meta-chip {
+            border: 1px solid color-mix(in srgb, var(--guide-accent, var(--gold-primary)) 40%, transparent);
+            background: color-mix(in srgb, var(--guide-accent, var(--gold-primary)) 10%, #121214);
+            color: #d8d8dc;
+        }
+
+        .guide-quick-ref {
+            background: linear-gradient(to bottom right, #1a1a1f, #121214);
+            border: 1px solid var(--gold-dark);
+        }
+
+        .guide-lead {
+            color: var(--guide-accent, var(--gold-primary));
+        }
+
+        .guide-markdown h1,
+        .guide-markdown h2,
+        .guide-markdown h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--guide-accent, var(--gold-primary));
+        }
+
+        .guide-markdown h1 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .guide-markdown h2 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid color-mix(in srgb, var(--guide-accent, var(--gold-primary)) 35%, transparent);
+        }
+
+        .guide-markdown h3 {
+            font-size: 1.05rem;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-markdown p,
+        .guide-markdown li {
+            color: #cccccc;
+            line-height: 1.65;
+        }
+
+        .guide-markdown blockquote {
+            border-left: 3px solid var(--guide-accent, var(--gold-primary));
+            background: color-mix(in srgb, var(--guide-accent, var(--gold-primary)) 8%, #1a1a1f);
+            padding: 0.75rem 1rem;
+            margin: 1rem 0;
+            color: #c8c8cc;
+            font-style: italic;
+        }
+
+        .guide-markdown hr {
+            border-color: #8c734b40;
+            margin: 1.5rem 0;
+        }
+
+        .guide-markdown ul,
+        .guide-markdown ol {
+            padding-left: 1.25rem;
+            margin: 0.75rem 0;
+        }
+
+        .guide-markdown strong {
+            color: #e0e0e0;
+        }
+
+        .guide-markdown code {
+            color: var(--gold-primary);
+            background: #121214;
+            padding: 0.1rem 0.35rem;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -205,6 +320,7 @@
         <div class="max-w-5xl mx-auto w-full flex flex-col items-start">
             <div id="class-nav-row" class="w-full flex overflow-x-auto gap-3 pb-2 mb-4 scrollbar-hide hidden mt-6"></div>
             <div id="active-class-hero" class="hidden mb-6 w-full"></div>
+            <div id="class-view-tabs" class="hidden w-full mb-6"></div>
             <div id="search-bar-container" class="hidden mb-6 w-full">
                 <div class="flex flex-col sm:flex-row gap-4">
                     <div class="group/search relative flex-1 min-w-0 rounded transition-all duration-200 ease-in-out focus-within:ring-2 focus-within:ring-[#cba86a]/35">
@@ -226,6 +342,7 @@
         </div>
     </main>
 
-    <script src="app.js?v=1.0.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="app.js?v=1.0.3"></script>
 </body>
 </html>

@@ -1,0 +1,1418 @@
+{
+  "Blessed Crow": {
+    "resource": "Faith + Judgment",
+    "groupRole": "Healer",
+    "identity": "Zone control through Cauldrons — creating spaces where allies thrive and enemies suffer.",
+    "roleType": "healer",
+    "corePrinciples": [
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      }
+    ],
+    "role": {
+      "primaryJob": "[To be written]",
+      "positioning": "[To be written]",
+      "triagePriority": "[To be written]",
+      "cleanseResponsibility": "[To be written]",
+      "battleRes": "[To be written]",
+      "doNot": "[To be written]"
+    },
+    "resourceSystem": {
+      "summary": "[To be written]",
+      "generators": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "spenders": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "loop": "[To be written]"
+    },
+    "preEngage": {
+      "items": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "conditional": "[To be written]",
+      "approachNotes": "[To be written]"
+    },
+    "engage": {
+      "modes": [
+        {
+          "name": "[To be written]",
+          "steps": [
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            }
+          ]
+        }
+      ],
+      "goal": "[To be written]"
+    },
+    "coreRotation": {
+      "maintain": [
+        "[To be written]",
+        "[To be written]"
+      ],
+      "loop": [
+        "[To be written]",
+        "[To be written]",
+        "[To be written]"
+      ],
+      "burstWindow": {
+        "cooldown": "[To be written]",
+        "combo": "[To be written]"
+      }
+    },
+    "burstExecute": {
+      "steps": [
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        }
+      ]
+    },
+    "defensiveLayer": {
+      "immediate": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "reinforce": [
+        "[To be written]"
+      ],
+      "fallback": "[To be written]",
+      "rule": "[To be written]"
+    },
+    "breakCc": {
+      "softCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "hardCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priorityRule": "[To be written]",
+      "afterBreaking": "[To be written]"
+    },
+    "peel": {
+      "tools": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priority": "[To be written]"
+    },
+    "targetPriority": "[To be written]",
+    "classMechanics": [
+      {
+        "name": "[To be written]",
+        "detail": "[To be written]"
+      }
+    ],
+    "quickReference": {
+      "preEngage": "[To be written]",
+      "open": "[To be written]",
+      "coreLoop": "[To be written]",
+      "burst": "[To be written]",
+      "execute": "[To be written]",
+      "panic": "[To be written]",
+      "breakSoftCc": "[To be written]",
+      "breakHardCc": "[To be written]",
+      "peel": "[To be written]"
+    }
+  },
+  "Dark Fool": {
+    "resource": "Focus",
+    "groupRole": "Caster",
+    "identity": "Panic and control setup — amplifying Mind damage against weakened, CC'd, or Panicked targets.",
+    "roleType": "caster",
+    "corePrinciples": [
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      }
+    ],
+    "role": {
+      "primaryJob": "[To be written]",
+      "positioning": "[To be written]",
+      "castManagement": "[To be written]",
+      "controlApplication": "[To be written]",
+      "doNot": "[To be written]"
+    },
+    "resourceSystem": {
+      "summary": "[To be written]",
+      "generators": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "spenders": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "loop": "[To be written]"
+    },
+    "preEngage": {
+      "items": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "conditional": "[To be written]",
+      "approachNotes": "[To be written]"
+    },
+    "engage": {
+      "modes": [
+        {
+          "name": "[To be written]",
+          "steps": [
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            }
+          ]
+        }
+      ],
+      "goal": "[To be written]"
+    },
+    "coreRotation": {
+      "maintain": [
+        "[To be written]",
+        "[To be written]"
+      ],
+      "loop": [
+        "[To be written]",
+        "[To be written]",
+        "[To be written]"
+      ],
+      "burstWindow": {
+        "cooldown": "[To be written]",
+        "combo": "[To be written]"
+      }
+    },
+    "burstExecute": {
+      "steps": [
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        }
+      ]
+    },
+    "defensiveLayer": {
+      "immediate": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "reinforce": [
+        "[To be written]"
+      ],
+      "fallback": "[To be written]",
+      "rule": "[To be written]"
+    },
+    "breakCc": {
+      "softCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "hardCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priorityRule": "[To be written]",
+      "afterBreaking": "[To be written]"
+    },
+    "peel": {
+      "tools": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priority": "[To be written]"
+    },
+    "targetPriority": "[To be written]",
+    "classMechanics": [
+      {
+        "name": "[To be written]",
+        "detail": "[To be written]"
+      }
+    ],
+    "quickReference": {
+      "preEngage": "[To be written]",
+      "open": "[To be written]",
+      "coreLoop": "[To be written]",
+      "burst": "[To be written]",
+      "execute": "[To be written]",
+      "panic": "[To be written]",
+      "breakSoftCc": "[To be written]",
+      "breakHardCc": "[To be written]",
+      "peel": "[To be written]"
+    }
+  },
+  "Druid": {
+    "resource": "Mana",
+    "groupRole": "Caster",
+    "identity": "Burst damage through large Mana spends — Void, Earth, and Poison pressure with resurrection utility.",
+    "roleType": "caster",
+    "corePrinciples": [
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      }
+    ],
+    "role": {
+      "primaryJob": "[To be written]",
+      "positioning": "[To be written]",
+      "castManagement": "[To be written]",
+      "controlApplication": "[To be written]",
+      "doNot": "[To be written]"
+    },
+    "resourceSystem": {
+      "summary": "[To be written]",
+      "generators": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "spenders": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "loop": "[To be written]"
+    },
+    "preEngage": {
+      "items": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "conditional": "[To be written]",
+      "approachNotes": "[To be written]"
+    },
+    "engage": {
+      "modes": [
+        {
+          "name": "[To be written]",
+          "steps": [
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            }
+          ]
+        }
+      ],
+      "goal": "[To be written]"
+    },
+    "coreRotation": {
+      "maintain": [
+        "[To be written]",
+        "[To be written]"
+      ],
+      "loop": [
+        "[To be written]",
+        "[To be written]",
+        "[To be written]"
+      ],
+      "burstWindow": {
+        "cooldown": "[To be written]",
+        "combo": "[To be written]"
+      }
+    },
+    "burstExecute": {
+      "steps": [
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        }
+      ]
+    },
+    "defensiveLayer": {
+      "immediate": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "reinforce": [
+        "[To be written]"
+      ],
+      "fallback": "[To be written]",
+      "rule": "[To be written]"
+    },
+    "breakCc": {
+      "softCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "hardCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priorityRule": "[To be written]",
+      "afterBreaking": "[To be written]"
+    },
+    "peel": {
+      "tools": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priority": "[To be written]"
+    },
+    "targetPriority": "[To be written]",
+    "classMechanics": [
+      {
+        "name": "[To be written]",
+        "detail": "[To be written]"
+      }
+    ],
+    "quickReference": {
+      "preEngage": "[To be written]",
+      "open": "[To be written]",
+      "coreLoop": "[To be written]",
+      "burst": "[To be written]",
+      "execute": "[To be written]",
+      "panic": "[To be written]",
+      "breakSoftCc": "[To be written]",
+      "breakHardCc": "[To be written]",
+      "peel": "[To be written]"
+    }
+  },
+  "Empath": {
+    "resource": "Faith + Health",
+    "groupRole": "Healer",
+    "identity": "Link-based triage — sharing damage and healing through ally/enemy Links for high-skill clutch plays.",
+    "roleType": "healer",
+    "corePrinciples": [
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      }
+    ],
+    "role": {
+      "primaryJob": "[To be written]",
+      "positioning": "[To be written]",
+      "triagePriority": "[To be written]",
+      "cleanseResponsibility": "[To be written]",
+      "battleRes": "[To be written]",
+      "doNot": "[To be written]"
+    },
+    "resourceSystem": {
+      "summary": "[To be written]",
+      "generators": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "spenders": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "loop": "[To be written]"
+    },
+    "preEngage": {
+      "items": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "conditional": "[To be written]",
+      "approachNotes": "[To be written]"
+    },
+    "engage": {
+      "modes": [
+        {
+          "name": "[To be written]",
+          "steps": [
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            }
+          ]
+        }
+      ],
+      "goal": "[To be written]"
+    },
+    "coreRotation": {
+      "maintain": [
+        "[To be written]",
+        "[To be written]"
+      ],
+      "loop": [
+        "[To be written]",
+        "[To be written]",
+        "[To be written]"
+      ],
+      "burstWindow": {
+        "cooldown": "[To be written]",
+        "combo": "[To be written]"
+      }
+    },
+    "burstExecute": {
+      "steps": [
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        }
+      ]
+    },
+    "defensiveLayer": {
+      "immediate": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "reinforce": [
+        "[To be written]"
+      ],
+      "fallback": "[To be written]",
+      "rule": "[To be written]"
+    },
+    "breakCc": {
+      "softCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "hardCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priorityRule": "[To be written]",
+      "afterBreaking": "[To be written]"
+    },
+    "peel": {
+      "tools": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priority": "[To be written]"
+    },
+    "targetPriority": "[To be written]",
+    "classMechanics": [
+      {
+        "name": "[To be written]",
+        "detail": "[To be written]"
+      }
+    ],
+    "quickReference": {
+      "preEngage": "[To be written]",
+      "open": "[To be written]",
+      "coreLoop": "[To be written]",
+      "burst": "[To be written]",
+      "execute": "[To be written]",
+      "panic": "[To be written]",
+      "breakSoftCc": "[To be written]",
+      "breakHardCc": "[To be written]",
+      "peel": "[To be written]"
+    }
+  },
+  "Fianna": {
+    "resource": "Courage",
+    "groupRole": "Tank",
+    "identity": "Front-line anchor — peel, CC, and Aftershock setup while punishing attackers who focus you.",
+    "roleType": "tank",
+    "corePrinciples": [
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      }
+    ],
+    "role": {
+      "primaryJob": "[To be written]",
+      "positioning": "[To be written]",
+      "peelToolkit": "[To be written]",
+      "threatDenial": "[To be written]",
+      "doNot": "[To be written]"
+    },
+    "resourceSystem": {
+      "summary": "[To be written]",
+      "generators": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "spenders": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "loop": "[To be written]"
+    },
+    "preEngage": {
+      "items": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "conditional": "[To be written]",
+      "approachNotes": "[To be written]"
+    },
+    "engage": {
+      "modes": [
+        {
+          "name": "[To be written]",
+          "steps": [
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            }
+          ]
+        }
+      ],
+      "goal": "[To be written]"
+    },
+    "coreRotation": {
+      "maintain": [
+        "[To be written]",
+        "[To be written]"
+      ],
+      "loop": [
+        "[To be written]",
+        "[To be written]",
+        "[To be written]"
+      ],
+      "burstWindow": {
+        "cooldown": "[To be written]",
+        "combo": "[To be written]"
+      }
+    },
+    "burstExecute": {
+      "steps": [
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        }
+      ]
+    },
+    "defensiveLayer": {
+      "immediate": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "reinforce": [
+        "[To be written]"
+      ],
+      "fallback": "[To be written]",
+      "rule": "[To be written]"
+    },
+    "breakCc": {
+      "softCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "hardCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priorityRule": "[To be written]",
+      "afterBreaking": "[To be written]"
+    },
+    "peel": {
+      "tools": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priority": "[To be written]"
+    },
+    "targetPriority": "[To be written]",
+    "classMechanics": [
+      {
+        "name": "[To be written]",
+        "detail": "[To be written]"
+      }
+    ],
+    "quickReference": {
+      "preEngage": "[To be written]",
+      "open": "[To be written]",
+      "coreLoop": "[To be written]",
+      "burst": "[To be written]",
+      "execute": "[To be written]",
+      "panic": "[To be written]",
+      "breakSoftCc": "[To be written]",
+      "breakHardCc": "[To be written]",
+      "peel": "[To be written]"
+    }
+  },
+  "Forest Stalker": {
+    "resource": "Focus",
+    "groupRole": "Damage",
+    "identity": "Stealth assassin — isolating and executing priority targets from range or stealth.",
+    "roleType": "damage",
+    "corePrinciples": [
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      }
+    ],
+    "role": {
+      "primaryJob": "[To be written]",
+      "positioning": "[To be written]",
+      "focusFire": "[To be written]",
+      "peelResponsibility": "[To be written]",
+      "doNot": "[To be written]"
+    },
+    "resourceSystem": {
+      "summary": "[To be written]",
+      "generators": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "spenders": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "loop": "[To be written]"
+    },
+    "preEngage": {
+      "items": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "conditional": "[To be written]",
+      "approachNotes": "[To be written]"
+    },
+    "engage": {
+      "modes": [
+        {
+          "name": "[To be written]",
+          "steps": [
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            }
+          ]
+        }
+      ],
+      "goal": "[To be written]"
+    },
+    "coreRotation": {
+      "maintain": [
+        "[To be written]",
+        "[To be written]"
+      ],
+      "loop": [
+        "[To be written]",
+        "[To be written]",
+        "[To be written]"
+      ],
+      "burstWindow": {
+        "cooldown": "[To be written]",
+        "combo": "[To be written]"
+      }
+    },
+    "burstExecute": {
+      "steps": [
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        }
+      ]
+    },
+    "defensiveLayer": {
+      "immediate": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "reinforce": [
+        "[To be written]"
+      ],
+      "fallback": "[To be written]",
+      "rule": "[To be written]"
+    },
+    "breakCc": {
+      "softCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "hardCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priorityRule": "[To be written]",
+      "afterBreaking": "[To be written]"
+    },
+    "peel": {
+      "tools": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priority": "[To be written]"
+    },
+    "targetPriority": "[To be written]",
+    "classMechanics": [
+      {
+        "name": "[To be written]",
+        "detail": "[To be written]"
+      }
+    ],
+    "quickReference": {
+      "preEngage": "[To be written]",
+      "open": "[To be written]",
+      "coreLoop": "[To be written]",
+      "burst": "[To be written]",
+      "execute": "[To be written]",
+      "panic": "[To be written]",
+      "breakSoftCc": "[To be written]",
+      "breakHardCc": "[To be written]",
+      "peel": "[To be written]"
+    }
+  },
+  "Red Cap": {
+    "resource": "Determination",
+    "groupRole": "Damage",
+    "identity": "Poison and Veil pressure — stacking DoTs and striking unpredictably between planes.",
+    "roleType": "damage",
+    "corePrinciples": [
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      },
+      {
+        "lead": "[To be written]",
+        "body": "[To be written]"
+      }
+    ],
+    "role": {
+      "primaryJob": "[To be written]",
+      "positioning": "[To be written]",
+      "focusFire": "[To be written]",
+      "peelResponsibility": "[To be written]",
+      "doNot": "[To be written]"
+    },
+    "resourceSystem": {
+      "summary": "[To be written]",
+      "generators": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "spenders": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "loop": "[To be written]"
+    },
+    "preEngage": {
+      "items": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "conditional": "[To be written]",
+      "approachNotes": "[To be written]"
+    },
+    "engage": {
+      "modes": [
+        {
+          "name": "[To be written]",
+          "steps": [
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            },
+            {
+              "ability": "[To be written]",
+              "detail": "[To be written]"
+            }
+          ]
+        }
+      ],
+      "goal": "[To be written]"
+    },
+    "coreRotation": {
+      "maintain": [
+        "[To be written]",
+        "[To be written]"
+      ],
+      "loop": [
+        "[To be written]",
+        "[To be written]",
+        "[To be written]"
+      ],
+      "burstWindow": {
+        "cooldown": "[To be written]",
+        "combo": "[To be written]"
+      }
+    },
+    "burstExecute": {
+      "steps": [
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        },
+        {
+          "lead": "[To be written]",
+          "body": "[To be written]"
+        }
+      ]
+    },
+    "defensiveLayer": {
+      "immediate": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "reinforce": [
+        "[To be written]"
+      ],
+      "fallback": "[To be written]",
+      "rule": "[To be written]"
+    },
+    "breakCc": {
+      "softCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "hardCc": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priorityRule": "[To be written]",
+      "afterBreaking": "[To be written]"
+    },
+    "peel": {
+      "tools": [
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        },
+        {
+          "ability": "[To be written]",
+          "detail": "[To be written]"
+        }
+      ],
+      "priority": "[To be written]"
+    },
+    "targetPriority": "[To be written]",
+    "classMechanics": [
+      {
+        "name": "[To be written]",
+        "detail": "[To be written]"
+      }
+    ],
+    "quickReference": {
+      "preEngage": "[To be written]",
+      "open": "[To be written]",
+      "coreLoop": "[To be written]",
+      "burst": "[To be written]",
+      "execute": "[To be written]",
+      "panic": "[To be written]",
+      "breakSoftCc": "[To be written]",
+      "breakHardCc": "[To be written]",
+      "peel": "[To be written]"
+    }
+  }
+}

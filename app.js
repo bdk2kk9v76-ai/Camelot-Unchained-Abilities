@@ -252,276 +252,288 @@ function getClassPalette(className) {
 
 const CLASS_ABILITY_TREE = 'Class Abilities';
 
-const TREE_PALETTES = {
-  'Dominance': {
-    accent: '#b05858',
-    accentMuted: '#7a4040',
-    headerFrom: '#3a2020',
-    headerTo: '#251616',
-    activeFrom: '#3a1212',
-    activeTo: '#1f0808',
-    contentBg: '#181214',
-    cardHeaderFrom: '#3a1212',
-    borderFrom: '#b05858',
-    borderMid: '#7a4040',
-    borderTo: '#422828',
-    iconFrom: '#321818',
-    iconTo: '#180c0c'
+const CLASS_TREE_PALETTES = {
+  'Blessed Crow': {
+    'Dominance': {
+      accent: '#b05858',
+      accentMuted: '#7a4040',
+      headerFrom: '#3a2020',
+      headerTo: '#251616',
+      activeFrom: '#3a1212',
+      activeTo: '#1f0808',
+      contentBg: '#181214',
+      cardHeaderFrom: '#3a1212',
+      borderFrom: '#b05858',
+      borderMid: '#7a4040',
+      borderTo: '#422828',
+      iconFrom: '#321818',
+      iconTo: '#180c0c'
+    },
+    'Ritual': {
+      accent: '#8b7ab8',
+      accentMuted: '#5e5280',
+      headerFrom: '#2e2640',
+      headerTo: '#1c1830',
+      activeFrom: '#2a1845',
+      activeTo: '#160c28',
+      contentBg: '#141218',
+      cardHeaderFrom: '#2a1845',
+      borderFrom: '#8b7ab8',
+      borderMid: '#5e5280',
+      borderTo: '#383050',
+      iconFrom: '#221c32',
+      iconTo: '#100e18'
+    },
+    'Nourishment': {
+      accent: '#6b9478',
+      accentMuted: '#496552',
+      headerFrom: '#243830',
+      headerTo: '#182820',
+      activeFrom: '#1a4530',
+      activeTo: '#0c2818',
+      contentBg: '#121816',
+      cardHeaderFrom: '#1a4530',
+      borderFrom: '#6b9478',
+      borderMid: '#496552',
+      borderTo: '#2e4838',
+      iconFrom: '#1a2e22',
+      iconTo: '#0c1610'
+    }
   },
-  'Ritual': {
-    accent: '#8b7ab8',
-    accentMuted: '#5e5280',
-    headerFrom: '#2e2640',
-    headerTo: '#1c1830',
-    activeFrom: '#2a1845',
-    activeTo: '#160c28',
-    contentBg: '#141218',
-    cardHeaderFrom: '#2a1845',
-    borderFrom: '#8b7ab8',
-    borderMid: '#5e5280',
-    borderTo: '#383050',
-    iconFrom: '#221c32',
-    iconTo: '#100e18'
+  'Dark Fool': {
+    'Night Terrors': {
+      accent: '#6878a8',
+      accentMuted: '#485878',
+      headerFrom: '#242838',
+      headerTo: '#181c28',
+      activeFrom: '#182040',
+      activeTo: '#0c1028',
+      contentBg: '#121418',
+      cardHeaderFrom: '#182040',
+      borderFrom: '#6878a8',
+      borderMid: '#485878',
+      borderTo: '#303848',
+      iconFrom: '#1a2030',
+      iconTo: '#0c1018'
+    },
+    'Dark Fables': {
+      accent: '#9a6a98',
+      accentMuted: '#684868',
+      headerFrom: '#382838',
+      headerTo: '#241824',
+      activeFrom: '#401840',
+      activeTo: '#240c24',
+      contentBg: '#161418',
+      cardHeaderFrom: '#401840',
+      borderFrom: '#9a6a98',
+      borderMid: '#684868',
+      borderTo: '#403040',
+      iconFrom: '#281828',
+      iconTo: '#140c14'
+    },
+    'Mummery': {
+      accent: '#a88458',
+      accentMuted: '#705838',
+      headerFrom: '#3a3020',
+      headerTo: '#282018',
+      activeFrom: '#452814',
+      activeTo: '#281808',
+      contentBg: '#181614',
+      cardHeaderFrom: '#452814',
+      borderFrom: '#a88458',
+      borderMid: '#705838',
+      borderTo: '#484028',
+      iconFrom: '#2a2218',
+      iconTo: '#141008'
+    }
   },
-  'Nourishment': {
-    accent: '#6b9478',
-    accentMuted: '#496552',
-    headerFrom: '#243830',
-    headerTo: '#182820',
-    activeFrom: '#1a4530',
-    activeTo: '#0c2818',
-    contentBg: '#121816',
-    cardHeaderFrom: '#1a4530',
-    borderFrom: '#6b9478',
-    borderMid: '#496552',
-    borderTo: '#2e4838',
-    iconFrom: '#1a2e22',
-    iconTo: '#0c1610'
+  'Empath': {
+    'Tend the Enemy': {
+      accent: '#a85868',
+      accentMuted: '#703c48',
+      headerFrom: '#3a2028',
+      headerTo: '#281820',
+      activeFrom: '#451020',
+      activeTo: '#280810',
+      contentBg: '#181416',
+      cardHeaderFrom: '#451020',
+      borderFrom: '#a85868',
+      borderMid: '#703c48',
+      borderTo: '#482830',
+      iconFrom: '#2a1820',
+      iconTo: '#140c10'
+    },
+    'Tend the Spirit': {
+      accent: '#5898a8',
+      accentMuted: '#386878',
+      headerFrom: '#203038',
+      headerTo: '#182028',
+      activeFrom: '#104048',
+      activeTo: '#082828',
+      contentBg: '#121818',
+      cardHeaderFrom: '#104048',
+      borderFrom: '#5898a8',
+      borderMid: '#386878',
+      borderTo: '#284848',
+      iconFrom: '#182830',
+      iconTo: '#0c1418'
+    },
+    'Tend the Body': {
+      accent: '#989058',
+      accentMuted: '#686040',
+      headerFrom: '#383020',
+      headerTo: '#282018',
+      activeFrom: '#403810',
+      activeTo: '#282008',
+      contentBg: '#181614',
+      cardHeaderFrom: '#403810',
+      borderFrom: '#989058',
+      borderMid: '#686040',
+      borderTo: '#484030',
+      iconFrom: '#2a2818',
+      iconTo: '#141008'
+    }
   },
-  'Night Terrors': {
-    accent: '#6878a8',
-    accentMuted: '#485878',
-    headerFrom: '#242838',
-    headerTo: '#181c28',
-    activeFrom: '#182040',
-    activeTo: '#0c1028',
-    contentBg: '#121418',
-    cardHeaderFrom: '#182040',
-    borderFrom: '#6878a8',
-    borderMid: '#485878',
-    borderTo: '#303848',
-    iconFrom: '#1a2030',
-    iconTo: '#0c1018'
+  'Fianna': {
+    'Prowess': {
+      accent: '#788898',
+      accentMuted: '#505868',
+      headerFrom: '#282830',
+      headerTo: '#1c1c24',
+      activeFrom: '#203040',
+      activeTo: '#101820',
+      contentBg: '#141618',
+      cardHeaderFrom: '#203040',
+      borderFrom: '#788898',
+      borderMid: '#505868',
+      borderTo: '#383840',
+      iconFrom: '#1c2028',
+      iconTo: '#0e1014'
+    },
+    'Resilience': {
+      accent: '#508090',
+      accentMuted: '#385860',
+      headerFrom: '#243038',
+      headerTo: '#182028',
+      activeFrom: '#143040',
+      activeTo: '#0a1820',
+      contentBg: '#121618',
+      cardHeaderFrom: '#143040',
+      borderFrom: '#508090',
+      borderMid: '#385860',
+      borderTo: '#284038',
+      iconFrom: '#182428',
+      iconTo: '#0c1214'
+    },
+    'Form of Danu': {
+      accent: '#588868',
+      accentMuted: '#385848',
+      headerFrom: '#243028',
+      headerTo: '#182018',
+      activeFrom: '#184830',
+      activeTo: '#0c2818',
+      contentBg: '#121614',
+      cardHeaderFrom: '#184830',
+      borderFrom: '#588868',
+      borderMid: '#385848',
+      borderTo: '#304038',
+      iconFrom: '#182820',
+      iconTo: '#0c140c'
+    }
   },
-  'Dark Fables': {
-    accent: '#9a6a98',
-    accentMuted: '#684868',
-    headerFrom: '#382838',
-    headerTo: '#241824',
-    activeFrom: '#401840',
-    activeTo: '#240c24',
-    contentBg: '#161418',
-    cardHeaderFrom: '#401840',
-    borderFrom: '#9a6a98',
-    borderMid: '#684868',
-    borderTo: '#403040',
-    iconFrom: '#281828',
-    iconTo: '#140c14'
+  'Forest Stalker': {
+    'Predation': {
+      accent: '#a89050',
+      accentMuted: '#706038',
+      headerFrom: '#383020',
+      headerTo: '#282018',
+      activeFrom: '#483010',
+      activeTo: '#281808',
+      contentBg: '#181614',
+      cardHeaderFrom: '#483010',
+      borderFrom: '#a89050',
+      borderMid: '#706038',
+      borderTo: '#484028',
+      iconFrom: '#2a2418',
+      iconTo: '#141008'
+    },
+    'Thorn and Fang': {
+      accent: '#709050',
+      accentMuted: '#486038',
+      headerFrom: '#283020',
+      headerTo: '#1c2018',
+      activeFrom: '#204010',
+      activeTo: '#102808',
+      contentBg: '#141612',
+      cardHeaderFrom: '#204010',
+      borderFrom: '#709050',
+      borderMid: '#486038',
+      borderTo: '#384028',
+      iconFrom: '#202818',
+      iconTo: '#101408'
+    },
+    'Stone Rain': {
+      accent: '#788090',
+      accentMuted: '#505860',
+      headerFrom: '#2c3038',
+      headerTo: '#1e2228',
+      activeFrom: '#283040',
+      activeTo: '#181820',
+      contentBg: '#141618',
+      cardHeaderFrom: '#283040',
+      borderFrom: '#788090',
+      borderMid: '#505860',
+      borderTo: '#383c42',
+      iconFrom: '#222830',
+      iconTo: '#101214'
+    }
   },
-  'Mummery': {
-    accent: '#a88458',
-    accentMuted: '#705838',
-    headerFrom: '#3a3020',
-    headerTo: '#282018',
-    activeFrom: '#452814',
-    activeTo: '#281808',
-    contentBg: '#181614',
-    cardHeaderFrom: '#452814',
-    borderFrom: '#a88458',
-    borderMid: '#705838',
-    borderTo: '#484028',
-    iconFrom: '#2a2218',
-    iconTo: '#141008'
-  },
-  'Tend the Enemy': {
-    accent: '#a85868',
-    accentMuted: '#703c48',
-    headerFrom: '#3a2028',
-    headerTo: '#281820',
-    activeFrom: '#451020',
-    activeTo: '#280810',
-    contentBg: '#181416',
-    cardHeaderFrom: '#451020',
-    borderFrom: '#a85868',
-    borderMid: '#703c48',
-    borderTo: '#482830',
-    iconFrom: '#2a1820',
-    iconTo: '#140c10'
-  },
-  'Tend the Spirit': {
-    accent: '#5898a8',
-    accentMuted: '#386878',
-    headerFrom: '#203038',
-    headerTo: '#182028',
-    activeFrom: '#104048',
-    activeTo: '#082828',
-    contentBg: '#121818',
-    cardHeaderFrom: '#104048',
-    borderFrom: '#5898a8',
-    borderMid: '#386878',
-    borderTo: '#284848',
-    iconFrom: '#182830',
-    iconTo: '#0c1418'
-  },
-  'Tend the Body': {
-    accent: '#989058',
-    accentMuted: '#686040',
-    headerFrom: '#383020',
-    headerTo: '#282018',
-    activeFrom: '#403810',
-    activeTo: '#282008',
-    contentBg: '#181614',
-    cardHeaderFrom: '#403810',
-    borderFrom: '#989058',
-    borderMid: '#686040',
-    borderTo: '#484030',
-    iconFrom: '#2a2818',
-    iconTo: '#141008'
-  },
-  'Prowess': {
-    accent: '#788898',
-    accentMuted: '#505868',
-    headerFrom: '#282830',
-    headerTo: '#1c1c24',
-    activeFrom: '#203040',
-    activeTo: '#101820',
-    contentBg: '#141618',
-    cardHeaderFrom: '#203040',
-    borderFrom: '#788898',
-    borderMid: '#505868',
-    borderTo: '#383840',
-    iconFrom: '#1c2028',
-    iconTo: '#0e1014'
-  },
-  'Resilience': {
-    accent: '#508090',
-    accentMuted: '#385860',
-    headerFrom: '#243038',
-    headerTo: '#182028',
-    activeFrom: '#143040',
-    activeTo: '#0a1820',
-    contentBg: '#121618',
-    cardHeaderFrom: '#143040',
-    borderFrom: '#508090',
-    borderMid: '#385860',
-    borderTo: '#284038',
-    iconFrom: '#182428',
-    iconTo: '#0c1214'
-  },
-  'Form of Danu': {
-    accent: '#588868',
-    accentMuted: '#385848',
-    headerFrom: '#243028',
-    headerTo: '#182018',
-    activeFrom: '#184830',
-    activeTo: '#0c2818',
-    contentBg: '#121614',
-    cardHeaderFrom: '#184830',
-    borderFrom: '#588868',
-    borderMid: '#385848',
-    borderTo: '#304038',
-    iconFrom: '#182820',
-    iconTo: '#0c140c'
-  },
-  'Predation': {
-    accent: '#a89050',
-    accentMuted: '#706038',
-    headerFrom: '#383020',
-    headerTo: '#282018',
-    activeFrom: '#483010',
-    activeTo: '#281808',
-    contentBg: '#181614',
-    cardHeaderFrom: '#483010',
-    borderFrom: '#a89050',
-    borderMid: '#706038',
-    borderTo: '#484028',
-    iconFrom: '#2a2418',
-    iconTo: '#141008'
-  },
-  'Thorn and Fang': {
-    accent: '#709050',
-    accentMuted: '#486038',
-    headerFrom: '#283020',
-    headerTo: '#1c2018',
-    activeFrom: '#204010',
-    activeTo: '#102808',
-    contentBg: '#141612',
-    cardHeaderFrom: '#204010',
-    borderFrom: '#709050',
-    borderMid: '#486038',
-    borderTo: '#384028',
-    iconFrom: '#202818',
-    iconTo: '#101408'
-  },
-  'Stone Rain': {
-    accent: '#788090',
-    accentMuted: '#505860',
-    headerFrom: '#2c3038',
-    headerTo: '#1e2228',
-    activeFrom: '#283040',
-    activeTo: '#181820',
-    contentBg: '#141618',
-    cardHeaderFrom: '#283040',
-    borderFrom: '#788090',
-    borderMid: '#505860',
-    borderTo: '#383c42',
-    iconFrom: '#222830',
-    iconTo: '#101214'
-  },
-  'Corrupted Blade': {
-    accent: '#7a9a50',
-    accentMuted: '#526838',
-    headerFrom: '#2a3820',
-    headerTo: '#1c2816',
-    activeFrom: '#284010',
-    activeTo: '#182808',
-    contentBg: '#141612',
-    cardHeaderFrom: '#284010',
-    borderFrom: '#7a9a50',
-    borderMid: '#526838',
-    borderTo: '#384028',
-    iconFrom: '#222818',
-    iconTo: '#101408'
-  },
-  "Danu's Vengeance": {
-    accent: '#a88858',
-    accentMuted: '#706038',
-    headerFrom: '#383020',
-    headerTo: '#282018',
-    activeFrom: '#483810',
-    activeTo: '#282008',
-    contentBg: '#181614',
-    cardHeaderFrom: '#483810',
-    borderFrom: '#a88858',
-    borderMid: '#706038',
-    borderTo: '#484028',
-    iconFrom: '#2a2418',
-    iconTo: '#141008'
-  },
-  'Forest Walking': {
-    accent: '#508858',
-    accentMuted: '#386040',
-    headerFrom: '#243028',
-    headerTo: '#182018',
-    activeFrom: '#184830',
-    activeTo: '#0c2818',
-    contentBg: '#121614',
-    cardHeaderFrom: '#184830',
-    borderFrom: '#508858',
-    borderMid: '#386040',
-    borderTo: '#304038',
-    iconFrom: '#182820',
-    iconTo: '#0c140c'
+  'Red Cap': {
+    'Corrupted Blade': {
+      accent: '#9858a8',
+      accentMuted: '#684070',
+      headerFrom: '#382840',
+      headerTo: '#241830',
+      activeFrom: '#401848',
+      activeTo: '#240c28',
+      contentBg: '#181418',
+      cardHeaderFrom: '#401848',
+      borderFrom: '#9858a8',
+      borderMid: '#684070',
+      borderTo: '#483048',
+      iconFrom: '#281828',
+      iconTo: '#140c14'
+    },
+    "Danu's Vengeance": {
+      accent: '#c86848',
+      accentMuted: '#884830',
+      headerFrom: '#3a2018',
+      headerTo: '#281410',
+      activeFrom: '#4a2010',
+      activeTo: '#2a1008',
+      contentBg: '#1a1412',
+      cardHeaderFrom: '#4a2010',
+      borderFrom: '#c86848',
+      borderMid: '#884830',
+      borderTo: '#4a3020',
+      iconFrom: '#321810',
+      iconTo: '#1a0c08'
+    },
+    'Forest Walking': {
+      accent: '#587878',
+      accentMuted: '#385050',
+      headerFrom: '#243030',
+      headerTo: '#182020',
+      activeFrom: '#183838',
+      activeTo: '#0c2020',
+      contentBg: '#121818',
+      cardHeaderFrom: '#183838',
+      borderFrom: '#587878',
+      borderMid: '#385050',
+      borderTo: '#304040',
+      iconFrom: '#182828',
+      iconTo: '#0c1414'
+    }
   }
 };
 
@@ -541,15 +553,60 @@ const DEFAULT_SPECIALIZED_TREE_PALETTE = {
   iconTo: '#141010'
 };
 
-function getTreePalette(treeName) {
-  return TREE_PALETTES[treeName] || DEFAULT_SPECIALIZED_TREE_PALETTE;
+function getClassTreePalette(className, treeName) {
+  return CLASS_TREE_PALETTES[className]?.[treeName] || DEFAULT_SPECIALIZED_TREE_PALETTE;
 }
 
 function getAccordionPalette(treeName, className) {
   if (treeName === CLASS_ABILITY_TREE) {
     return getClassPalette(className);
   }
-  return getTreePalette(treeName);
+  return getClassTreePalette(className, treeName);
+}
+
+function classToSlug(className) {
+  return className.toLowerCase().replace(/\s+/g, '-');
+}
+
+function findClassNameBySlug(slug) {
+  if (!slug) return null;
+
+  const normalized = slug.toLowerCase();
+  for (const factionNode of database) {
+    for (const classObj of factionNode.classes || []) {
+      if (classToSlug(classObj.class) === normalized) {
+        return classObj.class;
+      }
+    }
+  }
+
+  return null;
+}
+
+function getClassSlugFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const fromQuery = params.get('class');
+  if (fromQuery) return fromQuery;
+
+  const hash = window.location.hash.replace(/^#\/?/, '');
+  return hash || null;
+}
+
+function syncClassUrl(className) {
+  const url = new URL(window.location.href);
+
+  if (className) {
+    url.searchParams.set('class', classToSlug(className));
+  } else {
+    url.searchParams.delete('class');
+  }
+
+  url.hash = '';
+  history.replaceState({ className: className || null }, '', url);
+}
+
+function resolveClassFromUrl() {
+  return findClassNameBySlug(getClassSlugFromUrl());
 }
 
 function setContextualToolbarVisible(visible) {
@@ -617,7 +674,7 @@ function renderClassNavRow(activeClassName) {
   row.innerHTML = cards.join('');
 }
 
-function selectClass(className) {
+function selectClass(className, { updateUrl = true } = {}) {
   if (selectedClass !== className) {
     searchQuery = '';
     elements.searchInput.value = '';
@@ -631,10 +688,11 @@ function selectClass(className) {
   elements.clearSearch.disabled = false;
   elements.searchInput.placeholder = 'Search class abilities and metadata...';
   setContextualToolbarVisible(true);
+  if (updateUrl) syncClassUrl(className);
   renderAbilities();
 }
 
-function resetClassSelection() {
+function resetClassSelection({ updateUrl = true } = {}) {
   selectedClass = '';
   searchQuery = '';
   activeFilter = '';
@@ -646,6 +704,7 @@ function resetClassSelection() {
   elements.searchInput.placeholder = 'Search class abilities and metadata...';
   setContextualToolbarVisible(false);
   hideActiveClassHero();
+  if (updateUrl) syncClassUrl('');
   renderAbilities();
 }
 
@@ -756,7 +815,7 @@ const UI = {
         const heroPosition = getHeroPositionClass(meta);
 
         return `
-        <button type="button" class="class-card overflow-hidden flex flex-col w-full text-left rounded-lg transition-all duration-200 ease-in-out focus:outline-none" style="${classThemeInlineStyle(themeColor, themeTint)} --tree-accent: ${themeColor}; --tree-accent-muted: ${themeColor};" data-class-name="${classObj.class}">
+        <a href="?class=${classToSlug(classObj.class)}" class="class-card no-underline overflow-hidden flex flex-col w-full text-left rounded-lg transition-all duration-200 ease-in-out focus:outline-none" style="${classThemeInlineStyle(themeColor, themeTint)} --tree-accent: ${themeColor}; --tree-accent-muted: ${themeColor};" data-class-name="${classObj.class}">
           <div class="relative overflow-hidden rounded-t-lg">
             <img src="${meta.img}" class="w-full h-64 object-cover ${heroPosition}" alt="${classObj.class} banner" onerror="this.style.display='none'">
             <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#121214] to-transparent pointer-events-none"></div>
@@ -770,7 +829,7 @@ const UI = {
           <div class="px-4 pb-4">
             <p class="text-sm text-[#a0a0a5] leading-relaxed">${meta.desc}</p>
           </div>
-        </button>`;
+        </a>`;
       }).join('');
 
       return `
@@ -1088,7 +1147,8 @@ function mapAbilityToCardView(name, data) {
 
 function setupClassCardListeners(container) {
   container.querySelectorAll('[data-class-name]').forEach(card => {
-    card.addEventListener('click', () => {
+    card.addEventListener('click', (e) => {
+      e.preventDefault();
       selectClass(card.dataset.className);
     });
   });
@@ -1174,7 +1234,13 @@ async function init() {
 
     setupTopBarHeightSync();
     setupEventListeners();
-    renderAbilities();
+
+    const urlClass = resolveClassFromUrl();
+    if (urlClass) {
+      selectClass(urlClass, { updateUrl: false });
+    } else {
+      renderAbilities();
+    }
   } catch (error) {
     console.error('Database Initialization Fault:', error);
     elements.accordionContainer.innerHTML = UI.errorState();
@@ -1198,6 +1264,16 @@ function setupTopBarHeightSync() {
 
 function setupEventListeners() {
   elements.homeLogo.addEventListener('click', resetClassSelection);
+
+  window.addEventListener('popstate', () => {
+    const urlClass = resolveClassFromUrl();
+    if (urlClass) {
+      selectClass(urlClass, { updateUrl: false });
+      return;
+    }
+
+    resetClassSelection({ updateUrl: false });
+  });
 
   elements.classNavRow.addEventListener('click', (e) => {
     const btn = e.target.closest('.class-nav-btn');

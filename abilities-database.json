@@ -19,7 +19,7 @@
               "cast_speed": "0.2s",
               "resource_delta": "None",
               "range": "Self",
-              "summary": "Increases your Physical Armor by 70% for 8 seconds. 60.0s Cooldown.",
+              "summary": "Increases your Physical Armor by 70% for 8 seconds. 60.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/class-abilities/armor-of-faith.png"
             },
             {
@@ -30,7 +30,7 @@
               "base_value": "Strong Heal Over Time",
               "resource_delta": "2 Judgment, +500 Faith",
               "range": "90m",
-              "summary": "Grants your party a strong Heal Over Time for 6 seconds. 6.0s Cooldown.",
+              "summary": "Grants your party a strong Heal Over Time for 6 seconds. 6.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/class-abilities/rally.png"
             }
           ]
@@ -43,19 +43,19 @@
             {
               "name": "Avatar of Bran",
               "slug": "avatar-of-bran",
-              "type": "Buff",
+              "type": "Spell",
               "cast_speed": "0.2s",
               "resource_delta": "None",
               "range": "Self",
-              "summary": "Grants 70 Physical/Magic Armor and increases Weaponskill damage for 10s. Next Melee hit gains strong Spirit damage. 120.0s Cooldown. (Spell, Ritual)",
+              "summary": "120.Os Cooldown gains strong added Spirit damage. seconds. Your next Melee hit during that time and increases Weaponskill damage for 10 Grants 70 Physical and Magic Armor Ratings",
               "icon": "./assets/abilities/blessed-crow/dominance/avatar-of-bran.png"
             },
             {
               "name": "Blessed Warrior",
               "slug": "blessed-warrior",
               "type": "Buff",
-              "cast_speed": "0.2s",
-              "resource_delta": "None",
+              "cast_speed": "0.6s",
+              "resource_delta": "+1 Judgment",
               "range": "Self",
               "summary": "Increases Melee damage dealt and Parry Chance. (Spell)",
               "icon": "./assets/abilities/blessed-crow/dominance/blessed-warrior.png"
@@ -68,60 +68,60 @@
               "base_value": "972 Base Damage",
               "resource_delta": "+1 Judgment",
               "range": "6m",
-              "summary": "Deals Weapon damage.",
+              "summary": "Deals Weapon damage",
               "icon": "./assets/abilities/blessed-crow/dominance/crushing-might.png"
             },
             {
               "name": "Living Symbol",
               "slug": "living-symbol",
-              "type": "Buff / Aura",
+              "type": "Spell",
               "cast_speed": "0.2s",
               "resource_delta": "2 Judgment, +500 Faith",
-              "range": "Self (Aura)",
-              "summary": "Creates an aura granting Physical/Magical armor and Panic Resistance to nearby allies. 15.0s Cooldown. (Spell)",
+              "range": "Self",
+              "summary": "Creates an aura that grants increased Physical and Magical armor and Panic Resistance to nearby allies. 15.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/dominance/living-symbol.png"
             },
             {
               "name": "Overwhelm",
               "slug": "overwhelm",
-              "type": "Damage / Debuff",
+              "type": "Spell",
               "cast_speed": "0.6s",
-              "base_value": "4730 Damage",
+              "base_value": "4730 Base Damage",
               "resource_delta": "1 Judgment, +250 Faith",
               "range": "6m",
-              "summary": "Deals Shadow damage; target takes +50% damage from this ability for 6s.",
+              "summary": "Deals Shadow damage. The target takes +50% damage from this ability for 6 seconds",
               "icon": "./assets/abilities/blessed-crow/dominance/overwhelm.png"
             },
             {
               "name": "Sacred Pride",
               "slug": "sacred-pride",
-              "type": "Damage / CC",
+              "type": "Spell",
               "cast_speed": "0.6s",
               "base_value": "1080 Damage",
               "resource_delta": "125 Faith, +3 Judgment",
               "range": "6m",
-              "summary": "Deals Weapon damage and Snares the target by 40% for 4/8s. 30.0s Cooldown.",
+              "summary": "amount of Judgement. by 40% for 4/8 seconds and grants a large Deals Weapon damage and Snares the target",
               "icon": "./assets/abilities/blessed-crow/dominance/sacred-pride.png"
             },
             {
               "name": "Scorn the Weak",
               "slug": "scorn-the-weak",
-              "type": "CC / Debuff",
+              "type": "Spell",
               "cast_speed": "0.2s",
-              "resource_delta": "150 Faith, +Judgment",
+              "resource_delta": "150 Faith, +1 Judgment",
               "range": "25m",
-              "summary": "Snares the target and reduces damage dealt by 30%. 30.0s Cooldown. (Spell)",
+              "summary": "Snares the target and reduces damage dealt by 30%. 30.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/dominance/scorn-the-weak.png"
             },
             {
               "name": "Strike of the Blessed",
               "slug": "strike-of-the-blessed",
-              "type": "Damage / Heal Over Time",
+              "type": "Spell",
               "cast_speed": "0.6s",
               "base_value": "1944 Damage",
               "resource_delta": "1 Judgment, +250 Faith",
               "range": "6m",
-              "summary": "Deals Spirit damage and heals self over time.",
+              "summary": "damage from this ability for 6 seconds. Deals Shadow damage. The target takes +50%",
               "icon": "./assets/abilities/blessed-crow/dominance/strike-of-the-blessed.png"
             }
           ]
@@ -139,7 +139,7 @@
               "base_value": "1500 Base Healing",
               "resource_delta": "None",
               "range": "45m (15m AoE Radius)",
-              "summary": "Heals allies in an area around target ally and summons a Cauldron at the target's location for 60 seconds. 12.0s Cooldown.",
+              "summary": "Heals allies in an area around target ally and summons a Cauldron at the target's location for 60 seconds. 12.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/nourishment/bran-s-aid.png"
             },
             {
@@ -149,13 +149,13 @@
               "cast_speed": "2.0s",
               "resource_delta": "None",
               "range": "45m (8m AoE Radius)",
-              "summary": "Resurrects allies near each of your Cauldrons with 25% Max Health and Res Sickness. 180.0s Cooldown.",
+              "summary": "Resurrects allies near each of your Cauldrons with 25% Max Health and Res Sickness. 180.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/nourishment/bran-s-gift.png"
             },
             {
               "name": "Branwen's Tears",
               "slug": "branwen-s-tears",
-              "type": "Healing",
+              "type": "Spell",
               "cast_speed": "1.0s",
               "base_value": "2813 Healing",
               "resource_delta": "1 Judgment, +250 Faith",
@@ -166,7 +166,7 @@
             {
               "name": "Cleansing Winds",
               "slug": "cleansing-winds",
-              "type": "AoE Cleanse",
+              "type": "Spell",
               "cast_speed": "0.2s",
               "base_value": "Removes 1 Debuff",
               "resource_delta": "150 Faith, +1 Judgment",
@@ -181,7 +181,7 @@
               "cast_speed": "0.2s",
               "resource_delta": "125 Faith, +1 Judgment",
               "range": "Self",
-              "summary": "Increases Movement Speed for 6 seconds. Becomes Dedicated Pursuit Follow-Up when used. 20.0s Cooldown.",
+              "summary": "Increases Movement Speed for 6 seconds. Becomes Follow-Up when used. 20.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/nourishment/dedicated-pursuit.png"
             },
             {
@@ -191,7 +191,7 @@
               "cast_speed": "0.2s",
               "resource_delta": "100 Faith, +1 Judgment",
               "range": "25m",
-              "summary": "Heals the target over time. 2.0s Cooldown.",
+              "summary": "Heals the target over time. 2.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/nourishment/nurture-life.png"
             },
             {
@@ -202,7 +202,7 @@
               "base_value": "2250 Base Healing",
               "resource_delta": "2 Judgment, +500 Faith",
               "range": "15m (AoE Radius)",
-              "summary": "Heals nearby allies. 2.0s Cooldown.",
+              "summary": "Heals nearby allies. 2.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/nourishment/regrowth.png"
             },
             {
@@ -211,8 +211,8 @@
               "type": "Spell",
               "cast_speed": "9.0s",
               "resource_delta": "200 Faith",
-              "range": "25m (Friend)",
-              "summary": "Resurrects target ally with 15% max Health and Res Sickness.",
+              "range": "25m",
+              "summary": "Resurrects target ally with 15% max Health and Res Sickness",
               "icon": "./assets/abilities/blessed-crow/nourishment/rise-from-the-cauldron.png"
             }
           ]
@@ -225,23 +225,23 @@
             {
               "name": "Blood Offering",
               "slug": "blood-offering",
-              "type": "Damage / Summon",
+              "type": "Spell",
               "cast_speed": "0.6s",
               "base_value": "1836 Base Damage",
               "resource_delta": "None",
               "range": "6m",
-              "summary": "Deals Weapon damage and summons a Cauldron at the target's location for 60 seconds. 10.0s Cooldown.",
+              "summary": "Deals Weapon damage and summons a Cauldron at the target's location for 60 seconds. 10.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/ritual/blood-offering.png"
             },
             {
               "name": "Call Down",
               "slug": "call-down",
-              "type": "Spell (Ground AoE)",
+              "type": "Spell",
               "cast_speed": "1.0s",
               "base_value": "1170 Base Damage",
               "resource_delta": "None",
-              "range": "25m (8m AoE Radius)",
-              "summary": "Summons a Cauldron for 60s and deals Spirit damage in the targeted area. 12.0s Cooldown.",
+              "range": "25m",
+              "summary": "Summons a Cauldron for 60s and deals Spirit damage in the targeted area. 12.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/ritual/call-down.png"
             },
             {
@@ -252,73 +252,73 @@
               "base_value": "1339 Base Damage",
               "resource_delta": "1 Judgment, +250 Faith",
               "range": "6m",
-              "summary": "Deals Spirit damage. Damage is increased by 50% for each nearby Cauldron.",
+              "summary": "Deals Spirit damage. Damage is increased by 50% for each nearby Cauldron",
               "icon": "./assets/abilities/blessed-crow/ritual/conduit-of-power.png"
             },
             {
               "name": "Dark Work",
               "slug": "dark-work",
-              "type": "Spell (AoE)",
+              "type": "Spell",
               "cast_speed": "1.0s",
               "base_value": "720 Base Damage",
               "resource_delta": "150 Faith, +1 Judgment",
               "range": "45m (8m AoE Radius)",
-              "summary": "Deals Shadow damage to enemies near each of your Cauldrons.",
+              "summary": "Deals Shadow damage to enemies near each of your Cauldrons",
               "icon": "./assets/abilities/blessed-crow/ritual/dark-work.png"
             },
             {
               "name": "Nature's Rebuke",
               "slug": "nature-s-rebuke",
-              "type": "Damage / CC",
+              "type": "Spell",
               "cast_speed": "0.6s",
               "base_value": "864 Base Damage",
               "resource_delta": "+1 Judgment",
               "range": "6m",
-              "summary": "Deals Weapon damage and Snares the target by 40% for 4/8 seconds.",
+              "summary": "Deals Weapon damage and Snares the target by 40% for 4/8 seconds",
               "icon": "./assets/abilities/blessed-crow/ritual/nature-s-rebuke.png"
             },
             {
               "name": "Rite of Healing",
               "slug": "rite-of-healing",
-              "type": "Spell (AoE)",
+              "type": "Spell",
               "cast_speed": "0.2s",
               "base_value": "Periodic Heal",
               "resource_delta": "2 Judgment, +500 Faith",
-              "range": "45m (15m AoE Radius)",
-              "summary": "Periodically heals allies near each of your Cauldrons. 6.0s Cooldown.",
+              "range": "45m",
+              "summary": "Periodically heals allies near each of your Cauldrons. 6.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/ritual/rite-of-healing.png"
             },
             {
               "name": "Rite of Ruin",
               "slug": "rite-of-ruin",
-              "type": "Spell (AoE)",
+              "type": "Spell",
               "cast_speed": "0.2s",
               "base_value": "Damage Taken Debuff",
               "resource_delta": "3 Judgment, +750 Faith",
               "range": "45m",
-              "summary": "Creates auras around you and your Cauldrons that cause enemies to take increased damage. This effect stacks. 4.0s Cooldown.",
+              "summary": "Creates auras around you and your Cauldrons that cause enemies to take increased damage. This effect stacks. 4.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/ritual/rite-of-ruin.png"
             },
             {
               "name": "Rite of Sickness",
               "slug": "rite-of-sickness",
-              "type": "Spell (AoE)",
+              "type": "Spell",
               "cast_speed": "0.2s",
               "base_value": "720 Base Damage",
               "resource_delta": "1 Judgment, +250 Faith",
-              "range": "45m (8m AoE Radius)",
-              "summary": "Deals Spirit damage to and Snares enemies near each of your Cauldrons. 4.0s Cooldown.",
+              "range": "45m",
+              "summary": "Deals Spirit damage to and Snares enemies near each of your Cauldrons. 4.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/ritual/rite-of-sickness.png"
             },
             {
               "name": "Summon Cauldron",
               "slug": "summon-cauldron",
-              "type": "Spell (Ground)",
-              "cast_speed": "0.2s",
+              "type": "Spell",
+              "cast_speed": "0.6s",
               "base_value": "Max 4 Cauldrons total",
-              "resource_delta": "None",
+              "resource_delta": "+1 Judgment",
               "range": "25m",
-              "summary": "Summons a Cauldron at the targeted location for 60 seconds. Maximum of 4 Cauldrons total from all abilities. 6.0s Cooldown.",
+              "summary": "Summons a Cauldron at the targeted location for 60 seconds. Maximum of 4 Cauldrons total from all abilities. 6.0s Cooldown",
               "icon": "./assets/abilities/blessed-crow/ritual/summon-cauldron.png"
             }
           ]

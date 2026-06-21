@@ -701,41 +701,60 @@ function findClassNameBySlug(slug) {
   return null;
 }
 
-function getClassSlugFromUrl() {
+function parseClassRouteFromUrl() {
   const params = new URLSearchParams(window.location.search);
-  const fromQuery = params.get('class');
-  if (fromQuery) return fromQuery;
+  let slug = params.get('class');
+  let view = params.get('view') === 'guide' ? 'guide' : 'abilities';
 
   const hash = window.location.hash.replace(/^#\/?/, '');
-  return hash || null;
+  if (hash) {
+    const [hashSlug, hashView] = hash.split('/').filter(Boolean);
+    if (hashSlug) slug = hashSlug;
+    if (hashView === 'guide' || hashView === 'abilities') view = hashView;
+  }
+
+  return { slug: slug || null, view };
+}
+
+function getClassSlugFromUrl() {
+  return parseClassRouteFromUrl().slug;
 }
 
 function getClassViewFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get('view') === 'guide' ? 'guide' : 'abilities';
+  return parseClassRouteFromUrl().view;
+}
+
+function buildClassRouteHash(className, view = 'abilities') {
+  if (!className) return '';
+  const slug = classToSlug(className);
+  const tab = view === 'guide' ? 'guide' : 'abilities';
+  return `#${slug}/${tab}`;
 }
 
 function syncClassUrl(className) {
   const url = new URL(window.location.href);
-
-  if (className) {
-    url.searchParams.set('class', classToSlug(className));
-    if (selectedClassView === 'guide') {
-      url.searchParams.set('view', 'guide');
-    } else {
-      url.searchParams.delete('view');
-    }
-  } else {
-    url.searchParams.delete('class');
-    url.searchParams.delete('view');
-  }
-
-  url.hash = '';
-  history.replaceState({ className: className || null, view: selectedClassView }, '', url);
+  url.searchParams.delete('class');
+  url.searchParams.delete('view');
+  url.hash = buildClassRouteHash(className, selectedClassView);
+  history.replaceState(
+    { className: className || null, view: selectedClassView },
+    '',
+    url
+  );
 }
 
 function resolveClassFromUrl() {
   return findClassNameBySlug(getClassSlugFromUrl());
+}
+
+function applyClassRouteFromUrl() {
+  selectedClassView = getClassViewFromUrl();
+  const urlClass = resolveClassFromUrl();
+  if (urlClass) {
+    selectClass(urlClass, { updateUrl: false });
+    return;
+  }
+  resetClassSelection({ updateUrl: false });
 }
 
 function setContextualToolbarVisible(visible) {
@@ -756,15 +775,16 @@ function renderClassViewTabs(className) {
   const { themeColor } = getClassThemeStyles(getClassMetadata(className));
   tabsEl.classList.remove('hidden');
   tabsEl.style.setProperty('--tab-accent', themeColor);
+  const slug = classToSlug(className);
   tabsEl.innerHTML = `
     <nav class="flex gap-2" aria-label="Class sections">
       ${CLASS_VIEW_TABS.map(tab => `
-        <button
-          type="button"
+        <a
+          href="${buildClassRouteHash(className, tab.id)}"
           data-class-view="${tab.id}"
-          class="class-view-tab px-5 py-2 rounded font-cinzel text-sm font-bold tracking-wider uppercase${selectedClassView === tab.id ? ' active' : ''}"
+          class="class-view-tab px-5 py-2 rounded font-cinzel text-sm font-bold tracking-wider uppercase no-underline${selectedClassView === tab.id ? ' active' : ''}"
           aria-current="${selectedClassView === tab.id ? 'page' : 'false'}"
-        >${tab.label}</button>
+        >${tab.label}</a>
       `).join('')}
     </nav>`;
 }
@@ -1038,7 +1058,7 @@ const UI = {
         const heroPosition = getHeroPositionClass(meta);
 
         return `
-        <a href="?class=${classToSlug(classObj.class)}" class="class-card no-underline overflow-hidden flex flex-col w-full text-left rounded-lg transition-all duration-200 ease-in-out focus:outline-none" style="${classThemeInlineStyle(themeColor, themeTint)} --tree-accent: ${themeColor}; --tree-accent-muted: ${themeColor};" data-class-name="${classObj.class}">
+        <a href="${buildClassRouteHash(classObj.class, 'abilities')}" class="class-card no-underline overflow-hidden flex flex-col w-full text-left rounded-lg transition-all duration-200 ease-in-out focus:outline-none" style="${classThemeInlineStyle(themeColor, themeTint)} --tree-accent: ${themeColor}; --tree-accent-muted: ${themeColor};" data-class-name="${classObj.class}">
           <div class="relative overflow-hidden rounded-t-lg">
             <img src="${meta.img}" class="w-full h-64 object-cover ${heroPosition}" alt="${classObj.class} banner" onerror="this.style.display='none'">
             <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-[#121214] to-transparent pointer-events-none"></div>
@@ -1622,6 +1642,7 @@ function setupClassCardListeners(container) {
   container.querySelectorAll('[data-class-name]').forEach(card => {
     card.addEventListener('click', (e) => {
       e.preventDefault();
+      selectedClassView = 'abilities';
       selectClass(card.dataset.className);
     });
   });
@@ -1714,11 +1735,8 @@ async function init() {
     setupTopBarHeightSync();
     setupEventListeners();
 
-    selectedClassView = getClassViewFromUrl();
-    const urlClass = resolveClassFromUrl();
-    if (urlClass) {
-      selectClass(urlClass, { updateUrl: false });
-    } else {
+    applyClassRouteFromUrl();
+    if (!selectedClass) {
       renderClassView();
     }
   } catch (error) {
@@ -1745,21 +1763,14 @@ function setupTopBarHeightSync() {
 function setupEventListeners() {
   elements.homeLogo.addEventListener('click', resetClassSelection);
 
-  window.addEventListener('popstate', () => {
-    selectedClassView = getClassViewFromUrl();
-    const urlClass = resolveClassFromUrl();
-    if (urlClass) {
-      selectClass(urlClass, { updateUrl: false });
-      return;
-    }
-
-    resetClassSelection({ updateUrl: false });
-  });
+  window.addEventListener('popstate', applyClassRouteFromUrl);
+  window.addEventListener('hashchange', applyClassRouteFromUrl);
 
   if (elements.classViewTabs) {
     elements.classViewTabs.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-class-view]');
       if (!btn) return;
+      e.preventDefault();
       selectClassView(btn.dataset.classView);
     });
   }

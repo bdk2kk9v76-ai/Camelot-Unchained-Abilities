@@ -224,6 +224,21 @@ const CLASS_PALETTES = {
     borderTo: '#304a26',
     iconFrom: '#25351f',
     iconTo: '#121a0f'
+  },
+  'Red Cap': {
+    accent: '#d42626',
+    accentMuted: '#9a1a1a',
+    headerFrom: '#452020',
+    headerTo: '#2d1616',
+    activeFrom: '#4a1212',
+    activeTo: '#2a0808',
+    contentBg: '#1a1414',
+    cardHeaderFrom: '#4a1212',
+    borderFrom: '#d42626',
+    borderMid: '#9a1a1a',
+    borderTo: '#4a2626',
+    iconFrom: '#3a1818',
+    iconTo: '#1a0c0c'
   }
 };
 
@@ -462,6 +477,51 @@ const TREE_PALETTES = {
     borderTo: '#383c42',
     iconFrom: '#222830',
     iconTo: '#101214'
+  },
+  'Corrupted Blade': {
+    accent: '#7a9a50',
+    accentMuted: '#526838',
+    headerFrom: '#2a3820',
+    headerTo: '#1c2816',
+    activeFrom: '#284010',
+    activeTo: '#182808',
+    contentBg: '#141612',
+    cardHeaderFrom: '#284010',
+    borderFrom: '#7a9a50',
+    borderMid: '#526838',
+    borderTo: '#384028',
+    iconFrom: '#222818',
+    iconTo: '#101408'
+  },
+  "Danu's Vengeance": {
+    accent: '#a88858',
+    accentMuted: '#706038',
+    headerFrom: '#383020',
+    headerTo: '#282018',
+    activeFrom: '#483810',
+    activeTo: '#282008',
+    contentBg: '#181614',
+    cardHeaderFrom: '#483810',
+    borderFrom: '#a88858',
+    borderMid: '#706038',
+    borderTo: '#484028',
+    iconFrom: '#2a2418',
+    iconTo: '#141008'
+  },
+  'Forest Walking': {
+    accent: '#508858',
+    accentMuted: '#386040',
+    headerFrom: '#243028',
+    headerTo: '#182018',
+    activeFrom: '#184830',
+    activeTo: '#0c2818',
+    contentBg: '#121614',
+    cardHeaderFrom: '#184830',
+    borderFrom: '#508858',
+    borderMid: '#386040',
+    borderTo: '#304038',
+    iconFrom: '#182820',
+    iconTo: '#0c140c'
   }
 };
 

@@ -243,6 +243,70 @@
         .guide-lead {
             color: var(--guide-accent, var(--gold-primary));
         }
+
+        .guide-markdown h1,
+        .guide-markdown h2,
+        .guide-markdown h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--guide-accent, var(--gold-primary));
+        }
+
+        .guide-markdown h1 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .guide-markdown h2 {
+            font-size: 1.25rem;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid color-mix(in srgb, var(--guide-accent, var(--gold-primary)) 35%, transparent);
+        }
+
+        .guide-markdown h3 {
+            font-size: 1.05rem;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .guide-markdown p,
+        .guide-markdown li {
+            color: #cccccc;
+            line-height: 1.65;
+        }
+
+        .guide-markdown blockquote {
+            border-left: 3px solid var(--guide-accent, var(--gold-primary));
+            background: color-mix(in srgb, var(--guide-accent, var(--gold-primary)) 8%, #1a1a1f);
+            padding: 0.75rem 1rem;
+            margin: 1rem 0;
+            color: #c8c8cc;
+            font-style: italic;
+        }
+
+        .guide-markdown hr {
+            border-color: #8c734b40;
+            margin: 1.5rem 0;
+        }
+
+        .guide-markdown ul,
+        .guide-markdown ol {
+            padding-left: 1.25rem;
+            margin: 0.75rem 0;
+        }
+
+        .guide-markdown strong {
+            color: #e0e0e0;
+        }
+
+        .guide-markdown code {
+            color: var(--gold-primary);
+            background: #121214;
+            padding: 0.1rem 0.35rem;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -278,6 +342,7 @@
         </div>
     </main>
 
-    <script src="app.js?v=1.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="app.js?v=1.0.3"></script>
 </body>
 </html>

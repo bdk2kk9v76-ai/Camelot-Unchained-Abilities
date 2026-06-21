@@ -118,7 +118,7 @@ def parse_tooltip(record: dict, class_name: str | None, tree_name: str | None, c
             range_value = f"{match.group(1)}m"
             continue
         if match := re.match(r'^Costs?:\s*(.+)$', text, re.I):
-            resource_parts.append(f"-{match.group(1).strip()}")
+            resource_parts.append(match.group(1).strip())
             continue
         if match := re.match(r'^Grants?:\s*(.+)$', text, re.I):
             resource_parts.append(f"+{match.group(1).strip()}")

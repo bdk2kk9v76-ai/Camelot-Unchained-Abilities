@@ -1,5 +1,6 @@
 let database = [];
 let classGuides = {};
+const guideMarkdownCache = {};
 let selectedClass = '';
 let selectedClassView = 'abilities';
 let searchQuery = '';
@@ -797,6 +798,22 @@ function getClassFaction(className) {
   return 'Tuatha Dé Danann';
 }
 
+async function loadGuideMarkdown(className) {
+  const slug = classToSlug(className);
+  if (Object.prototype.hasOwnProperty.call(guideMarkdownCache, slug)) {
+    return guideMarkdownCache[slug];
+  }
+
+  try {
+    const response = await fetch(`./guides/${slug}.md?v=${Date.now()}`);
+    guideMarkdownCache[slug] = response.ok ? await response.text() : null;
+  } catch {
+    guideMarkdownCache[slug] = null;
+  }
+
+  return guideMarkdownCache[slug];
+}
+
 function renderActiveClassHero(className) {
   const meta = getClassMetadata(className);
 
@@ -967,6 +984,22 @@ function getAbilityIcon(type, generativeIcon, iconPath) {
   return ABILITY_ICON_SVGS.fallback;
 }
 
+function resolveTreeIcon(tree, classMeta, abilities = []) {
+  if (tree.icon) return tree.icon;
+  if (tree.name === CLASS_ABILITY_TREE) return classMeta.icon || null;
+
+  for (const [, abilityData] of abilities) {
+    if (abilityData?.icon) return abilityData.icon;
+  }
+
+  return classMeta.icon || null;
+}
+
+function titleThumbnail(iconPath, sizeClass = 'w-8 h-8') {
+  if (!iconPath) return '';
+  return `<img src="${iconPath}" alt="" class="${sizeClass} rounded object-contain shrink-0 ability-title-thumb" loading="lazy">`;
+}
+
 const UI = {
   icons: {
     chevron: (expanded) => `<svg class="w-6 h-6 transform transition-transform duration-300 chevron${expanded ? ' rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>`
@@ -1078,11 +1111,11 @@ const UI = {
 
     return `
       <article class="ability-card p-0 m-1 relative overflow-hidden flex flex-col h-full">
-        <header class="card-header-bg flex items-center p-3">
-          <div class="ability-icon w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4 overflow-hidden p-1">
+        <header class="card-header-bg flex items-center gap-3 p-3">
+          <div class="ability-icon w-10 h-10 rounded-full flex items-center justify-center shrink-0 overflow-hidden p-1">
             ${getAbilityIcon(type, generativeIcon, icon)}
           </div>
-          <h3 class="text-xl text-[#e0e0e0] font-cinzel font-bold">${name}</h3>
+          <h3 class="text-xl text-[#e0e0e0] font-cinzel font-bold leading-tight">${name}</h3>
         </header>
         <div class="p-4 text-sm text-[#cccccc] leading-relaxed flex flex-col flex-1">
           <div class="flex flex-wrap gap-2 mt-1 mb-3">
@@ -1111,9 +1144,9 @@ const UI = {
     return `
       <div class="accordion-item" style="${paletteStyleVars(itemPalette)}">
         <button type="button" aria-expanded="${expanded}" class="${btnClasses}">
-          <span class="flex items-center gap-3">
-            ${treeIcon ? `<img src="${treeIcon}" alt="" class="w-8 h-8 rounded object-contain shrink-0" loading="lazy" onerror="this.style.display='none'">` : ''}
-            <span class="text-xl tree-title font-cinzel font-bold tracking-wider text-shadow">${treeName}</span>
+          <span class="flex items-center gap-3 min-w-0">
+            ${titleThumbnail(treeIcon, 'w-9 h-9')}
+            <span class="text-xl tree-title font-cinzel font-bold tracking-wider text-shadow truncate">${treeName}</span>
           </span>
           ${this.icons.chevron(expanded)}
         </button>
@@ -1355,6 +1388,17 @@ const UI = {
         ${targetSection}
         ${mechanicsSection}
         ${this.guideQuickReference(guide.quickReference)}
+      </article>`;
+  },
+
+  guideMarkdownPage({ className, markdown, themeColor }) {
+    const html = typeof marked !== 'undefined'
+      ? marked.parse(markdown)
+      : `<pre class="whitespace-pre-wrap text-sm text-[#cccccc]">${escapeHtml(markdown)}</pre>`;
+
+    return `
+      <article class="guide-panel guide-markdown rounded-lg p-6 md:p-8 text-sm" style="--guide-accent: ${themeColor};">
+        ${html}
       </article>`;
   }
 };
@@ -1828,24 +1872,36 @@ function renderGuideView() {
   clearContainerPalette();
   renderActiveClassHero(selectedClass);
 
-  const classData = findClassData(selectedClass);
-  const guide = classGuides[selectedClass];
-  if (!classData || !guide) {
-    elements.accordionContainer.innerHTML = UI.emptyState('Guide not available for this class yet.');
-    return;
-  }
-
-  const classMeta = getClassMetadata(selectedClass);
+  const className = selectedClass;
+  const classData = findClassData(className);
+  const classMeta = getClassMetadata(className);
   const { themeColor } = getClassThemeStyles(classMeta);
 
-  elements.accordionContainer.innerHTML = UI.guidePage({
-    className: selectedClass,
-    faction: getClassFaction(selectedClass),
-    trees: getOrderedTreeNames(classData),
-    guide,
-    themeColor
+  elements.accordionContainer.innerHTML = UI.emptyState('Loading guide...');
+
+  loadGuideMarkdown(className).then(markdown => {
+    if (selectedClass !== className) return;
+
+    if (markdown) {
+      elements.accordionContainer.innerHTML = UI.guideMarkdownPage({
+        className,
+        markdown,
+        themeColor
+      });
+    } else if (classData && classGuides[className]) {
+      elements.accordionContainer.innerHTML = UI.guidePage({
+        className,
+        faction: getClassFaction(className),
+        trees: getOrderedTreeNames(classData),
+        guide: classGuides[className],
+        themeColor
+      });
+    } else {
+      elements.accordionContainer.innerHTML = UI.emptyState('Guide not available for this class yet.');
+    }
+
+    syncTopBarHeight();
   });
-  syncTopBarHeight();
 }
 
 function renderAbilitiesView() {
@@ -1882,7 +1938,7 @@ function renderAbilitiesView() {
 
     accordionHtml.push(UI.accordionItem({
       treeName: tree.name,
-      treeIcon: tree.icon || null,
+      treeIcon: resolveTreeIcon(tree, classMeta, filteredAbilities),
       cardsHtml,
       expanded,
       useClassTheme,

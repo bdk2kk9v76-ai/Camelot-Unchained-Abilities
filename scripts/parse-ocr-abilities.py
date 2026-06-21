@@ -158,7 +158,7 @@ def parse_tooltip(lines: list[dict], known_names: set[str]) -> dict | None:
             range_value = f"{match.group(1)}m"
             continue
         if match := COSTS_RE.match(text):
-            resource_parts.append(f"-{match.group(1).strip()}")
+            resource_parts.append(match.group(1).strip())
             continue
         if match := GRANTS_RE.match(text):
             resource_parts.append(f"+{match.group(1).strip()}")

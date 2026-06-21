@@ -23,7 +23,7 @@ function formatCastSpeed(castTime) {
 
 function formatResourceDelta(cost) {
   if (!cost || !cost.amount) return 'None';
-  return `-${cost.amount} ${cost.resource}`;
+  return `${cost.amount} ${cost.resource}`;
 }
 
 function formatRange(ability) {

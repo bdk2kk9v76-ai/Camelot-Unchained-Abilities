@@ -1,0 +1,2138 @@
+{
+  "faction": "Tuatha Dé Danann",
+  "classes": [
+    {
+      "name": "Blessed Crow",
+      "slug": "blessed-crow",
+      "description": "Blessed Crows utilize magic Cauldrons to create areas of powerful buffs and healing that also damage their enemies. Fighting them on their own terms is usually a losing prospect.",
+      "icon": "./assets/blessed-crow-icon.png",
+      "hero": "./assets/blessed-crow-hero.png",
+      "trees": [
+        {
+          "name": "Class Abilities",
+          "slug": "class-abilities",
+          "abilities": [
+            {
+              "name": "Armor of Faith",
+              "slug": "armor-of-faith",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Increases your Physical Armor by 70% for 8 seconds. 60.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/class-abilities/armor-of-faith.png"
+            },
+            {
+              "name": "Rally",
+              "slug": "rally",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "Strong Heal Over Time",
+              "resource_delta": "-2 Judgment, +500 Faith",
+              "range": "90m",
+              "summary": "Grants your party a strong Heal Over Time for 6 seconds. 6.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/class-abilities/rally.png"
+            }
+          ]
+        },
+        {
+          "name": "Dominance",
+          "slug": "dominance",
+          "icon": "./assets/abilities/blessed-crow/trees/dominance.png",
+          "abilities": [
+            {
+              "name": "Avatar of Bran",
+              "slug": "avatar-of-bran",
+              "type": "Buff",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Grants 70 Physical/Magic Armor and increases Weaponskill damage for 10s. Next Melee hit gains strong Spirit damage. 120.0s Cooldown. (Spell, Ritual)",
+              "icon": "./assets/abilities/blessed-crow/dominance/avatar-of-bran.png"
+            },
+            {
+              "name": "Blessed Warrior",
+              "slug": "blessed-warrior",
+              "type": "Buff",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Increases Melee damage dealt and Parry Chance. (Spell)",
+              "icon": "./assets/abilities/blessed-crow/dominance/blessed-warrior.png"
+            },
+            {
+              "name": "Crushing Might",
+              "slug": "crushing-might",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "972 Base Damage",
+              "resource_delta": "+1 Judgment",
+              "range": "6m",
+              "summary": "Deals Weapon damage.",
+              "icon": "./assets/abilities/blessed-crow/dominance/crushing-might.png"
+            },
+            {
+              "name": "Living Symbol",
+              "slug": "living-symbol",
+              "type": "Buff / Aura",
+              "cast_speed": "0.2s",
+              "resource_delta": "-2 Judgment, +500 Faith",
+              "range": "Self (Aura)",
+              "summary": "Creates an aura granting Physical/Magical armor and Panic Resistance to nearby allies. 15.0s Cooldown. (Spell)",
+              "icon": "./assets/abilities/blessed-crow/dominance/living-symbol.png"
+            },
+            {
+              "name": "Overwhelm",
+              "slug": "overwhelm",
+              "type": "Damage / Debuff",
+              "cast_speed": "0.6s",
+              "base_value": "4730 Damage",
+              "resource_delta": "-1 Judgment, +250 Faith",
+              "range": "6m",
+              "summary": "Deals Shadow damage; target takes +50% damage from this ability for 6s.",
+              "icon": "./assets/abilities/blessed-crow/dominance/overwhelm.png"
+            },
+            {
+              "name": "Sacred Pride",
+              "slug": "sacred-pride",
+              "type": "Damage / CC",
+              "cast_speed": "0.6s",
+              "base_value": "1080 Damage",
+              "resource_delta": "-125 Faith, +3 Judgment",
+              "range": "6m",
+              "summary": "Deals Weapon damage and Snares the target by 40% for 4/8s. 30.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/dominance/sacred-pride.png"
+            },
+            {
+              "name": "Scorn the Weak",
+              "slug": "scorn-the-weak",
+              "type": "CC / Debuff",
+              "cast_speed": "0.2s",
+              "resource_delta": "-150 Faith, +Judgment",
+              "range": "25m",
+              "summary": "Snares the target and reduces damage dealt by 30%. 30.0s Cooldown. (Spell)",
+              "icon": "./assets/abilities/blessed-crow/dominance/scorn-the-weak.png"
+            },
+            {
+              "name": "Strike of the Blessed",
+              "slug": "strike-of-the-blessed",
+              "type": "Damage / Heal Over Time",
+              "cast_speed": "0.6s",
+              "base_value": "1944 Damage",
+              "resource_delta": "-1 Judgment, +250 Faith",
+              "range": "6m",
+              "summary": "Deals Spirit damage and heals self over time.",
+              "icon": "./assets/abilities/blessed-crow/dominance/strike-of-the-blessed.png"
+            }
+          ]
+        },
+        {
+          "name": "Nourishment",
+          "slug": "nourishment",
+          "icon": "./assets/abilities/blessed-crow/trees/nourishment.png",
+          "abilities": [
+            {
+              "name": "Bran's Aid",
+              "slug": "bran-s-aid",
+              "type": "Spell",
+              "cast_speed": "1.0s",
+              "base_value": "1500 Base Healing",
+              "resource_delta": "None",
+              "range": "45m (15m AoE Radius)",
+              "summary": "Heals allies in an area around target ally and summons a Cauldron at the target's location for 60 seconds. 12.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/nourishment/bran-s-aid.png"
+            },
+            {
+              "name": "Bran's Gift",
+              "slug": "bran-s-gift",
+              "type": "Spell",
+              "cast_speed": "2.0s",
+              "resource_delta": "None",
+              "range": "45m (8m AoE Radius)",
+              "summary": "Resurrects allies near each of your Cauldrons with 25% Max Health and Res Sickness. 180.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/nourishment/bran-s-gift.png"
+            },
+            {
+              "name": "Branwen's Tears",
+              "slug": "branwen-s-tears",
+              "type": "Healing",
+              "cast_speed": "1.0s",
+              "base_value": "2813 Healing",
+              "resource_delta": "-1 Judgment, +250 Faith",
+              "range": "45m",
+              "summary": "Heals target. (Spell)",
+              "icon": "./assets/abilities/blessed-crow/nourishment/branwen-s-tears.png"
+            },
+            {
+              "name": "Cleansing Winds",
+              "slug": "cleansing-winds",
+              "type": "AoE Cleanse",
+              "cast_speed": "0.2s",
+              "base_value": "Removes 1 Debuff",
+              "resource_delta": "-150 Faith, +1 Judgment",
+              "range": "45m",
+              "summary": "Removes 1 Debuff from allies near you and near each Cauldron (can apply multiple times). 6.0s Cooldown. (Spell)",
+              "icon": "./assets/abilities/blessed-crow/nourishment/cleansing-winds.png"
+            },
+            {
+              "name": "Dedicated Pursuit",
+              "slug": "dedicated-pursuit",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "-125 Faith, +1 Judgment",
+              "range": "Self",
+              "summary": "Increases Movement Speed for 6 seconds. Becomes Dedicated Pursuit Follow-Up when used. 20.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/nourishment/dedicated-pursuit.png"
+            },
+            {
+              "name": "Nurture Life",
+              "slug": "nurture-life",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "-100 Faith, +1 Judgment",
+              "range": "25m",
+              "summary": "Heals the target over time. 2.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/nourishment/nurture-life.png"
+            },
+            {
+              "name": "Regrowth",
+              "slug": "regrowth",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "2250 Base Healing",
+              "resource_delta": "-2 Judgment, +500 Faith",
+              "range": "15m (AoE Radius)",
+              "summary": "Heals nearby allies. 2.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/nourishment/regrowth.png"
+            },
+            {
+              "name": "Rise from the Cauldron",
+              "slug": "rise-from-the-cauldron",
+              "type": "Spell",
+              "cast_speed": "9.0s",
+              "resource_delta": "-200 Faith",
+              "range": "25m (Friend)",
+              "summary": "Resurrects target ally with 15% max Health and Res Sickness.",
+              "icon": "./assets/abilities/blessed-crow/nourishment/rise-from-the-cauldron.png"
+            }
+          ]
+        },
+        {
+          "name": "Ritual",
+          "slug": "ritual",
+          "icon": "./assets/abilities/blessed-crow/trees/ritual.png",
+          "abilities": [
+            {
+              "name": "Blood Offering",
+              "slug": "blood-offering",
+              "type": "Damage / Summon",
+              "cast_speed": "0.6s",
+              "base_value": "1836 Base Damage",
+              "resource_delta": "None",
+              "range": "6m",
+              "summary": "Deals Weapon damage and summons a Cauldron at the target's location for 60 seconds. 10.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/ritual/blood-offering.png"
+            },
+            {
+              "name": "Call Down",
+              "slug": "call-down",
+              "type": "Spell (Ground AoE)",
+              "cast_speed": "1.0s",
+              "base_value": "1170 Base Damage",
+              "resource_delta": "None",
+              "range": "25m (8m AoE Radius)",
+              "summary": "Summons a Cauldron for 60s and deals Spirit damage in the targeted area. 12.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/ritual/call-down.png"
+            },
+            {
+              "name": "Conduit of Power",
+              "slug": "conduit-of-power",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1339 Base Damage",
+              "resource_delta": "-1 Judgment, +250 Faith",
+              "range": "6m",
+              "summary": "Deals Spirit damage. Damage is increased by 50% for each nearby Cauldron.",
+              "icon": "./assets/abilities/blessed-crow/ritual/conduit-of-power.png"
+            },
+            {
+              "name": "Dark Work",
+              "slug": "dark-work",
+              "type": "Spell (AoE)",
+              "cast_speed": "1.0s",
+              "base_value": "720 Base Damage",
+              "resource_delta": "-150 Faith, +1 Judgment",
+              "range": "45m (8m AoE Radius)",
+              "summary": "Deals Shadow damage to enemies near each of your Cauldrons.",
+              "icon": "./assets/abilities/blessed-crow/ritual/dark-work.png"
+            },
+            {
+              "name": "Nature's Rebuke",
+              "slug": "nature-s-rebuke",
+              "type": "Damage / CC",
+              "cast_speed": "0.6s",
+              "base_value": "864 Base Damage",
+              "resource_delta": "+1 Judgment",
+              "range": "6m",
+              "summary": "Deals Weapon damage and Snares the target by 40% for 4/8 seconds.",
+              "icon": "./assets/abilities/blessed-crow/ritual/nature-s-rebuke.png"
+            },
+            {
+              "name": "Rite of Healing",
+              "slug": "rite-of-healing",
+              "type": "Spell (AoE)",
+              "cast_speed": "0.2s",
+              "base_value": "Periodic Heal",
+              "resource_delta": "-2 Judgment, +500 Faith",
+              "range": "45m (15m AoE Radius)",
+              "summary": "Periodically heals allies near each of your Cauldrons. 6.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/ritual/rite-of-healing.png"
+            },
+            {
+              "name": "Rite of Ruin",
+              "slug": "rite-of-ruin",
+              "type": "Spell (AoE)",
+              "cast_speed": "0.2s",
+              "base_value": "Damage Taken Debuff",
+              "resource_delta": "-3 Judgment, +750 Faith",
+              "range": "45m",
+              "summary": "Creates auras around you and your Cauldrons that cause enemies to take increased damage. This effect stacks. 4.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/ritual/rite-of-ruin.png"
+            },
+            {
+              "name": "Rite of Sickness",
+              "slug": "rite-of-sickness",
+              "type": "Spell (AoE)",
+              "cast_speed": "0.2s",
+              "base_value": "720 Base Damage",
+              "resource_delta": "-1 Judgment, +250 Faith",
+              "range": "45m (8m AoE Radius)",
+              "summary": "Deals Spirit damage to and Snares enemies near each of your Cauldrons. 4.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/ritual/rite-of-sickness.png"
+            },
+            {
+              "name": "Summon Cauldron",
+              "slug": "summon-cauldron",
+              "type": "Spell (Ground)",
+              "cast_speed": "0.2s",
+              "base_value": "Max 4 Cauldrons total",
+              "resource_delta": "None",
+              "range": "25m",
+              "summary": "Summons a Cauldron at the targeted location for 60 seconds. Maximum of 4 Cauldrons total from all abilities. 6.0s Cooldown.",
+              "icon": "./assets/abilities/blessed-crow/ritual/summon-cauldron.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dark Fool",
+      "slug": "dark-fool",
+      "description": "Dark Fools leverage the most Panic, utilizing powerful Control effects that are more effective against weakened or Panicked opponents to deal additional Mind damage.",
+      "icon": "./assets/dark-fool-icon.png",
+      "hero": "./assets/dark-fool-hero.png",
+      "trees": [
+        {
+          "name": "Class Abilities",
+          "slug": "class-abilities",
+          "abilities": [
+            {
+              "name": "Raise Morale",
+              "slug": "raise-morale",
+              "type": "Buff",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Party",
+              "summary": "Increases party morale and regeneration.",
+              "icon": "./assets/abilities/dark-fool/class-abilities/raise-morale.png"
+            },
+            {
+              "name": "Song of Travel",
+              "slug": "song-of-travel",
+              "type": "Buff",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Party",
+              "summary": "Increases party movement speed.",
+              "icon": "./assets/abilities/dark-fool/class-abilities/song-of-travel.png"
+            }
+          ]
+        },
+        {
+          "name": "Dark Fables",
+          "slug": "dark-fables",
+          "abilities": [
+            {
+              "name": "A Sudden Fright",
+              "slug": "a-sudden-fright",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "1225 Base Damage",
+              "resource_delta": "None",
+              "range": "25m",
+              "summary": "And Our Hero Falls! Deals Shadow damage and Fears for 2/5 30.0s Cooldown.",
+              "icon": "./assets/abilities/dark-fool/dark-fables/a-sudden-fright.png"
+            },
+            {
+              "name": "And Our Hero Falls!",
+              "slug": "and-our-hero-falls",
+              "type": "Debuff / Amplify",
+              "cast_speed": "1.0s",
+              "base_value": "+60% Damage Taken under 50% HP",
+              "resource_delta": "None",
+              "range": "60m",
+              "summary": "while below 50% Health, for 6 seconds. Causes the target to take 60% increased damage 90.0s Cooldown.",
+              "icon": "./assets/abilities/dark-fool/dark-fables/and-our-hero-falls.png"
+            },
+            {
+              "name": "Dance Through Flames",
+              "slug": "dance-through-flames",
+              "type": "Spell",
+              "cast_speed": "3.0s",
+              "base_value": "+15 Elemental Resistance",
+              "resource_delta": "None",
+              "range": "90m",
+              "summary": "Die a Lonely Death And Our Hero Falls! Like Flitting Resistances. Grants your party +15 to all Elemental Tales of Woe",
+              "icon": "./assets/abilities/dark-fool/dark-fables/dance-through-flames.png"
+            },
+            {
+              "name": "Dark Comedy",
+              "slug": "dark-comedy",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "917 Base Damage",
+              "resource_delta": "None",
+              "range": "70m",
+              "summary": "And Our Hero Falls! Die a Lonely Death Like Flitting suffering from Stun, Root, or Fear. Tales of Woe Deals Shadow damage. +50% damage to targets",
+              "icon": "./assets/abilities/dark-fool/dark-fables/dark-comedy.png"
+            },
+            {
+              "name": "Die a Lonely Death",
+              "slug": "die-a-lonely-death",
+              "type": "Damage / CC Execute",
+              "cast_speed": "2.0s",
+              "base_value": "Delayed Shadow Damage (+100% if isolated)",
+              "resource_delta": "None",
+              "range": "60m",
+              "summary": "damage if the target has no allies nearby at damage at the end of the duration. +100% Snares an enemy by 70% and deals Shadow",
+              "icon": "./assets/abilities/dark-fool/dark-fables/die-a-lonely-death.png"
+            },
+            {
+              "name": "Like Flitting Shadows",
+              "slug": "like-flitting-shadows",
+              "type": "Spell",
+              "cast_speed": "3.0s",
+              "base_value": "Negate Ranged Hits",
+              "resource_delta": "None",
+              "range": "90m",
+              "summary": "And Our Hero Falls! each member of your party would take. Every 6 seconds negates the next Ranged hit",
+              "icon": "./assets/abilities/dark-fool/dark-fables/like-flitting-shadows.png"
+            },
+            {
+              "name": "Tales of Woe",
+              "slug": "tales-of-woe",
+              "type": "Damage / DoT",
+              "cast_speed": "0.6s",
+              "base_value": "1032 Base Damage",
+              "resource_delta": "-175 Focus",
+              "range": "70m",
+              "summary": "And Our Hero Falls! Like Flitting Shadow damage over 12 seconds. Deals Shadow damage and an additional 1200",
+              "icon": "./assets/abilities/dark-fool/dark-fables/tales-of-woe.png"
+            },
+            {
+              "name": "The Tragic Betrayal",
+              "slug": "the-tragic-betrayal",
+              "type": "Spell",
+              "cast_speed": "1.0s",
+              "base_value": "1337 Base Damage",
+              "resource_delta": "None",
+              "range": "45m",
+              "summary": "And Our Hero Falls! 45.Us Cooldown Like Flitting Deals Mind damage and Stuns for 3/6 seconds.",
+              "icon": "./assets/abilities/dark-fool/dark-fables/the-tragic-betrayal.png"
+            }
+          ]
+        },
+        {
+          "name": "Mummery",
+          "slug": "mummery",
+          "abilities": [
+            {
+              "name": "A Cautionary Tale",
+              "slug": "a-cautionary-tale",
+              "type": "Damage / AoE DoT",
+              "cast_speed": "0.6s",
+              "base_value": "917 Base Damage + 2000 DoT",
+              "resource_delta": "-400 Focus",
+              "range": "60m (15m AoE Radius)",
+              "summary": "Shadow damage over 10 seconds. For the Deals Shadow damage and an additional 2000",
+              "icon": "./assets/abilities/dark-fool/mummery/a-cautionary-tale.png"
+            },
+            {
+              "name": "A Glimpse of Madness",
+              "slug": "a-glimpse-of-madness",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "Panic",
+              "resource_delta": "-75 Focus",
+              "range": "45m",
+              "summary": "Inflicts Panic. 4.0s Cooldown.",
+              "icon": "./assets/abilities/dark-fool/mummery/a-glimpse-of-madness.png"
+            },
+            {
+              "name": "As the Willow in a Storm",
+              "slug": "as-the-willow-in-a-storm",
+              "type": "Spell",
+              "cast_speed": "3.0s",
+              "base_value": "+25% Block Value, +10% Parry Chance",
+              "resource_delta": "-75 Focus",
+              "range": "90m",
+              "summary": "Dark Allure A Cautionary Tale grants +10% Parry Chance. Increases your party's Block Value by 25% and",
+              "icon": "./assets/abilities/dark-fool/mummery/as-the-willow-in-a-storm.png"
+            },
+            {
+              "name": "Bean Sidhe's Wail",
+              "slug": "bean-sidhe-s-wail",
+              "type": "Spell",
+              "cast_speed": "1.0s",
+              "base_value": "1114 Base Damage",
+              "resource_delta": "None",
+              "range": "25m Cone",
+              "summary": "in a 25m cone. Inflicts Fear and deals Mind damage to targets 75.0s Cooldown.",
+              "icon": "./assets/abilities/dark-fool/mummery/bean-sidhe-s-wail.png"
+            },
+            {
+              "name": "Dark Allure",
+              "slug": "dark-allure",
+              "type": "Spell",
+              "cast_speed": "7.0s",
+              "base_value": "334 Base Damage per second",
+              "resource_delta": "None",
+              "range": "60m",
+              "summary": "damage each second for up to 6 seconds. Channels to Charm an enemy and deal Mind 60.0s Cooldown.",
+              "icon": "./assets/abilities/dark-fool/mummery/dark-allure.png"
+            },
+            {
+              "name": "Death by a Thousand Cuts",
+              "slug": "death-by-a-thousand-cuts",
+              "type": "Spell",
+              "cast_speed": "3.0s",
+              "base_value": "Up to max 24% Damage Taken Debuff",
+              "resource_delta": "None",
+              "range": "90m",
+              "summary": "up to a max of 24%. debuff increases damage taken by 3% per stack, seconds when dealing Direct damage. This Dark Allure Your party inflicts a stacking debuff for 5",
+              "icon": "./assets/abilities/dark-fool/mummery/death-by-a-thousand-cuts.png"
+            },
+            {
+              "name": "Screaming Shot",
+              "slug": "screaming-shot",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1078 Base Damage",
+              "resource_delta": "None",
+              "range": "70m",
+              "summary": "Dark Allure A Cautionary Tale Bean Sidhe's Wail Deals Mind damage. As the Willow in a",
+              "icon": "./assets/abilities/dark-fool/mummery/screaming-shot.png"
+            },
+            {
+              "name": "The Darkest Hour",
+              "slug": "the-darkest-hour",
+              "type": "Spell",
+              "cast_speed": "2.0s",
+              "base_value": "1225 Base Damage",
+              "resource_delta": "None",
+              "range": "60m",
+              "summary": "Dark Allure Enemies hit are Silenced and Disarmed for 4/8 Bean Sidhe's Wail Deals Shadow damage around the target. 60.0s Cooldown.",
+              "icon": "./assets/abilities/dark-fool/mummery/the-darkest-hour.png"
+            }
+          ]
+        },
+        {
+          "name": "Night Terrors",
+          "slug": "night-terrors",
+          "abilities": [
+            {
+              "name": "A Grand Tragedy",
+              "slug": "a-grand-tragedy",
+              "type": "Spell",
+              "cast_speed": "3.0s",
+              "base_value": "+20% Damage vs Controlled",
+              "resource_delta": "None",
+              "range": "90m",
+              "summary": "targets suffering from Control effects. That Stalk the Night Your party deals 20% increased damage vs",
+              "icon": "./assets/abilities/dark-fool/night-terrors/a-grand-tragedy.png"
+            },
+            {
+              "name": "A Sharpened Tongue",
+              "slug": "a-sharpened-tongue",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "917 Base Damage",
+              "resource_delta": "None",
+              "range": "70m",
+              "summary": "That Stalk the Night The Cruelest Joke Panicked targets. Deals Weapon damage. +50% damage vs",
+              "icon": "./assets/abilities/dark-fool/night-terrors/a-sharpened-tongue.png"
+            },
+            {
+              "name": "Cutting Whispers",
+              "slug": "cutting-whispers",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1376 Base Damage",
+              "resource_delta": "-150 Focus",
+              "range": "70m",
+              "summary": "That Stalk the Night The Cruelest Joke Look Upon Oblivion In Darkest Dreams Deals Mind damage.",
+              "icon": "./assets/abilities/dark-fool/night-terrors/cutting-whispers.png"
+            },
+            {
+              "name": "In Darkest Dreams",
+              "slug": "in-darkest-dreams",
+              "type": "Spell",
+              "cast_speed": "2.0s",
+              "base_value": "Mind Damage per second",
+              "resource_delta": "-225 Focus",
+              "range": "60m",
+              "summary": "10m Area of Effect Radius damage per second to enemies in the area. Creates a cloud for 12 seconds that deals Mind 15.0s Cooldown.",
+              "icon": "./assets/abilities/dark-fool/night-terrors/in-darkest-dreams.png"
+            },
+            {
+              "name": "Look Upon Oblivion",
+              "slug": "look-upon-oblivion",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "3000 Mind Damage over 12s",
+              "resource_delta": "None",
+              "range": "60m",
+              "summary": "That Stalk the Nigh Deals 3000 Mind damage over 12 seconds. Look Upon Oblivion 60.0s Cooldown.",
+              "icon": "./assets/abilities/dark-fool/night-terrors/look-upon-oblivion.png"
+            },
+            {
+              "name": "That Stalk the Night",
+              "slug": "that-stalk-the-night",
+              "type": "Group Buff / Mitigation",
+              "cast_speed": "0.2s",
+              "base_value": "-40% Non-Melee Damage Taken",
+              "resource_delta": "None",
+              "range": "90m Aura",
+              "summary": "for 6 seconds, decreases their non-Melee damage taken by 40% Increases your party's Movement Speed and That Stalk the Night",
+              "icon": "./assets/abilities/dark-fool/night-terrors/that-stalk-the-night.png"
+            },
+            {
+              "name": "The Cruelest Joke",
+              "slug": "the-cruelest-joke",
+              "type": "AoE CC / Damage",
+              "cast_speed": "2.0s",
+              "base_value": "1000 Shadow Damage over 5s",
+              "resource_delta": "-350 Focus",
+              "range": "60m (8m AoE)",
+              "summary": "Snares by 40% and inflicts DoT. If target dies, nearby allies are Feared. (Spell)",
+              "icon": "./assets/abilities/dark-fool/night-terrors/the-cruelest-joke.png"
+            },
+            {
+              "name": "With Claws That Tear",
+              "slug": "with-claws-that-tear",
+              "type": "Spell",
+              "cast_speed": "3.0s",
+              "base_value": "+50 Panic on Hit",
+              "resource_delta": "None",
+              "range": "90m",
+              "summary": "That Stalk the Night Look Upon Oblivion Your party's Direct Damage also inflicts 50",
+              "icon": "./assets/abilities/dark-fool/night-terrors/with-claws-that-tear.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Druid",
+      "slug": "druid",
+      "description": "Druids are capable of dealing extreme damage by spending large amounts of Mana at once. Poison damage and Void spells can cut down enemies, and they can resurrect fallen allies.",
+      "icon": "./assets/druid-icon.png",
+      "hero": "./assets/druid-hero.png",
+      "trees": [
+        {
+          "name": "Class Abilities",
+          "slug": "class-abilities",
+          "abilities": [
+            {
+              "name": "Enchant Humanoid",
+              "slug": "enchant-humanoid",
+              "resource_delta": "None",
+              "icon": "./assets/abilities/druid/class-abilities/enchant-humanoid.png"
+            },
+            {
+              "name": "Font of Energy",
+              "slug": "font-of-energy",
+              "resource_delta": "None",
+              "icon": "./assets/abilities/druid/class-abilities/font-of-energy.png"
+            }
+          ]
+        },
+        {
+          "name": "Earthshaping",
+          "slug": "earthshaping",
+          "abilities": [
+            {
+              "name": "Danu's Embrace",
+              "slug": "danu-s-embrace",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Weight of Danu Unstable Ground Deals Earth damage. Danu's Rebuke",
+              "icon": "./assets/abilities/druid/earthshaping/danu-s-embrace.png"
+            },
+            {
+              "name": "Danu's Rebuke",
+              "slug": "danu-s-rebuke",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Weight of Danu removing it. dealing damage equal to their Aftershock and Knocks back enemies hit and Fractures them, Deals Earth damage to nearby enemies. Danu's Rebuke",
+              "icon": "./assets/abilities/druid/earthshaping/danu-s-rebuke.png"
+            },
+            {
+              "name": "Danu's Shield",
+              "slug": "danu-s-shield",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Weight of Danu Increases Physical Armor Rating.",
+              "icon": "./assets/abilities/druid/earthshaping/danu-s-shield.png"
+            },
+            {
+              "name": "Hand of Danu",
+              "slug": "hand-of-danu",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Weight of Danu Unstable Ground Danu's Rebuke Fires a bolt that deals earth damage.",
+              "icon": "./assets/abilities/druid/earthshaping/hand-of-danu.png"
+            },
+            {
+              "name": "Rockslide",
+              "slug": "rockslide",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Weight of Danu Deals Earth damage to enemies in a narrow",
+              "icon": "./assets/abilities/druid/earthshaping/rockslide.png"
+            },
+            {
+              "name": "Unstable Ground",
+              "slug": "unstable-ground",
+              "resource_delta": "None",
+              "icon": "./assets/abilities/druid/earthshaping/unstable-ground.png"
+            },
+            {
+              "name": "Weight of Danu",
+              "slug": "weight-of-danu",
+              "resource_delta": "None",
+              "summary": "Roots the target for 6/12s and deals 1200",
+              "icon": "./assets/abilities/druid/earthshaping/weight-of-danu.png"
+            },
+            {
+              "name": "Wrath of Danu",
+              "slug": "wrath-of-danu",
+              "resource_delta": "None",
+              "summary": "equal to their Aftershock and removing it. amount and Fractures them, dealing damage Weight of Danu Deals Earth damage. +200% Aftershock",
+              "icon": "./assets/abilities/druid/earthshaping/wrath-of-danu.png"
+            }
+          ]
+        },
+        {
+          "name": "Natureweaving",
+          "slug": "natureweaving",
+          "abilities": [
+            {
+              "name": "Disarm",
+              "slug": "disarm",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Return to Earth Disarms the target for 4/12 seconds.",
+              "icon": "./assets/abilities/druid/natureweaving/disarm.png"
+            },
+            {
+              "name": "Pacify",
+              "slug": "pacify",
+              "resource_delta": "None",
+              "summary": "Sleeps the target for 4/8 seconds.",
+              "icon": "./assets/abilities/druid/natureweaving/pacify.png"
+            },
+            {
+              "name": "Poison Bolt",
+              "slug": "poison-bolt",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Return to Earth Deals Poison damage. Scorpion's Sting",
+              "icon": "./assets/abilities/druid/natureweaving/poison-bolt.png"
+            },
+            {
+              "name": "Return to Earth",
+              "slug": "return-to-earth",
+              "resource_delta": "None",
+              "summary": "and Res Sickness. Resurrects target ally with 15% max Health",
+              "icon": "./assets/abilities/druid/natureweaving/return-to-earth.png"
+            },
+            {
+              "name": "Revitalize",
+              "slug": "revitalize",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "1200 Mana, each over 12 seconds. Heals party for 2400 Health and grants them",
+              "icon": "./assets/abilities/druid/natureweaving/revitalize.png"
+            },
+            {
+              "name": "Scorpion's Sting",
+              "slug": "scorpion-s-sting",
+              "resource_delta": "None",
+              "icon": "./assets/abilities/druid/natureweaving/scorpion-s-sting.png"
+            },
+            {
+              "name": "Speed of the Forest Kin",
+              "slug": "speed-of-the-forest-kin",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Increases allies' movement speed while out of",
+              "icon": "./assets/abilities/druid/natureweaving/speed-of-the-forest-kin.png"
+            },
+            {
+              "name": "Weaken",
+              "slug": "weaken",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Return to Earth target. Targets hit deal reduced damage. Deals Spirit damage in an area around the",
+              "icon": "./assets/abilities/druid/natureweaving/weaken.png"
+            }
+          ]
+        },
+        {
+          "name": "Voidcalling",
+          "slug": "voidcalling",
+          "abilities": [
+            {
+              "name": "Forbidden Pact",
+              "slug": "forbidden-pact",
+              "resource_delta": "None",
+              "summary": "Mana, Becomes \"End Pact\" after use. percentage of your Max Health and Max time you cast a spell while active, you lose a Greatly increases Magic damage dealt. Each",
+              "icon": "./assets/abilities/druid/voidcalling/forbidden-pact.png"
+            },
+            {
+              "name": "Reality Rift",
+              "slug": "reality-rift",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Teleports forward.",
+              "icon": "./assets/abilities/druid/voidcalling/reality-rift.png"
+            },
+            {
+              "name": "Void Bolt",
+              "slug": "void-bolt",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Forbidden Pact Void Shield Fires a bolt that deals Void damage.",
+              "icon": "./assets/abilities/druid/voidcalling/void-bolt.png"
+            },
+            {
+              "name": "Void Comet",
+              "slug": "void-comet",
+              "resource_delta": "None",
+              "summary": "Deals Void damage.",
+              "icon": "./assets/abilities/druid/voidcalling/void-comet.png"
+            },
+            {
+              "name": "Void Shield",
+              "slug": "void-shield",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Forbidden Pact Grants your party Magic Armor Rating.",
+              "icon": "./assets/abilities/druid/voidcalling/void-shield.png"
+            },
+            {
+              "name": "Void Sight",
+              "slug": "void-sight",
+              "resource_delta": "None",
+              "icon": "./assets/abilities/druid/voidcalling/void-sight.png"
+            },
+            {
+              "name": "Void Strike",
+              "slug": "void-strike",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Forbidden Pact Void Shield Deals Void damage.",
+              "icon": "./assets/abilities/druid/voidcalling/void-strike.png"
+            },
+            {
+              "name": "Whispers from Beyond",
+              "slug": "whispers-from-beyond",
+              "type": "Spell",
+              "cast_speed": "0.0s",
+              "resource_delta": "None",
+              "summary": "Damage ramps up over the duration. Forbidden Pact Deals 3750 Void damage over 15 seconds.",
+              "icon": "./assets/abilities/druid/voidcalling/whispers-from-beyond.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Empath",
+      "slug": "empath",
+      "description": "Empaths can Link themself with an ally and enemy, empowering their abilities. Their DOT effects and ability to spend Health on powerful spells make them masters of engagements.",
+      "icon": "./assets/empath-icon.png",
+      "hero": "./assets/empath-hero.png",
+      "trees": [
+        {
+          "name": "Class Abilities",
+          "slug": "class-abilities",
+          "abilities": [
+            {
+              "name": "Clear Mind",
+              "slug": "clear-mind",
+              "type": "Spell (Friend)",
+              "cast_speed": "1.0s",
+              "resource_delta": "-100 Panic",
+              "range": "45m",
+              "summary": "Reduces target's Panic by 350.",
+              "icon": "./assets/abilities/empath/class-abilities/clear-mind.png"
+            },
+            {
+              "name": "What Must Be Done",
+              "slug": "what-must-be-done",
+              "type": "Utility",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Breaks all CC, and grants CC immunity for 10 seconds. 120.0s Cooldown.",
+              "icon": "./assets/abilities/empath/class-abilities/what-must-be-done.png"
+            }
+          ]
+        },
+        {
+          "name": "Tend the Body",
+          "slug": "tend-the-body",
+          "abilities": [
+            {
+              "name": "Airde Friotaiocht",
+              "slug": "airde-friotaiocht",
+              "type": "Buff",
+              "cast_speed": "2.0s",
+              "resource_delta": "-250 Faith, +1 Judgment",
+              "range": "45m",
+              "summary": "Armor Rating for 10 seconds. Grants an ally +60 Physical and Magical",
+              "icon": "./assets/abilities/empath/tend-the-body/airde-friotaiocht.png"
+            },
+            {
+              "name": "Athchoirigh",
+              "slug": "athchoirigh",
+              "type": "Resurrection",
+              "cast_speed": "9.0s",
+              "resource_delta": "-225 Faith",
+              "range": "25m",
+              "summary": "Resurrects target ally with 25% max Health and Res Sickness.",
+              "icon": "./assets/abilities/empath/tend-the-body/athchoirigh.png"
+            },
+            {
+              "name": "Ciorcal na Beatha",
+              "slug": "ciorcal-na-beatha",
+              "type": "Heal",
+              "cast_speed": "2.0s",
+              "base_value": "1215 Base Healing",
+              "resource_delta": "-2 Judgment, +500 Faith",
+              "range": "90m",
+              "summary": "Heals party for 2400 over 12 seconds.",
+              "icon": "./assets/abilities/empath/tend-the-body/ciorcal-na-beatha.png"
+            },
+            {
+              "name": "Leigheas",
+              "slug": "leigheas",
+              "type": "Spell",
+              "cast_speed": "2.0s",
+              "resource_delta": "-75 Faith, +1 Judgment",
+              "range": "45m",
+              "summary": "Seastan Deiridh Airde Friotaiocht Ciorcal na Beatha Removes 1 Debuff from target ally.",
+              "icon": "./assets/abilities/empath/tend-the-body/leigheas.png"
+            },
+            {
+              "name": "Saol Deontas",
+              "slug": "saol-deontas",
+              "type": "Spell",
+              "cast_speed": "1.0s",
+              "base_value": "2430 Base Healing",
+              "resource_delta": "-100 Faith, +1 Judgment",
+              "range": "60m",
+              "summary": "Seastan Deiridh Airde Friotalocht Ciorcal na Beatha Heal an ally for 1900 Health.",
+              "icon": "./assets/abilities/empath/tend-the-body/saol-deontas.png"
+            },
+            {
+              "name": "Seastan Deiridh",
+              "slug": "seastan-deiridh",
+              "type": "Buff",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Party",
+              "summary": "Reduces damage taken by party by 50% for 8 seconds. 120.0s Cooldown.",
+              "icon": "./assets/abilities/empath/tend-the-body/seastan-deiridh.png"
+            },
+            {
+              "name": "Slainte",
+              "slug": "slainte",
+              "type": "Heal",
+              "cast_speed": "0.2s",
+              "base_value": "911 Base Healing",
+              "resource_delta": "-100 Faith, +1 Judgment",
+              "range": "45m",
+              "summary": "seconds. +50% healing if the target is Linked to Heals and ally for 1800 Health over 12 Airde Friotaiocht",
+              "icon": "./assets/abilities/empath/tend-the-body/slainte.png"
+            },
+            {
+              "name": "Uacht Danu",
+              "slug": "uacht-danu",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "2936 Base Healing",
+              "resource_delta": "-1 Judgment, +250 Faith",
+              "range": "45m",
+              "summary": "Airde Friotaiocht 4.Os Cooldown Ciorcal na Beatha Heals the target.",
+              "icon": "./assets/abilities/empath/tend-the-body/uacht-danu.png"
+            }
+          ]
+        },
+        {
+          "name": "Tend the Enemy",
+          "slug": "tend-the-enemy",
+          "abilities": [
+            {
+              "name": "Anam Truaillithe",
+              "slug": "anam-truaillithe",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "1219 Base Damage",
+              "resource_delta": "-175 Faith",
+              "range": "45m",
+              "summary": "1.Os Cooldown Deals Spirit damage over 21 seconds.",
+              "icon": "./assets/abilities/empath/tend-the-enemy/anam-truaillithe.png"
+            },
+            {
+              "name": "Atreoru",
+              "slug": "atreoru",
+              "type": "Spell (Friend)",
+              "cast_speed": "1.0s",
+              "resource_delta": "-2 Judgment, +500 Faith",
+              "range": "Friend Link",
+              "summary": "For 10 seconds, each time your friendly link is",
+              "icon": "./assets/abilities/empath/tend-the-enemy/atreoru.png"
+            },
+            {
+              "name": "Comhlacht Mallacht",
+              "slug": "comhlacht-mallacht",
+              "type": "Spell",
+              "cast_speed": "2.0s",
+              "base_value": "1500 Base Damage",
+              "resource_delta": "-100 Faith, +1 Judgment",
+              "range": "60m",
+              "summary": "reduces healing received by 25% for 4 seconds. Deals Spirit damage. If target is Linked,",
+              "icon": "./assets/abilities/empath/tend-the-enemy/comhlacht-mallacht.png"
+            },
+            {
+              "name": "Fuil Truaillithe",
+              "slug": "fuil-truaillithe",
+              "type": "Spell",
+              "cast_speed": "2.0s",
+              "base_value": "1219 Base Damage",
+              "resource_delta": "-75 Faith, +1 Judgment",
+              "range": "45m",
+              "summary": "Anam Truaillithe Nasc Namhaid Deals 4550 Shadow damage over 21 seconds.",
+              "icon": "./assets/abilities/empath/tend-the-enemy/fuil-truaillithe.png"
+            },
+            {
+              "name": "Nasc Namhaid",
+              "slug": "nasc-namhaid",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "-25 Faith",
+              "range": "25m",
+              "summary": "and Attunement while linked. Links you to an enemy. Reduces their Strength 3.0s Cooldown.",
+              "icon": "./assets/abilities/empath/tend-the-enemy/nasc-namhaid.png"
+            },
+            {
+              "name": "Nochtadh",
+              "slug": "nochtadh",
+              "type": "Spell",
+              "cast_speed": "3.0s",
+              "base_value": "759 Base Healing",
+              "resource_delta": "-3 Judgment, +750 Faith",
+              "range": "60m",
+              "summary": "Anam Truaillithe for 50% of the damage dealt. Nasc Namhaid equal to 40% of your missing Health. Heals you Deals Spirit damage plus additional damage",
+              "icon": "./assets/abilities/empath/tend-the-enemy/nochtadh.png"
+            },
+            {
+              "name": "Pairilis",
+              "slug": "pairilis",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "938 Base Damage",
+              "resource_delta": "None",
+              "range": "45m",
+              "summary": "Linked to you. target for 3/6 seconds. +50 damage if target is Deals Shadow damage and Disarms the",
+              "icon": "./assets/abilities/empath/tend-the-enemy/pairilis.png"
+            },
+            {
+              "name": "Reabadh",
+              "slug": "reabadh",
+              "type": "Spell",
+              "cast_speed": "13.0s",
+              "base_value": "750 Base Damage",
+              "resource_delta": "None",
+              "range": "45m",
+              "summary": "Enemy Link each second. Health and deals Shadow damage to your Channels for up to 12 seconds. Spends 150",
+              "icon": "./assets/abilities/empath/tend-the-enemy/reabadh.png"
+            }
+          ]
+        },
+        {
+          "name": "Tend the Spirit",
+          "slug": "tend-the-spirit",
+          "abilities": [
+            {
+              "name": "Athghin",
+              "slug": "athghin",
+              "type": "Spell",
+              "cast_speed": "2.0s",
+              "base_value": "1519 Base Healing",
+              "resource_delta": "-2 Judgment, +500 Faith",
+              "range": "Self",
+              "summary": "Balla Eiliminte Comhroinn Cinniuint Heals you for 4500 Health over 6 second",
+              "icon": "./assets/abilities/empath/tend-the-spirit/athghin.png"
+            },
+            {
+              "name": "Atreisiú",
+              "slug": "atreisi",
+              "type": "Spell (Friend)",
+              "cast_speed": "0.2s",
+              "resource_delta": "-2 Judgment, +500 Faith",
+              "range": "Friend Link",
+              "summary": "Reduces damage taken by your Friendly Link by 10% for 12 seconds. Double effectiveness while Friendly Link is below 50% Health. 2.0s Cooldown.",
+              "icon": "./assets/abilities/empath/tend-the-spirit/atreisi.png"
+            },
+            {
+              "name": "Balla Eiliminte",
+              "slug": "balla-eiliminte",
+              "type": "Spell (Friend)",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Friend Link",
+              "summary": "damage and your Friendly Link +30% Fire and Grants you immunity to Fire and Lighting Balla Eiliminte",
+              "icon": "./assets/abilities/empath/tend-the-spirit/balla-eiliminte.png"
+            },
+            {
+              "name": "Comhinannu",
+              "slug": "comhinannu",
+              "type": "Spell (Friend)",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Friend Link",
+              "summary": "Removes all Debuffs from your Friendly Link and Heals them for 40% of your missing Health. Heals you both for 2400 Health over 12 seconds. 90.0s Cooldown.",
+              "icon": "./assets/abilities/empath/tend-the-spirit/comhinannu.png"
+            },
+            {
+              "name": "Comhroinn Cinniuint",
+              "slug": "comhroinn-cinniuint",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "-200 Faith, +1 Judgment",
+              "range": "45m",
+              "summary": "8.Os Cooldown Heals your Friendly Link over time.",
+              "icon": "./assets/abilities/empath/tend-the-spirit/comhroinn-cinniuint.png"
+            },
+            {
+              "name": "Comhroinn Fola",
+              "slug": "comhroinn-fola",
+              "type": "Spell",
+              "cast_speed": "2.0s",
+              "base_value": "3645 Base Healing",
+              "resource_delta": "-75 Faith, +1 Judgment",
+              "range": "45m",
+              "summary": "Balla Eiliminte Comhroinn Cinniuint healing if the target is linked to you. Spends 1000 Health and heals the target. +40%",
+              "icon": "./assets/abilities/empath/tend-the-spirit/comhroinn-fola.png"
+            },
+            {
+              "name": "Nasc Cara",
+              "slug": "nasc-cara",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "-25 Faith",
+              "range": "25m",
+              "summary": "Physical and Magic Armor Rating while Links you to an ally. Grants them increased 3.0s Cooldown.",
+              "icon": "./assets/abilities/empath/tend-the-spirit/nasc-cara.png"
+            },
+            {
+              "name": "Tonnadoir",
+              "slug": "tonnadoir",
+              "type": "Spell",
+              "cast_speed": "13.0s",
+              "base_value": "810 Base Healing",
+              "resource_delta": "None",
+              "range": "45m",
+              "summary": "Balla Eiliminte Health and Heals your Friendly Link each Comhroinn Cinniuint Channels for up to 12 seconds. Spends 150",
+              "icon": "./assets/abilities/empath/tend-the-spirit/tonnadoir.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fianna",
+      "slug": "fianna",
+      "description": "Fianna are focused on single target damage, with higher health regeneration than their faction counterparts. They also punish enemies who attack them, dealing retaliatory damage.",
+      "icon": "./assets/fianna-icon.png",
+      "hero": "./assets/fianna-hero.png",
+      "trees": [
+        {
+          "name": "Class Abilities",
+          "slug": "class-abilities",
+          "abilities": [
+            {
+              "name": "Bash",
+              "slug": "bash",
+              "type": "Damage / CC",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "6m",
+              "summary": "Deals damage and stuns the target.",
+              "icon": "./assets/abilities/fianna/class-abilities/bash.png"
+            },
+            {
+              "name": "Shield Wall",
+              "slug": "shield-wall",
+              "type": "Mitigation",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Significantly increases block chance and damage reduction.",
+              "icon": "./assets/abilities/fianna/class-abilities/shield-wall.png"
+            }
+          ]
+        },
+        {
+          "name": "Form of Danu",
+          "slug": "form-of-danu",
+          "abilities": [
+            {
+              "name": "Crushing Earth",
+              "slug": "crushing-earth",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1756 Base Damage",
+              "resource_delta": "-125 Courage",
+              "range": "6m",
+              "summary": "Cry of the Land Deals Earth damage. +25% Aftershock",
+              "icon": "./assets/abilities/fianna/form-of-danu/crushing-earth.png"
+            },
+            {
+              "name": "Cry of the Land",
+              "slug": "cry-of-the-land",
+              "type": "Damage",
+              "cast_speed": "1.0s",
+              "base_value": "2554 Earth Damage",
+              "resource_delta": "-200 Courage (Refunded on Kill)",
+              "range": "6m",
+              "summary": "this ability kills the target. Deals Earth damage. Refunds Courage cost if",
+              "icon": "./assets/abilities/fianna/form-of-danu/cry-of-the-land.png"
+            },
+            {
+              "name": "Earth's Gift",
+              "slug": "earth-s-gift",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "+5% Physical, +10% Magic DR",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Cry of the Land for 10 seconds. your passive to also reflect Ranged damage Crushing Earti +10% Magic Damage Reduction and causes Grants +5% Physical Damage Reduction and Earth's Gift 15.0s Cooldown.",
+              "icon": "./assets/abilities/fianna/form-of-danu/earth-s-gift.png"
+            },
+            {
+              "name": "Earthen Strike",
+              "slug": "earthen-strike",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "638 Base Damage",
+              "resource_delta": "+75 Courage",
+              "range": "6m",
+              "summary": "Living Stone Cry of the Land Crushing Earth Deals Earth damage. Earth's Gift",
+              "icon": "./assets/abilities/fianna/form-of-danu/earthen-strike.png"
+            },
+            {
+              "name": "Forest of Thorns",
+              "slug": "forest-of-thorns",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "Reflects 50% damage",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Cry of the Land passive, causing it to reflect 50% damage for 10 Increases Guts by 30% and empowers your Crushing Earth 60.0s Cooldown.",
+              "icon": "./assets/abilities/fianna/form-of-danu/forest-of-thorns.png"
+            },
+            {
+              "name": "Living Stone",
+              "slug": "living-stone",
+              "type": "Damage / Buff",
+              "cast_speed": "0.2s",
+              "base_value": "1915 Earth Damage",
+              "resource_delta": "None",
+              "range": "Self Impact",
+              "summary": "Deals Earth damage to nearby enemies.",
+              "icon": "./assets/abilities/fianna/form-of-danu/living-stone.png"
+            },
+            {
+              "name": "Nature's Sundering",
+              "slug": "nature-s-sundering",
+              "type": "Damage",
+              "cast_speed": "0.2s",
+              "base_value": "Equal to Aftershock",
+              "resource_delta": "None",
+              "range": "45m",
+              "summary": "their Aftershock and removing it. Fractures the target, dealing damage equal to Cry of the Land 60.0s Cooldown.",
+              "icon": "./assets/abilities/fianna/form-of-danu/nature-s-sundering.png"
+            },
+            {
+              "name": "Stony Reprisal",
+              "slug": "stony-reprisal",
+              "type": "Mitigation / Damage",
+              "cast_speed": "0.2s",
+              "base_value": "Reflects 50% damage",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Living Stone Cry of the Land Crushing Earth of the blocked attack's damage as Earth Earth's Gift Your next block within 5 seconds reflects 50% 18.0s Cooldown.",
+              "icon": "./assets/abilities/fianna/form-of-danu/stony-reprisal.png"
+            }
+          ]
+        },
+        {
+          "name": "Prowess",
+          "slug": "prowess",
+          "abilities": [
+            {
+              "name": "Inescapable Vines",
+              "slug": "inescapable-vines",
+              "type": "CC / Utility",
+              "cast_speed": "0.2s",
+              "base_value": "Pull & Root",
+              "resource_delta": "None",
+              "range": "25m",
+              "summary": "45.Os Cooldown 3/5 seconds. Pulls the target to you, then Roots them for",
+              "icon": "./assets/abilities/fianna/prowess/inescapable-vines.png"
+            },
+            {
+              "name": "Natural Strength",
+              "slug": "natural-strength",
+              "type": "AoE Damage / CC",
+              "cast_speed": "1.0s",
+              "base_value": "2394 Damage",
+              "resource_delta": "None",
+              "range": "6m",
+              "summary": "Back targets and Stuns them for 2/4 seconds. Deals Weapon damage in a cleave. Knocks",
+              "icon": "./assets/abilities/fianna/prowess/natural-strength.png"
+            },
+            {
+              "name": "Nature's Vengeance",
+              "slug": "nature-s-vengeance",
+              "type": "Damage (Execute)",
+              "cast_speed": "0.6s",
+              "base_value": "1436 Base Damage",
+              "resource_delta": "-125 Courage",
+              "range": "6m",
+              "summary": "equal to the target's percent missing Health. Inescapable Vines Deals Weapon damage. Damage is increased",
+              "icon": "./assets/abilities/fianna/prowess/nature-s-vengeance.png"
+            },
+            {
+              "name": "Rebuke Foe",
+              "slug": "rebuke-foe",
+              "type": "Damage / CC",
+              "cast_speed": "0.6s",
+              "base_value": "1596 Base Damage",
+              "resource_delta": "None",
+              "range": "6m",
+              "summary": "natural Strengui Inescapable Vines Nature's Vengeanc Deals Weapon damage and Knocks Back the 18.0s Cooldown.",
+              "icon": "./assets/abilities/fianna/prowess/rebuke-foe.png"
+            },
+            {
+              "name": "Rending Strike",
+              "slug": "rending-strike",
+              "type": "Damage / DoT",
+              "cast_speed": "0.6s",
+              "base_value": "479 Base Damage",
+              "resource_delta": "+50 Courage",
+              "range": "6m",
+              "summary": "Natural Strength Inescapable Vines Nature's Vengeance Slashing damage over 4 seconds. Deals Weapon damage and an additonal 280",
+              "icon": "./assets/abilities/fianna/prowess/rending-strike.png"
+            },
+            {
+              "name": "Restore Vitae",
+              "slug": "restore-vitae",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "1800 Healing over 18s",
+              "resource_delta": "+100 Courage",
+              "range": "Self",
+              "summary": "Natural Strength Inescapable Vines Nature's Vengeance Heals you for 1800 Health over 18 seconds. 30.0s Cooldown.",
+              "icon": "./assets/abilities/fianna/prowess/restore-vitae.png"
+            },
+            {
+              "name": "Unstoppable River",
+              "slug": "unstoppable-river",
+              "type": "Utility / Damage",
+              "cast_speed": "0.8s",
+              "base_value": "1037 Base Damage",
+              "resource_delta": "None",
+              "range": "45m",
+              "summary": "Inescapable Vines charges the target. Deals Weapon damage. Removes all Control effects from you and Nature's Vengeance 60.0s Cooldown.",
+              "icon": "./assets/abilities/fianna/prowess/unstoppable-river.png"
+            },
+            {
+              "name": "Whirlwind",
+              "slug": "whirlwind",
+              "type": "AoE Damage / CC",
+              "cast_speed": "0.2s",
+              "base_value": "1915 Base Damage",
+              "resource_delta": "-300 Courage",
+              "range": "Near enemies",
+              "summary": "enemies hit are Knocked Back except your Deals Weapon damage to nearby enemies. All Inescapable Vines",
+              "icon": "./assets/abilities/fianna/prowess/whirlwind.png"
+            }
+          ]
+        },
+        {
+          "name": "Resilience",
+          "slug": "resilience",
+          "abilities": [
+            {
+              "name": "Cry of the Forest",
+              "slug": "cry-of-the-forest",
+              "type": "Healing / Cleanse",
+              "cast_speed": "0.2s",
+              "base_value": "4746 Base Healing",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "for 6 seconds. and grants you immunity to Root and Snare Heals you, removes Root and Snare effects, Cry of the Forest 90.0s Cooldown.",
+              "icon": "./assets/abilities/fianna/resilience/cry-of-the-forest.png"
+            },
+            {
+              "name": "Forest Strike",
+              "slug": "forest-strike",
+              "type": "Damage / CC",
+              "cast_speed": "0.6s",
+              "base_value": "718 Base Damage",
+              "resource_delta": "+75 Courage",
+              "range": "6m",
+              "summary": "Roots of the Earth Nature's Cry Trust in the Forest Strike of Wolves Deals Weapon damage and Snares.",
+              "icon": "./assets/abilities/fianna/resilience/forest-strike.png"
+            },
+            {
+              "name": "Nature's Cry",
+              "slug": "nature-s-cry",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1915 Damage",
+              "resource_delta": "-100 Courage",
+              "range": "6m",
+              "summary": "Deals Weapon damage.",
+              "icon": "./assets/abilities/fianna/resilience/nature-s-cry.png"
+            },
+            {
+              "name": "Nature's Defense",
+              "slug": "nature-s-defense",
+              "type": "Buff / Mitigation",
+              "cast_speed": "0.2s",
+              "base_value": "385 Base Damage",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "and deals Earth damage to attackers when Increases Parry Chance by 55% for 6 seconds 60.0s Cooldown.",
+              "icon": "./assets/abilities/fianna/resilience/nature-s-defense.png"
+            },
+            {
+              "name": "Oakenshield",
+              "slug": "oakenshield",
+              "type": "Mitigation",
+              "cast_speed": "0.2s",
+              "base_value": "+2000 Block Value",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Roots of the Earth Nature's Cry Cry of the Forest 12.Os Cooldown within 5 seconds by 2000. Increases the Block Value of your next block Nature's Defense",
+              "icon": "./assets/abilities/fianna/resilience/oakenshield.png"
+            },
+            {
+              "name": "Roots of the Earth",
+              "slug": "roots-of-the-earth",
+              "type": "Utility / AoE CC",
+              "cast_speed": "0.8s",
+              "base_value": "1915 Damage",
+              "resource_delta": "None",
+              "range": "25m",
+              "summary": "Charges target, deals Weapon damage to nearby enemies, and Roots them for 4/8s. 90.0s Cooldown.",
+              "icon": "./assets/abilities/fianna/resilience/roots-of-the-earth.png"
+            },
+            {
+              "name": "Strike of Wolves",
+              "slug": "strike-of-wolves",
+              "type": "Damage / Buff",
+              "cast_speed": "0.6s",
+              "base_value": "1357 Base Damage",
+              "resource_delta": "-75 Courage",
+              "range": "6m",
+              "summary": "Nature's Cry by 20% for 10 seconds. increased Physical and Magic Armor Rating 6s. Second use deals Weapon damage and Cry of the Forest Deals Weapon damage. Usable again within",
+              "icon": "./assets/abilities/fianna/resilience/strike-of-wolves.png"
+            },
+            {
+              "name": "Trust in the Forest",
+              "slug": "trust-in-the-forest",
+              "type": "Buff / Resource",
+              "cast_speed": "0.2s",
+              "base_value": "+10% Guts Threshold, +20% Guts Value",
+              "resource_delta": "+600 Courage",
+              "range": "Self",
+              "summary": "Value for 15 seconds. grants +10% Guts Threshold and +20% Guts Nature's Cry Grants Courage based on missing Health. Also 60.0s Cooldown.",
+              "icon": "./assets/abilities/fianna/resilience/trust-in-the-forest.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Forest Stalker",
+      "slug": "forest-stalker",
+      "description": "Forest Stalker's Earth attacks allow for synergy with Earth Arcanists, delivering finishing attacks from range. They have Stealth abilities that prevent enemies from seeing them.",
+      "icon": "./assets/forest-stalker-icon.png",
+      "hero": "./assets/forest-stalker-hero.png",
+      "trees": [
+        {
+          "name": "Class Abilities",
+          "slug": "class-abilities",
+          "abilities": [
+            {
+              "name": "Mark Target",
+              "slug": "mark-target",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "70m",
+              "summary": "Increases the target's damage taken and prevents Stealth or entering the Veil for 10 seconds. 45.0s Cooldown.",
+              "icon": "./assets/abilities/forest-stalker/class-abilities/mark-target.png"
+            },
+            {
+              "name": "Reposition",
+              "slug": "reposition",
+              "type": "Ability",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Increases your party's Movement Speed for 4 seconds. 60.0s Cooldown.",
+              "icon": "./assets/abilities/forest-stalker/class-abilities/reposition.png"
+            }
+          ]
+        },
+        {
+          "name": "Predation",
+          "slug": "predation",
+          "abilities": [
+            {
+              "name": "Arrow Shot",
+              "slug": "arrow-shot",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1423 Base Damage",
+              "resource_delta": "None",
+              "range": "70m",
+              "summary": "Deals Weapon damage.",
+              "icon": "./assets/abilities/forest-stalker/predation/arrow-shot.png"
+            },
+            {
+              "name": "Crippling Shot",
+              "slug": "crippling-shot",
+              "type": "Damage / CC",
+              "cast_speed": "0.6s",
+              "base_value": "1143 Base Damage",
+              "resource_delta": "None",
+              "range": "60m",
+              "summary": "Deals Weapon damage and Roots the target Crippling Shot",
+              "icon": "./assets/abilities/forest-stalker/predation/crippling-shot.png"
+            },
+            {
+              "name": "Parting Shot",
+              "slug": "parting-shot",
+              "type": "Damage / CC / Mobility",
+              "cast_speed": "0.2s",
+              "base_value": "1271 Base Damage",
+              "resource_delta": "None",
+              "range": "25m",
+              "summary": "Leaps backward and deals Weapon damage. Snares the target for 4/7 seconds. 45.0s Cooldown.",
+              "icon": "./assets/abilities/forest-stalker/predation/parting-shot.png"
+            },
+            {
+              "name": "Pick Off From Herd",
+              "slug": "pick-off-from-herd",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1016 Base Damage",
+              "resource_delta": "-175 Focus",
+              "range": "70m",
+              "summary": "Crippling Shot Parting Shot Scent Blood target isn't near any of their allies. Deals Weapon damage. +100% damage if the",
+              "icon": "./assets/abilities/forest-stalker/predation/pick-off-from-herd.png"
+            },
+            {
+              "name": "Prey Sight",
+              "slug": "prey-sight",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Crippling Shot Critical Strike Chance by 8% Scent Blood Increases Stealth Detection Range by 25m and",
+              "icon": "./assets/abilities/forest-stalker/predation/prey-sight.png"
+            },
+            {
+              "name": "Scent Blood",
+              "slug": "scent-blood",
+              "type": "Damage / DoT",
+              "cast_speed": "0.6s",
+              "base_value": "762 Base Damage",
+              "resource_delta": "None",
+              "range": "70m",
+              "summary": "behind a visible blood trail for the duration of Crippling Shot Slashing damage over 60s. The target leaves Deals Weapon damage an additional 6000",
+              "icon": "./assets/abilities/forest-stalker/predation/scent-blood.png"
+            },
+            {
+              "name": "Stealth",
+              "slug": "stealth",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "You gain Stealth, making you invisible to enemies while outside their Detection Range. Becomes \"De-Stealth\" upon use. 12.0s Cooldown.",
+              "icon": "./assets/abilities/forest-stalker/predation/stealth.png"
+            },
+            {
+              "name": "Strike and Fade",
+              "slug": "strike-and-fade",
+              "type": "Damage / Utility",
+              "cast_speed": "2.0s",
+              "base_value": "1779 Base Damage",
+              "resource_delta": "300 Focus",
+              "range": "70m",
+              "summary": "Deals Weapon damage plus additional Weapon damage equal to 15% of target's missing Health. On a killing blow, you immediately gain Stealth and increased Movement Speed for 10 seconds.",
+              "icon": "./assets/abilities/forest-stalker/predation/strike-and-fade.png"
+            },
+            {
+              "name": "Vital Focus",
+              "slug": "vital-focus",
+              "type": "Buff",
+              "cast_speed": "0.2s",
+              "resource_delta": "-150 Focus",
+              "range": "Self",
+              "summary": "Hit Chance. Crippling Shot Grants your next Weaponskill 100% Critically 2.0s Cooldown.",
+              "icon": "./assets/abilities/forest-stalker/predation/vital-focus.png"
+            }
+          ]
+        },
+        {
+          "name": "Stone Rain",
+          "slug": "stone-rain",
+          "abilities": [
+            {
+              "name": "Claws of Earth",
+              "slug": "claws-of-earth",
+              "type": "Damage / Debuff",
+              "cast_speed": "0.6s",
+              "base_value": "1271 Base Damage",
+              "resource_delta": "None",
+              "range": "70m",
+              "summary": "taken to deal added Earth damage. for 12 seconds, causing Direct damage hits Deals Earth damage and debuffs the target Fist of Danu",
+              "icon": "./assets/abilities/forest-stalker/stone-rain/claws-of-earth.png"
+            },
+            {
+              "name": "Cloaked in Earth",
+              "slug": "cloaked-in-earth",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Fist of Danu Spear of Lugh Spike Field Pounding Shot Reduces the damage of the next 3 hits received 60.0s Cooldown.",
+              "icon": "./assets/abilities/forest-stalker/stone-rain/cloaked-in-earth.png"
+            },
+            {
+              "name": "Earthen Arrow",
+              "slug": "earthen-arrow",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1271 Base Damage",
+              "resource_delta": "None",
+              "range": "70m",
+              "summary": "Fist of Danu Spear of Lugh Spike Field Pounding Shot Deals Earth damage.",
+              "icon": "./assets/abilities/forest-stalker/stone-rain/earthen-arrow.png"
+            },
+            {
+              "name": "Fist of Danu",
+              "slug": "fist-of-danu",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1143 Base Damage",
+              "resource_delta": "None",
+              "range": "45m",
+              "summary": "Deals Earth damage and Knocks Back the Fist of Danu",
+              "icon": "./assets/abilities/forest-stalker/stone-rain/fist-of-danu.png"
+            },
+            {
+              "name": "Pounding Shot",
+              "slug": "pounding-shot",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1321 Base Damage",
+              "resource_delta": "-125 Focus",
+              "range": "70m",
+              "summary": "Fist of Danu on the target. Spike Field Weapon damage equal to 40% of Aftershock Deals Weapon damage plus additional Pounding Shot",
+              "icon": "./assets/abilities/forest-stalker/stone-rain/pounding-shot.png"
+            },
+            {
+              "name": "Sniper's Shot",
+              "slug": "sniper-s-shot",
+              "type": "Damage",
+              "cast_speed": "2.0s",
+              "base_value": "2033 Base Damage",
+              "resource_delta": "-100 Focus",
+              "range": "70m",
+              "summary": "Fist of Danu Spike Field Deals Weapon damage. 100% Critical Hit 8.0s Cooldown.",
+              "icon": "./assets/abilities/forest-stalker/stone-rain/sniper-s-shot.png"
+            },
+            {
+              "name": "Spear of Lugh",
+              "slug": "spear-of-lugh",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "resource_delta": "350 Focus",
+              "range": "90m",
+              "summary": "Fractures target, dealing increased damage.",
+              "icon": "./assets/abilities/forest-stalker/stone-rain/spear-of-lugh.png"
+            },
+            {
+              "name": "Spike Field",
+              "slug": "spike-field",
+              "type": "Spell",
+              "cast_speed": "1.0s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "deals 100 Earth damage per second while in Fist of Danu for 15 seconds that Snares enemies by 50% and Creates an area of spike ground around you Spike Field",
+              "icon": "./assets/abilities/forest-stalker/stone-rain/spike-field.png"
+            }
+          ]
+        },
+        {
+          "name": "Thorn and Fang",
+          "slug": "thorn-and-fang",
+          "abilities": [
+            {
+              "name": "Death's Door",
+              "slug": "death-s-door",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1779 Base Damage",
+              "resource_delta": "350 Focus",
+              "range": "70m",
+              "summary": "Deals Poison damage and increases Periodic Poison damage taken while below 30% Health by 200% for 20 seconds.",
+              "icon": "./assets/abilities/forest-stalker/thorn-and-fang/death-s-door.png"
+            },
+            {
+              "name": "Distilled Poison",
+              "slug": "distilled-poison",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "1194 Base Damage",
+              "resource_delta": "None",
+              "range": "70m",
+              "summary": "Increases Periodic Poison damage by 15%.",
+              "icon": "./assets/abilities/forest-stalker/thorn-and-fang/distilled-poison.png"
+            },
+            {
+              "name": "Fall Back",
+              "slug": "fall-back",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Grants Movement Speed and Disarms you for",
+              "icon": "./assets/abilities/forest-stalker/thorn-and-fang/fall-back.png"
+            },
+            {
+              "name": "Necrotic Toxin",
+              "slug": "necrotic-toxin",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "2033 Base Damage",
+              "resource_delta": "300 Focus",
+              "range": "70m",
+              "summary": "Deals Weapon damage. Deals additional Poison damage over time and reduces the target's healing received by 50% for 12 seconds.",
+              "icon": "./assets/abilities/forest-stalker/thorn-and-fang/necrotic-toxin.png"
+            },
+            {
+              "name": "Needle Shot",
+              "slug": "needle-shot",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1194 Base Damage",
+              "resource_delta": "None",
+              "range": "70m",
+              "summary": "Deals Poison damage.",
+              "icon": "./assets/abilities/forest-stalker/thorn-and-fang/needle-shot.png"
+            },
+            {
+              "name": "Opening Shot",
+              "slug": "opening-shot",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "1016 Base Damage",
+              "resource_delta": "150 Focus",
+              "range": "70m",
+              "summary": "damage equal to 8% of target's current Health. Necrotic Toxin Deals Weapon damage plus additional",
+              "icon": "./assets/abilities/forest-stalker/thorn-and-fang/opening-shot.png"
+            },
+            {
+              "name": "Poison Arrow",
+              "slug": "poison-arrow",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "686 Base Damage",
+              "resource_delta": "-100 Focus",
+              "range": "70m",
+              "summary": "Poison damage over 9 seconds. Distilled Poison Deals Poison damage and an additional 750",
+              "icon": "./assets/abilities/forest-stalker/thorn-and-fang/poison-arrow.png"
+            },
+            {
+              "name": "Spore Cloud",
+              "slug": "spore-cloud",
+              "type": "AoE",
+              "cast_speed": "0.6s",
+              "resource_delta": "250 Focus",
+              "range": "70m",
+              "summary": "Necrotic Toxin deals 500 Poison damage over 5 seconds. Max Poison DoT stack every 2 seconds. Each stack Creates a cloud on impact that applies 1",
+              "icon": "./assets/abilities/forest-stalker/thorn-and-fang/spore-cloud.png"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Red Cap",
+      "slug": "red-cap",
+      "description": "Red Caps utilize strong poisons that apply Damage over Time to make enemies vulnerable. They move unpredictably with short cooldown speed boosts and shifts between the Veil.",
+      "icon": "./assets/red-cap-icon.png",
+      "hero": "./assets/red-cap-hero.png",
+      "trees": [
+        {
+          "name": "Class Abilities",
+          "slug": "class-abilities",
+          "abilities": [
+            {
+              "name": "Enter Veil",
+              "slug": "enter-veil",
+              "type": "Spell",
+              "cast_speed": "5.0s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Shifts you into the Veil. Becomes \"Exit Veil\" upon use.",
+              "icon": "./assets/abilities/red-cap/class-abilities/enter-veil.png"
+            },
+            {
+              "name": "Poison Weapons",
+              "slug": "poison-weapons",
+              "type": "Buff",
+              "cast_speed": "2.0s",
+              "resource_delta": "-100 Determination",
+              "range": "Self",
+              "summary": "Adds 50 Poison damage to all Direct damage.",
+              "icon": "./assets/abilities/red-cap/class-abilities/poison-weapons.png"
+            }
+          ]
+        },
+        {
+          "name": "Corrupted Blade",
+          "slug": "corrupted-blade",
+          "icon": "./assets/abilities/red-cap/trees/corrupted-blade.png",
+          "abilities": [
+            {
+              "name": "Caress of Death",
+              "slug": "caress-of-death",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "resource_delta": "-200 Determination",
+              "range": "6m",
+              "summary": "Deals Weapon damage. +30% damage per Poison on target, up to +90%. +30% damage per Poison stack on target, up to +90%",
+              "icon": "./assets/abilities/red-cap/corrupted-blade/caress-of-death.png"
+            },
+            {
+              "name": "Deadly Catalyst",
+              "slug": "deadly-catalyst",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "936 Poison Damage",
+              "resource_delta": "-600 Determination",
+              "range": "6m",
+              "summary": "Deals Poison damage and consumes all Poison DOTs on the target, dealing 75% their remaining damage immediately. Consumes Poison DoTs on target for 75% of remaining damage",
+              "icon": "./assets/abilities/red-cap/corrupted-blade/deadly-catalyst.png"
+            },
+            {
+              "name": "Flare of Corruption",
+              "slug": "flare-of-corruption",
+              "type": "Melee",
+              "cast_speed": "0.2s",
+              "base_value": "702 Poison Damage",
+              "resource_delta": "None",
+              "range": "25m",
+              "summary": "Deals Poison damage and Snares the target by 20% for 4/8 seconds. If the target is suffering from 3 or more different Poison effects, also Stuns them for 1.5/2.5 seconds. Snare 20% for 4/8s; Stun 1.5/2.5s if target has 3+ Poison effects 45.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/corrupted-blade/flare-of-corruption.png"
+            },
+            {
+              "name": "Poison Dart",
+              "slug": "poison-dart",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "655 Weapon Damage",
+              "resource_delta": "-275 Determination",
+              "range": "25m",
+              "summary": "Deals Weapon damage and an additional 1200 Poison damage over 12 seconds.",
+              "icon": "./assets/abilities/red-cap/corrupted-blade/poison-dart.png"
+            },
+            {
+              "name": "Poison Mastery",
+              "slug": "poison-mastery",
+              "type": "Spell / Buff",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Increases Poison damage dealt by 10%. +10% Poison damage dealt",
+              "icon": "./assets/abilities/red-cap/corrupted-blade/poison-mastery.png"
+            },
+            {
+              "name": "Poison Strike",
+              "slug": "poison-strike",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "1053 Weapon Damage",
+              "resource_delta": "None",
+              "summary": "Deals Weapon damage and an additional 600 Poison damage over 6 seconds. DoT effect can stack up to 3 times.",
+              "icon": "./assets/abilities/red-cap/corrupted-blade/poison-strike.png"
+            },
+            {
+              "name": "Trained Tolerance",
+              "slug": "trained-tolerance",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "base_value": "793 Base Healing",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Removes all DoTs from you and Heals you. 45.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/corrupted-blade/trained-tolerance.png"
+            },
+            {
+              "name": "Viper's Kiss",
+              "slug": "viper-s-kiss",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "1404 Poison Damage",
+              "resource_delta": "-300 Determination",
+              "summary": "Deals Poison damage and additional Poison damage over 12 seconds.",
+              "icon": "./assets/abilities/red-cap/corrupted-blade/viper-s-kiss.png"
+            }
+          ]
+        },
+        {
+          "name": "Danu's Vengeance",
+          "slug": "danu-s-vengeance",
+          "icon": "./assets/abilities/red-cap/trees/danu-s-vengeance.png",
+          "abilities": [
+            {
+              "name": "Blinding Grit",
+              "slug": "blinding-grit",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "936 Weapon Damage",
+              "resource_delta": "None",
+              "range": "6m",
+              "summary": "Deals Weapon damage. If the target has Aftershock, removes it without dealing additional damage and Disarms the target for 4/7 seconds. If target has Aftershock: removes it (no extra dmg) + Disarm 4/7s 30.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/danu-s-vengeance/blinding-grit.png"
+            },
+            {
+              "name": "Deflecting Stones",
+              "slug": "deflecting-stones",
+              "type": "Spell / Buff",
+              "cast_speed": "0.2s",
+              "resource_delta": "-275 Determination",
+              "range": "Self",
+              "summary": "Negates the damage of the next 3 Elemental hits taken within 30 seconds. 24.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/danu-s-vengeance/deflecting-stones.png"
+            },
+            {
+              "name": "Earthen Daggers",
+              "slug": "earthen-daggers",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "1217 Earth Damage",
+              "resource_delta": "None",
+              "summary": "Deals Earth damage.",
+              "icon": "./assets/abilities/red-cap/danu-s-vengeance/earthen-daggers.png"
+            },
+            {
+              "name": "Final Fracture",
+              "slug": "final-fracture",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "1638 Earth Damage",
+              "resource_delta": "-550 Determination",
+              "range": "6m",
+              "summary": "Deals Earth damage and Fractures the target, dealing damage equal to their Aftershock and removing it. Fracture: deals dmg = target Aftershock, then removes it",
+              "icon": "./assets/abilities/red-cap/danu-s-vengeance/final-fracture.png"
+            },
+            {
+              "name": "Obscuring Dust",
+              "slug": "obscuring-dust",
+              "type": "Ability",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Removes you from Combat and applies Stealth for 15s. 45.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/danu-s-vengeance/obscuring-dust.png"
+            },
+            {
+              "name": "Shackles of Stone",
+              "slug": "shackles-of-stone",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "1404 Earth Damage",
+              "resource_delta": "None",
+              "range": "6m",
+              "summary": "Deals Earth damage. If the target has at least 1000 Aftershock, also Roots them for 3/6 seconds. If target has >=1000 Aftershock: Root 3/6s 45.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/danu-s-vengeance/shackles-of-stone.png"
+            },
+            {
+              "name": "Stone Fang",
+              "slug": "stone-fang",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "1872 Earth Damage",
+              "resource_delta": "-275 Determination",
+              "range": "6m",
+              "summary": "Deals Earth damage.",
+              "icon": "./assets/abilities/red-cap/danu-s-vengeance/stone-fang.png"
+            },
+            {
+              "name": "Undermine",
+              "slug": "undermine",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "2434 Earth Damage",
+              "resource_delta": "-200 Determination",
+              "range": "6m",
+              "summary": "Deals Earth damage. +100% Aftershock amount when attacking from behind. +100% Aftershock when attacking from behind",
+              "icon": "./assets/abilities/red-cap/danu-s-vengeance/undermine.png"
+            }
+          ]
+        },
+        {
+          "name": "Forest Walking",
+          "slug": "forest-walking",
+          "icon": "./assets/abilities/red-cap/trees/forest-walking.png",
+          "abilities": [
+            {
+              "name": "Cut a Path",
+              "slug": "cut-a-path",
+              "type": "Spell",
+              "cast_speed": "0.2s",
+              "resource_delta": "-250 Determination",
+              "range": "Self",
+              "summary": "Briefly enters the Veil and greatly increases Movement Speed, then exits the Veil again. 6.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/forest-walking/cut-a-path.png"
+            },
+            {
+              "name": "Dance of Death",
+              "slug": "dance-of-death",
+              "type": "Buff",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Grants +50% Parry Chance for 8 seconds and deals Weapon damage to attackers when Parrying. 60.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/forest-walking/dance-of-death.png"
+            },
+            {
+              "name": "Deadly Thrust",
+              "slug": "deadly-thrust",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "1697 Weapon Damage",
+              "resource_delta": "-275 Determination",
+              "range": "6m",
+              "summary": "Deals Weapon damage.",
+              "icon": "./assets/abilities/red-cap/forest-walking/deadly-thrust.png"
+            },
+            {
+              "name": "Death on the Wind",
+              "slug": "death-on-the-wind",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "1521 Weapon Damage",
+              "resource_delta": "-500 Determination",
+              "range": "25m",
+              "summary": "Instantly leaps out from the Veil to your target and deals Weapon damage. Only usable while in the Veil, and only on targets in the Normal Plane. (Only while in the Veil; target in Normal Plane) 4.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/forest-walking/death-on-the-wind.png"
+            },
+            {
+              "name": "Fade Into Trees",
+              "slug": "fade-into-trees",
+              "type": "Spell",
+              "cast_speed": "2.0s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "You become Stealthed for 45 seconds. This Stealth is removed when you move or use an ability. 30.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/forest-walking/fade-into-trees.png"
+            },
+            {
+              "name": "Slowing Sap",
+              "slug": "slowing-sap",
+              "type": "Damage",
+              "cast_speed": "0.6s",
+              "base_value": "468 Poison Damage",
+              "resource_delta": "None",
+              "range": "25m",
+              "summary": "Deals Poison damage. Applies a Poison Debuff that Snares the target by 20% for 6 seconds and deals 480 Poison damage over the duration. Snare 20% for 6s + 480 Poison DoT 45.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/forest-walking/slowing-sap.png"
+            },
+            {
+              "name": "Vicious Cut",
+              "slug": "vicious-cut",
+              "type": "Melee",
+              "cast_speed": "0.6s",
+              "base_value": "1310 Weapon Damage",
+              "resource_delta": "None",
+              "range": "6m",
+              "summary": "Deals Weapon damage and Snare.",
+              "icon": "./assets/abilities/red-cap/forest-walking/vicious-cut.png"
+            },
+            {
+              "name": "Whirling Leaves",
+              "slug": "whirling-leaves",
+              "type": "Spell / Buff",
+              "cast_speed": "0.2s",
+              "resource_delta": "None",
+              "range": "Self",
+              "summary": "Grants a 50% chance to avoid Ranged Physical hits for 10 seconds. 60.0s Cooldown.",
+              "icon": "./assets/abilities/red-cap/forest-walking/whirling-leaves.png"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

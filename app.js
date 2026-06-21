@@ -1,5 +1,7 @@
 let database = [];
+let classGuides = {};
 let selectedClass = '';
+let selectedClassView = 'abilities';
 let searchQuery = '';
 let activeFilter = '';
 
@@ -7,6 +9,7 @@ const elements = {
   homeLogo: document.getElementById('home-logo'),
   classNavRow: document.getElementById('class-nav-row'),
   activeClassHero: document.getElementById('active-class-hero'),
+  classViewTabs: document.getElementById('class-view-tabs'),
   searchBarContainer: document.getElementById('search-bar-container'),
   searchInput: document.getElementById('search-input'),
   clearSearch: document.getElementById('clear-search'),
@@ -239,6 +242,21 @@ const CLASS_PALETTES = {
     borderTo: '#4a2626',
     iconFrom: '#3a1818',
     iconTo: '#1a0c0c'
+  },
+  'Druid': {
+    accent: '#3e9c4b',
+    accentMuted: '#2a7040',
+    headerFrom: '#284528',
+    headerTo: '#1a2d1e',
+    activeFrom: '#154a20',
+    activeTo: '#0b2a10',
+    contentBg: '#141a14',
+    cardHeaderFrom: '#154a20',
+    borderFrom: '#3e9c4b',
+    borderMid: '#2a7040',
+    borderTo: '#264a32',
+    iconFrom: '#1f3a28',
+    iconTo: '#0f1a14'
   }
 };
 
@@ -534,6 +552,53 @@ const CLASS_TREE_PALETTES = {
       iconFrom: '#182828',
       iconTo: '#0c1414'
     }
+  },
+  'Druid': {
+    'Voidcalling': {
+      accent: '#7a58c8',
+      accentMuted: '#503880',
+      headerFrom: '#2a2040',
+      headerTo: '#1a1430',
+      activeFrom: '#301848',
+      activeTo: '#180c28',
+      contentBg: '#141218',
+      cardHeaderFrom: '#301848',
+      borderFrom: '#7a58c8',
+      borderMid: '#503880',
+      borderTo: '#382850',
+      iconFrom: '#221830',
+      iconTo: '#100c18'
+    },
+    'Earthshaping': {
+      accent: '#a87848',
+      accentMuted: '#705030',
+      headerFrom: '#3a2818',
+      headerTo: '#281810',
+      activeFrom: '#4a3010',
+      activeTo: '#2a1808',
+      contentBg: '#1a1410',
+      cardHeaderFrom: '#4a3010',
+      borderFrom: '#a87848',
+      borderMid: '#705030',
+      borderTo: '#4a3820',
+      iconFrom: '#322018',
+      iconTo: '#1a1008'
+    },
+    'Natureweaving': {
+      accent: '#58a868',
+      accentMuted: '#387048',
+      headerFrom: '#243828',
+      headerTo: '#182820',
+      activeFrom: '#1a4530',
+      activeTo: '#0c2818',
+      contentBg: '#121816',
+      cardHeaderFrom: '#1a4530',
+      borderFrom: '#58a868',
+      borderMid: '#387048',
+      borderTo: '#284830',
+      iconFrom: '#1a3020',
+      iconTo: '#0c1810'
+    }
   }
 };
 
@@ -564,6 +629,58 @@ function getAccordionPalette(treeName, className) {
   return getClassTreePalette(className, treeName);
 }
 
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+const CLASS_VIEW_TABS = [
+  { id: 'abilities', label: 'Abilities' },
+  { id: 'guide', label: 'Guide' }
+];
+
+const ROLE_SECTION_LABELS = {
+  healer: 'If Healer',
+  damage: 'If Damage',
+  tank: 'If Tank',
+  caster: 'If Caster'
+};
+
+const ROLE_FIELD_LABELS = {
+  healer: [
+    ['primaryJob', 'Primary job'],
+    ['positioning', 'Positioning'],
+    ['triagePriority', 'Triage priority'],
+    ['cleanseResponsibility', 'Cleanse responsibility'],
+    ['battleRes', 'Battle-res'],
+    ['doNot', 'What you do NOT do']
+  ],
+  damage: [
+    ['primaryJob', 'Primary job'],
+    ['positioning', 'Positioning'],
+    ['focusFire', 'Focus fire'],
+    ['peelResponsibility', 'Peel responsibility'],
+    ['doNot', 'What you do NOT do']
+  ],
+  tank: [
+    ['primaryJob', 'Primary job'],
+    ['positioning', 'Positioning'],
+    ['peelToolkit', 'Peel toolkit'],
+    ['threatDenial', 'Threat denial'],
+    ['doNot', 'What you do NOT do']
+  ],
+  caster: [
+    ['primaryJob', 'Primary job'],
+    ['positioning', 'Positioning'],
+    ['castManagement', 'Cast management'],
+    ['controlApplication', 'Control application'],
+    ['doNot', 'What you do NOT do']
+  ]
+};
+
 function classToSlug(className) {
   return className.toLowerCase().replace(/\s+/g, '-');
 }
@@ -592,17 +709,28 @@ function getClassSlugFromUrl() {
   return hash || null;
 }
 
+function getClassViewFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('view') === 'guide' ? 'guide' : 'abilities';
+}
+
 function syncClassUrl(className) {
   const url = new URL(window.location.href);
 
   if (className) {
     url.searchParams.set('class', classToSlug(className));
+    if (selectedClassView === 'guide') {
+      url.searchParams.set('view', 'guide');
+    } else {
+      url.searchParams.delete('view');
+    }
   } else {
     url.searchParams.delete('class');
+    url.searchParams.delete('view');
   }
 
   url.hash = '';
-  history.replaceState({ className: className || null }, '', url);
+  history.replaceState({ className: className || null, view: selectedClassView }, '', url);
 }
 
 function resolveClassFromUrl() {
@@ -610,7 +738,63 @@ function resolveClassFromUrl() {
 }
 
 function setContextualToolbarVisible(visible) {
-  elements.searchBarContainer.classList.toggle('hidden', !visible);
+  const showToolbar = visible && selectedClassView === 'abilities';
+  elements.searchBarContainer.classList.toggle('hidden', !showToolbar);
+}
+
+function renderClassViewTabs(className) {
+  const tabsEl = elements.classViewTabs;
+  if (!tabsEl) return;
+
+  if (!className) {
+    tabsEl.classList.add('hidden');
+    tabsEl.innerHTML = '';
+    return;
+  }
+
+  const { themeColor } = getClassThemeStyles(getClassMetadata(className));
+  tabsEl.classList.remove('hidden');
+  tabsEl.style.setProperty('--tab-accent', themeColor);
+  tabsEl.innerHTML = `
+    <nav class="flex gap-2" aria-label="Class sections">
+      ${CLASS_VIEW_TABS.map(tab => `
+        <button
+          type="button"
+          data-class-view="${tab.id}"
+          class="class-view-tab px-5 py-2 rounded font-cinzel text-sm font-bold tracking-wider uppercase${selectedClassView === tab.id ? ' active' : ''}"
+          aria-current="${selectedClassView === tab.id ? 'page' : 'false'}"
+        >${tab.label}</button>
+      `).join('')}
+    </nav>`;
+}
+
+function selectClassView(view, { updateUrl = true } = {}) {
+  if (!selectedClass) return;
+
+  selectedClassView = view === 'guide' ? 'guide' : 'abilities';
+  renderClassViewTabs(selectedClass);
+  setContextualToolbarVisible(Boolean(selectedClass));
+  if (updateUrl) syncClassUrl(selectedClass);
+  renderClassView();
+}
+
+function getOrderedTreeNames(classData) {
+  const trees = classData?.trees || [];
+  const specTrees = trees
+    .map(tree => tree.name)
+    .filter(name => name !== CLASS_ABILITY_TREE)
+    .sort((a, b) => a.localeCompare(b));
+
+  return [...specTrees, CLASS_ABILITY_TREE];
+}
+
+function getClassFaction(className) {
+  for (const factionNode of database) {
+    if ((factionNode.classes || []).some(classObj => classObj.class === className)) {
+      return factionNode.faction;
+    }
+  }
+  return 'Tuatha Dé Danann';
 }
 
 function renderActiveClassHero(className) {
@@ -684,19 +868,22 @@ function selectClass(className, { updateUrl = true } = {}) {
   selectedClass = className;
   activeFilter = '';
   renderClassNavRow(className);
+  renderClassViewTabs(className);
   elements.searchInput.disabled = false;
   elements.clearSearch.disabled = false;
   elements.searchInput.placeholder = 'Search class abilities and metadata...';
   setContextualToolbarVisible(true);
   if (updateUrl) syncClassUrl(className);
-  renderAbilities();
+  renderClassView();
 }
 
 function resetClassSelection({ updateUrl = true } = {}) {
   selectedClass = '';
+  selectedClassView = 'abilities';
   searchQuery = '';
   activeFilter = '';
   renderClassNavRow('');
+  renderClassViewTabs('');
   elements.searchInput.value = '';
   elements.searchInput.disabled = true;
   elements.clearSearch.disabled = true;
@@ -705,7 +892,7 @@ function resetClassSelection({ updateUrl = true } = {}) {
   setContextualToolbarVisible(false);
   hideActiveClassHero();
   if (updateUrl) syncClassUrl('');
-  renderAbilities();
+  renderClassView();
 }
 
 function paletteStyleVars(palette) {
@@ -763,7 +950,10 @@ const TYPE_ICON_RULES = [
   { keywords: ['spell'], icon: 'spell' }
 ];
 
-function getAbilityIcon(type, generativeIcon) {
+function getAbilityIcon(type, generativeIcon, iconPath) {
+  if (iconPath) {
+    return `<img src="${iconPath}" alt="" class="w-full h-full object-contain" loading="lazy" onerror="this.style.display='none'">`;
+  }
   if (generativeIcon) return generativeIcon;
 
   const normalized = (type || '').toLowerCase();
@@ -867,7 +1057,7 @@ const UI = {
       </div>`;
   },
 
-  abilityCard({ name, summary, castSpeed, resourceDelta, range, baseValue, type, generativeIcon, cooldown, parsedTypes, tags }) {
+  abilityCard({ name, summary, castSpeed, resourceDelta, range, baseValue, type, generativeIcon, icon, cooldown, parsedTypes, tags }) {
     const metadataBlock = `
       <div class="mt-auto flex flex-col">
         <hr class="border-t border-white/10 my-3">
@@ -889,8 +1079,8 @@ const UI = {
     return `
       <article class="ability-card p-0 m-1 relative overflow-hidden flex flex-col h-full">
         <header class="card-header-bg flex items-center p-3">
-          <div class="ability-icon hidden w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4">
-            ${getAbilityIcon(type, generativeIcon)}
+          <div class="ability-icon w-12 h-12 rounded-full flex items-center justify-center shrink-0 mr-4 overflow-hidden p-1">
+            ${getAbilityIcon(type, generativeIcon, icon)}
           </div>
           <h3 class="text-xl text-[#e0e0e0] font-cinzel font-bold">${name}</h3>
         </header>
@@ -909,7 +1099,7 @@ const UI = {
       </article>`;
   },
 
-  accordionItem({ treeName, cardsHtml, expanded, useClassTheme, palette, themeColor }) {
+  accordionItem({ treeName, treeIcon, cardsHtml, expanded, useClassTheme, palette, themeColor }) {
     const stickyClasses = 'sticky top-[var(--top-bar-height)] z-10';
     const interactiveClasses = 'transition-all duration-200 ease-in-out focus:outline-none';
     const btnClasses = expanded
@@ -921,13 +1111,251 @@ const UI = {
     return `
       <div class="accordion-item" style="${paletteStyleVars(itemPalette)}">
         <button type="button" aria-expanded="${expanded}" class="${btnClasses}">
-          <span class="text-xl tree-title font-cinzel font-bold tracking-wider text-shadow">${treeName}</span>
+          <span class="flex items-center gap-3">
+            ${treeIcon ? `<img src="${treeIcon}" alt="" class="w-8 h-8 rounded object-contain shrink-0" loading="lazy" onerror="this.style.display='none'">` : ''}
+            <span class="text-xl tree-title font-cinzel font-bold tracking-wider text-shadow">${treeName}</span>
+          </span>
           ${this.icons.chevron(expanded)}
         </button>
         <div class="accordion-content border-x border-b px-3 ${expanded ? 'py-4' : 'py-0'} grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4 rounded-b-sm" style="${contentStyle}">
           ${cardsHtml}
         </div>
       </div>`;
+  },
+
+  guideSection(title, introHtml, bodyHtml) {
+    return `
+      <section class="guide-section mb-8">
+        <h3 class="guide-section-title font-cinzel text-xl font-bold tracking-wider pb-2 mb-4">${escapeHtml(title)}</h3>
+        ${introHtml ? `<div class="guide-callout text-sm italic leading-relaxed px-4 py-3 mb-4 rounded-r">${introHtml}</div>` : ''}
+        ${bodyHtml}
+      </section>`;
+  },
+
+  guidePrincipleList(principles) {
+    const items = (principles || []).map(item => `
+      <li class="mb-3 leading-relaxed">
+        <span class="guide-lead font-semibold">${escapeHtml(item.lead)}</span>
+        ${item.body ? ` ${escapeHtml(item.body)}` : ''}
+      </li>`).join('');
+
+    return `<ul class="list-disc pl-5 space-y-1 text-[#cccccc]">${items}</ul>`;
+  },
+
+  guideAbilityList(items) {
+    const rows = (items || []).map(item => `
+      <li class="mb-2 leading-relaxed">
+        <span class="guide-lead font-semibold">${escapeHtml(item.ability)}</span>
+        ${item.detail ? ` — ${escapeHtml(item.detail)}` : ''}
+      </li>`).join('');
+
+    return `<ul class="list-disc pl-5 space-y-1 text-[#cccccc]">${rows}</ul>`;
+  },
+
+  guideRoleSection(roleType, role) {
+    const fields = ROLE_FIELD_LABELS[roleType] || [];
+    const items = fields.map(([key, label]) => {
+      const value = role?.[key];
+      if (!value) return '';
+      return `<li class="mb-2 leading-relaxed"><span class="guide-lead font-semibold">${escapeHtml(label)}:</span> ${escapeHtml(value)}</li>`;
+    }).join('');
+
+    return this.guideSection(
+      'Role in the Group',
+      `Fill in the <strong>${escapeHtml(ROLE_SECTION_LABELS[roleType] || roleType)}</strong> block. This section defines what your teammates are counting on you to do — and what they are NOT.`,
+      `<ul class="list-disc pl-5 space-y-1 text-[#cccccc]">${items}</ul>`
+    );
+  },
+
+  guideQuickReference(quickRef) {
+    const rows = [
+      ['Pre-engage', quickRef.preEngage],
+      ['Open', quickRef.open],
+      ['Core loop', quickRef.coreLoop],
+      ['Burst', quickRef.burst],
+      ['Execute', quickRef.execute],
+      ['Panic', quickRef.panic],
+      ['Break soft CC', quickRef.breakSoftCc],
+      ['Break hard CC', quickRef.breakHardCc],
+      ['Peel', quickRef.peel]
+    ];
+
+    const list = rows.map(([label, value]) => `
+      <li class="leading-relaxed">
+        <span class="guide-lead font-semibold">${escapeHtml(label)}:</span> ${escapeHtml(value)}
+      </li>`).join('');
+
+    return this.guideSection(
+      'Quick Reference',
+      'The whole guide compressed to a glanceable cheat-sheet. No prose — just the sequences.',
+      `<div class="guide-quick-ref rounded-lg p-4"><ul class="space-y-2 text-sm text-[#d0d0d5]">${list}</ul></div>`
+    );
+  },
+
+  guidePage({ className, faction, trees, guide, themeColor }) {
+    const treeLine = trees.join(' · ');
+    const metaBlock = `
+      <div class="guide-callout text-sm leading-relaxed px-4 py-4 mb-8 rounded-r space-y-2">
+        <p><span class="guide-lead font-semibold">Faction:</span> ${escapeHtml(faction)}</p>
+        <p><span class="guide-lead font-semibold">Trees:</span> ${escapeHtml(treeLine)}</p>
+        <p><span class="guide-lead font-semibold">Resource:</span> ${escapeHtml(guide.resource)}</p>
+        <p><span class="guide-lead font-semibold">Group Role:</span> ${escapeHtml(guide.groupRole)}</p>
+        <p><span class="guide-lead font-semibold">One-line identity:</span> ${escapeHtml(guide.identity)}</p>
+      </div>`;
+
+    const resourceSection = this.guideSection(
+      'Resource System',
+      'Explain this class\'s resource(s) and the loop that drives everything.',
+      `
+        <p class="mb-4 leading-relaxed"><span class="guide-lead font-semibold">${escapeHtml(guide.resource)}:</span> ${escapeHtml(guide.resourceSystem.summary)}</p>
+        <p class="guide-lead font-semibold mb-2">Generators / Builders</p>
+        ${this.guideAbilityList(guide.resourceSystem.generators)}
+        <p class="guide-lead font-semibold mt-4 mb-2">Spenders / Payoffs</p>
+        ${this.guideAbilityList(guide.resourceSystem.spenders)}
+        <p class="mt-4 leading-relaxed"><span class="guide-lead font-semibold">The loop:</span> ${escapeHtml(guide.resourceSystem.loop)}</p>
+      `
+    );
+
+    const preEngageSection = this.guideSection(
+      'Pre-Engage',
+      'What to set up BEFORE contact. Defensive staging, buffs, auras, stealth positioning, cooldowns with a pre-window.',
+      `
+        ${this.guideAbilityList(guide.preEngage.items)}
+        ${guide.preEngage.conditional ? `<p class="mt-4 leading-relaxed"><span class="guide-lead font-semibold">Conditional staging:</span> ${escapeHtml(guide.preEngage.conditional)}</p>` : ''}
+        ${guide.preEngage.approachNotes ? `<p class="mt-4 leading-relaxed italic text-[#a0a0a5]">${escapeHtml(guide.preEngage.approachNotes)}</p>` : ''}
+      `
+    );
+
+    const engageModes = (guide.engage.modes || []).map(mode => `
+      <div class="mb-4">
+        <p class="guide-lead font-semibold mb-2">${escapeHtml(mode.name)}</p>
+        <ol class="list-decimal pl-5 space-y-1 text-[#cccccc]">
+          ${(mode.steps || []).map((step, index) => `
+            <li class="leading-relaxed">
+              <span class="guide-lead font-semibold">${escapeHtml(step.ability)}</span>
+              ${step.detail ? ` — ${escapeHtml(step.detail)}` : ''}
+            </li>`).join('')}
+        </ol>
+      </div>`).join('');
+
+    const engageSection = this.guideSection(
+      'Engage / Opener',
+      'The first 2–3 seconds. What you open with and the goal of the opening sequence.',
+      `
+        ${engageModes}
+        <p class="mt-2 leading-relaxed"><span class="guide-lead font-semibold">Opener goal:</span> ${escapeHtml(guide.engage.goal)}</p>
+      `
+    );
+
+    const rotationSection = this.guideSection(
+      'Core Rotation',
+      'The sustained loop once the fight is underway and the target is healthy (above ~50%).',
+      `
+        <p class="guide-lead font-semibold mb-2">Maintain</p>
+        <ul class="list-disc pl-5 mb-4 text-[#cccccc]">${(guide.coreRotation.maintain || []).map(item => `<li class="mb-1">${escapeHtml(item)}</li>`).join('')}</ul>
+        <p class="guide-lead font-semibold mb-2">Loop</p>
+        <ul class="list-disc pl-5 mb-4 text-[#cccccc]">${(guide.coreRotation.loop || []).map(item => `<li class="mb-1">${escapeHtml(item)}</li>`).join('')}</ul>
+        <p class="leading-relaxed"><span class="guide-lead font-semibold">Burst window / combo (~${escapeHtml(guide.coreRotation.burstWindow.cooldown)}):</span> ${escapeHtml(guide.coreRotation.burstWindow.combo)}</p>
+      `
+    );
+
+    const executeSection = this.guideSection(
+      'Burst / Execute Phase',
+      'What changes when the target is low (below ~50%) or when your burst window is up.',
+      `<ol class="list-decimal pl-5 space-y-2 text-[#cccccc]">
+        ${(guide.burstExecute.steps || []).map(step => `
+          <li class="leading-relaxed">
+            <span class="guide-lead font-semibold">${escapeHtml(step.lead)}</span>
+            ${step.body ? ` — ${escapeHtml(step.body)}` : ''}
+          </li>`).join('')}
+      </ol>`
+    );
+
+    const defensiveSection = this.guideSection(
+      'Defensive Layer / Survival',
+      'What to do when you\'re taking damage or dropping low.',
+      `
+        <p class="guide-lead font-semibold mb-2">Immediate response (fire together)</p>
+        <ol class="list-decimal pl-5 mb-4 text-[#cccccc]">
+          ${(guide.defensiveLayer.immediate || []).map((item, index) => `
+            <li class="mb-1 leading-relaxed">
+              <span class="guide-lead font-semibold">${escapeHtml(item.ability)}</span>
+              ${item.detail ? ` — ${escapeHtml(item.detail)}` : ''}
+            </li>`).join('')}
+        </ol>
+        <p class="guide-lead font-semibold mb-2">Reinforce / mitigate</p>
+        <ul class="list-disc pl-5 mb-4 text-[#cccccc]">${(guide.defensiveLayer.reinforce || []).map(item => `<li class="mb-1">${escapeHtml(item)}</li>`).join('')}</ul>
+        <p class="mb-4 leading-relaxed"><span class="guide-lead font-semibold">If still losing the exchange:</span> ${escapeHtml(guide.defensiveLayer.fallback)}</p>
+        <p class="leading-relaxed"><span class="guide-lead font-semibold">The rule:</span> ${escapeHtml(guide.defensiveLayer.rule)}</p>
+      `
+    );
+
+    const breakCcSection = this.guideSection(
+      'Break CC',
+      'How to respond when controlled. Map each break tool to the CC type it answers.',
+      `
+        <p class="guide-lead font-semibold mb-2">You are rooted/snared (soft CC)</p>
+        ${this.guideAbilityList(guide.breakCc.softCc)}
+        <p class="guide-lead font-semibold mt-4 mb-2">You are stunned/knocked (hard CC)</p>
+        ${this.guideAbilityList(guide.breakCc.hardCc)}
+        <p class="mt-4 leading-relaxed"><span class="guide-lead font-semibold">Priority rule:</span> ${escapeHtml(guide.breakCc.priorityRule)}</p>
+        <p class="mt-2 leading-relaxed"><span class="guide-lead font-semibold">After breaking:</span> ${escapeHtml(guide.breakCc.afterBreaking)}</p>
+      `
+    );
+
+    const peelSection = this.guideSection(
+      'Peel / Protecting the Backline',
+      'How this class defends its own support when a threat slips through.',
+      `
+        ${this.guideAbilityList(guide.peel.tools)}
+        <p class="mt-4 leading-relaxed"><span class="guide-lead font-semibold">Peel priority:</span> ${escapeHtml(guide.peel.priority)}</p>
+      `
+    );
+
+    const targetSection = this.guideSection(
+      'Target Priority / Matchups',
+      'Who this class should focus, who to avoid, and how to adjust against specific enemy roles.',
+      `<p class="italic text-[#a0a0a5] leading-relaxed">${escapeHtml(guide.targetPriority)}</p>`
+    );
+
+    const mechanicsSection = (guide.classMechanics || []).length
+      ? this.guideSection(
+        'Class-Specific Mechanics',
+        'Catch-all for anything unique that doesn\'t fit the standard sections.',
+        `<ul class="list-disc pl-5 space-y-2 text-[#cccccc]">
+          ${guide.classMechanics.map(item => `
+            <li class="leading-relaxed">
+              <span class="guide-lead font-semibold">${escapeHtml(item.name)}</span>
+              ${item.detail ? ` — ${escapeHtml(item.detail)}` : ''}
+            </li>`).join('')}
+        </ul>`
+      )
+      : '';
+
+    return `
+      <article class="guide-panel rounded-lg p-6 md:p-8" style="--guide-accent: ${themeColor};">
+        <header class="mb-6 pb-4 border-b border-[#8c734b]/30">
+          <h2 class="font-cinzel text-2xl md:text-3xl font-bold tracking-wide mb-1" style="color: ${themeColor};">${escapeHtml(className)} — PvP Guide</h2>
+        </header>
+        ${metaBlock}
+        ${this.guideSection(
+          'Core Principles',
+          'The rules that define how this class is played. If you remember nothing else, remember these.',
+          this.guidePrincipleList(guide.corePrinciples)
+        )}
+        ${this.guideRoleSection(guide.roleType, guide.role)}
+        ${resourceSection}
+        ${preEngageSection}
+        ${engageSection}
+        ${rotationSection}
+        ${executeSection}
+        ${defensiveSection}
+        ${breakCcSection}
+        ${peelSection}
+        ${targetSection}
+        ${mechanicsSection}
+        ${this.guideQuickReference(guide.quickReference)}
+      </article>`;
   }
 };
 
@@ -1139,6 +1567,7 @@ function mapAbilityToCardView(name, data) {
     baseValue: data.base_value || null,
     type: data.type || null,
     generativeIcon: data.generative_icon || null,
+    icon: data.icon || null,
     cooldown,
     tags,
     parsedTypes
@@ -1225,9 +1654,15 @@ function setupAccordionListeners(container) {
 
 async function init() {
   try {
-    const response = await fetch('./data.json?v=' + new Date().getTime());
-    if (!response.ok) throw new Error('Failed to retrieve file data payload.');
-    database = await response.json();
+    const cacheBust = new Date().getTime();
+    const [dataResponse, guidesResponse] = await Promise.all([
+      fetch('./data.json?v=' + cacheBust),
+      fetch('./class-guides.json?v=' + cacheBust)
+    ]);
+
+    if (!dataResponse.ok) throw new Error('Failed to retrieve file data payload.');
+    database = await dataResponse.json();
+    classGuides = guidesResponse.ok ? await guidesResponse.json() : {};
 
     if (elements.searchInput) elements.searchInput.disabled = true;
     if (elements.clearSearch) elements.clearSearch.disabled = true;
@@ -1235,11 +1670,12 @@ async function init() {
     setupTopBarHeightSync();
     setupEventListeners();
 
+    selectedClassView = getClassViewFromUrl();
     const urlClass = resolveClassFromUrl();
     if (urlClass) {
       selectClass(urlClass, { updateUrl: false });
     } else {
-      renderAbilities();
+      renderClassView();
     }
   } catch (error) {
     console.error('Database Initialization Fault:', error);
@@ -1266,6 +1702,7 @@ function setupEventListeners() {
   elements.homeLogo.addEventListener('click', resetClassSelection);
 
   window.addEventListener('popstate', () => {
+    selectedClassView = getClassViewFromUrl();
     const urlClass = resolveClassFromUrl();
     if (urlClass) {
       selectClass(urlClass, { updateUrl: false });
@@ -1274,6 +1711,14 @@ function setupEventListeners() {
 
     resetClassSelection({ updateUrl: false });
   });
+
+  if (elements.classViewTabs) {
+    elements.classViewTabs.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-class-view]');
+      if (!btn) return;
+      selectClassView(btn.dataset.classView);
+    });
+  }
 
   elements.classNavRow.addEventListener('click', (e) => {
     const btn = e.target.closest('.class-nav-btn');
@@ -1352,20 +1797,60 @@ function clearContainerPalette() {
   elements.accordionContainer.removeAttribute('style');
 }
 
-function renderAbilities() {
-  disconnectAccordionObservers();
-  elements.accordionContainer.innerHTML = '';
-
+function renderClassView() {
   if (!selectedClass) {
-    clearContainerPalette();
-    hideActiveClassHero();
-    renderFilters(null);
-    const factions = [...database].sort((a, b) => a.faction.localeCompare(b.faction));
-    elements.accordionContainer.innerHTML = UI.classSelectionGrid(factions);
-    setupClassCardListeners(elements.accordionContainer);
+    renderClassHome();
     return;
   }
 
+  if (selectedClassView === 'guide') {
+    renderGuideView();
+    return;
+  }
+
+  renderAbilitiesView();
+}
+
+function renderClassHome() {
+  disconnectAccordionObservers();
+  elements.accordionContainer.innerHTML = '';
+  clearContainerPalette();
+  hideActiveClassHero();
+  renderClassViewTabs('');
+  renderFilters(null);
+  const factions = [...database].sort((a, b) => a.faction.localeCompare(b.faction));
+  elements.accordionContainer.innerHTML = UI.classSelectionGrid(factions);
+  setupClassCardListeners(elements.accordionContainer);
+}
+
+function renderGuideView() {
+  disconnectAccordionObservers();
+  clearContainerPalette();
+  renderActiveClassHero(selectedClass);
+
+  const classData = findClassData(selectedClass);
+  const guide = classGuides[selectedClass];
+  if (!classData || !guide) {
+    elements.accordionContainer.innerHTML = UI.emptyState('Guide not available for this class yet.');
+    return;
+  }
+
+  const classMeta = getClassMetadata(selectedClass);
+  const { themeColor } = getClassThemeStyles(classMeta);
+
+  elements.accordionContainer.innerHTML = UI.guidePage({
+    className: selectedClass,
+    faction: getClassFaction(selectedClass),
+    trees: getOrderedTreeNames(classData),
+    guide,
+    themeColor
+  });
+  syncTopBarHeight();
+}
+
+function renderAbilitiesView() {
+  disconnectAccordionObservers();
+  elements.accordionContainer.innerHTML = '';
   clearContainerPalette();
   renderActiveClassHero(selectedClass);
 
@@ -1397,6 +1882,7 @@ function renderAbilities() {
 
     accordionHtml.push(UI.accordionItem({
       treeName: tree.name,
+      treeIcon: tree.icon || null,
       cardsHtml,
       expanded,
       useClassTheme,
@@ -1414,6 +1900,10 @@ function renderAbilities() {
   setupAccordionListeners(elements.accordionContainer);
   initializeExpandedAccordions(elements.accordionContainer);
   syncTopBarHeight();
+}
+
+function renderAbilities() {
+  renderClassView();
 }
 
 init();
